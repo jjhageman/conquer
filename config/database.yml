@@ -2,11 +2,13 @@ development:
   adapter: postgresql
   encoding: unicode
   database: conquer_development
+  pool: 5
 
 test: &test
   adapter: postgresql
   encoding: unicode
   database: conquer_test
+  pool: 5
 
 production:
   adapter: postgresql

@@ -1,4 +1,4 @@
-Conquer2::Application.configure do
+Conquer::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
   # Code is not reloaded between requests
@@ -53,7 +53,7 @@ Conquer2::Application.configure do
   config.action_mailer.default_url_options = { host: 'conquer.com' }
 
   # Enable threaded mode
-  # config.threadsafe!
+  config.threadsafe!
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation can not be found)
