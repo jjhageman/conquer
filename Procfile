@@ -1,1 +1,1 @@
-web: bundle exec puma -p $PORT -e ${RACK_ENV:-development} -C config/puma.rb
+web: bundle exec puma -t 0:5 -p $PORT -e ${RACK_ENV:-development} -C config/puma.rb
