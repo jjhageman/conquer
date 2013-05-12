@@ -1,14 +1,30 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Conquer</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+  <head>
+    <title>Conquer</title>
+    <%= stylesheet_link_tag    "application", :media => "all" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <%= link_to 'Conquer', user_signed_in? ? user_root_path : root_path, class: 'brand' %>
+        <%= render 'layouts/navigation' %>
+        <%= render 'layouts/login_items' unless devise_controller? %>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <% flash.delete(:timedout).each do |key, msg| %>
+      <div class="alert alert-<%= key == :notice ? "success" : "error" %>">
+        <a class="close" data-dismiss="alert">x</a>
+        <%= msg %>
+      </div>
+    <% end %>
 
-<%= yield %>
-
-</body>
+    <%= yield %>
+    </div>
+  </body>
 </html>

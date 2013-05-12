@@ -11,7 +11,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130511204006) do
+ActiveRecord::Schema.define(:version => 20130512043904) do
+
+  create_table "courses", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.decimal  "price",                  :precision => 8, :scale => 2
+    t.string   "image"
+    t.string   "instructor_name"
+    t.text     "instructor_description"
+    t.string   "instructor_image"
+    t.datetime "created_at",                                           :null => false
+    t.datetime "updated_at",                                           :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "first_name"

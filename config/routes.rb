@@ -1,11 +1,12 @@
 Conquer::Application.routes.draw do
-  devise_for :users, :skip => [:sessions]
 
-  devise_scope :user do
-    get 'login' => 'devise/sessions#new', :as => :new_user_session
-    post 'login' => 'devise/sessions#create', :as => :user_session
-    delete 'logout' => 'devise/sessions#destroy', :as => :destroy_user_session
-  end
+  devise_for :users, path: '', path_names: {sign_in: 'login', sign_out: 'logout'}
 
-  root :to => "home#index"
+  resources :courses, only: [:index, :show]
+
+  get 'about' => 'home#about'  
+  get 'contact' => 'home#contact'  
+  get 'how' => 'home#how'  
+
+  root to: 'home#index'
 end
