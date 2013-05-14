@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130512043904) do
+ActiveRecord::Schema.define(:version => 20130514055916) do
 
   create_table "courses", :force => true do |t|
     t.string   "name"
@@ -24,6 +24,17 @@ ActiveRecord::Schema.define(:version => 20130512043904) do
     t.datetime "created_at",                                           :null => false
     t.datetime "updated_at",                                           :null => false
   end
+
+  create_table "enrollments", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "course_id"
+    t.boolean  "purchased",  :default => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+  end
+
+  add_index "enrollments", ["course_id"], :name => "index_enrollments_on_course_id"
+  add_index "enrollments", ["user_id"], :name => "index_enrollments_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "first_name"
@@ -44,6 +55,8 @@ ActiveRecord::Schema.define(:version => 20130512043904) do
     t.string   "unconfirmed_email"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
+    t.string   "last_4_digits"
+    t.string   "stripe_id"
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true
