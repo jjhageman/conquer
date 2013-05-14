@@ -25,10 +25,7 @@ gem 'jquery-rails'
 group :development, :test do
   gem 'debugger'
   gem 'rspec-rails'
-end
-
-group :test do
-  gem 'cucumber-rails', :require => false
+  gem 'capybara'
   gem 'launchy'
   gem 'database_cleaner'
   gem 'factory_girl_rails'

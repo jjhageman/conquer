@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe CourseController do
+describe CoursesController do
 
   describe "GET 'index'" do
     it "returns http success" do
