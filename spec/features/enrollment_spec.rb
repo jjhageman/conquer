@@ -1,8 +1,12 @@
 require 'spec_helper'
 
 feature 'Visitor enrolle in a course' do
-  scenario 'successful enrollment' do
+  background do
+    @course = FactoryGirl.create(:course)
+  end
+
+  scenario 'new user successful enrollment' do
     visit courses_path
-    click_link 'Enroll'
+    click_link @course.name
   end
 end
