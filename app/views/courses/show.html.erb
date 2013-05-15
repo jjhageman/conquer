@@ -1,3 +1,14 @@
 <div class="page-header">
   <h1><%= @course.name %></h1>
 </div>
+<div>
+  <strong><%= @course.price %></strong>
+  <div>
+    <%= @course.description %>
+  </div>
+  <h4><%= @course.instructor_name %></h4>
+  <div>
+    <%= @course.instructor_description %>
+  </div>
+  <%= link_to 'Take Course', new_enrollment_path(course_id: @course.id) %>
+</div>

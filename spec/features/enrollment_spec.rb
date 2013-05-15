@@ -8,5 +8,6 @@ feature 'Visitor enrolle in a course' do
   scenario 'new user successful enrollment' do
     visit courses_path
     click_link @course.name
+    click_link 'Take Course'
   end
 end

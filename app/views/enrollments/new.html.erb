@@ -3,6 +3,68 @@
   <script type="text/javascript">
     Stripe.setPublishableKey("<%= STRIPE_PUBLIC_KEY %>");
   </script>
+  <%= javascript_include_tag 'enrollments' %>
 <% end %>
 
-<%= render :partial => 'form' %>
+<%= form_for @enrollment, html: {id: 'subscription', class: 'form-horizontal'} do |f| %>
+  <fieldset>
+    <% if @enrollment.errors.any? %>
+      <div class="error_messages">
+        <h2><%= pluralize(@enrollment.errors.count, "error") %> prohibited this enrollment from being saved:</h2>
+        <ul>
+        <% @enrollment.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div id="stripe_error">
+      <noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
+    </div>
+
+    <%= f.hidden_field :course_id %>
+    <div class="field">
+      <%= label_tag :email %>
+      <%= text_field_tag :email %>
+    </div>
+
+    <div class="control-group">
+      <div class="controls">
+        <%= image_tag 'visa.png' %>
+        <%= image_tag 'mastercard.png' %>
+        <%= image_tag 'discover.png' %>
+        <%= image_tag 'american_express.png' %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= label_tag :card_number, "Credit Card Number ", class: 'control-label' %>
+      <div class="controls">
+        <%= text_field_tag :card_number, nil, name: nil, class: 'span2', data: {stripe: 'number'} %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= label_tag :card_code, "Security Code on Card (CVV)", class: 'control-label' %>
+      <div class="controls">
+        <%= text_field_tag :card_code, nil, name: nil, class: 'span1', data: {stripe: 'cvc'}%>
+        <%= image_tag 'cvv.png', class: 'cvv_icon' %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= label_tag :card_month, "Card Expiration", class: 'control-label' %>
+      <div class="controls">
+        <%= select_month nil, {add_month_numbers_true: true}, {name: nil, id: "card_month", class: 'span2', data: {stripe: 'exp-month'}} %>
+        <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year", class: 'span1', data: {stripe: 'exp-year'}}%>
+      </div>
+    </div>
+
+    <%= f.hidden_field :stripe_token %>
+
+    <div class="form-actions">
+      <%= f.submit "Complete Purchase", class: 'btn btn-primary' %>
+    </div>
+  </fieldset>
+<% end %>
