@@ -23,11 +23,30 @@
       <noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
     </div>
 
-    <%= f.hidden_field :course_id %>
-    <div class="field">
-      <%= label_tag :email %>
-      <%= text_field_tag :email %>
+    <legend>Account</legend>
+
+    <div class="control-group">
+      <%= label_tag :email, 'Email Address', class: 'control-label' %>
+      <div class="controls">
+        <%= text_field_tag :email %>
+      </div>
     </div>
+
+    <div class="control-group">
+      <%= label_tag :email, 'Email Address', class: 'control-label' %>
+      <div class="controls">
+        <%= text_field_tag :email %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= label_tag :email, 'Email Address', class: 'control-label' %>
+      <div class="controls">
+        <%= text_field_tag :email %>
+      </div>
+    </div>
+
+    <legend>Payment Information</legend>
 
     <div class="control-group">
       <div class="controls">
@@ -61,6 +80,7 @@
       </div>
     </div>
 
+    <%= f.hidden_field :course_id %>
     <%= f.hidden_field :stripe_token %>
 
     <div class="form-actions">

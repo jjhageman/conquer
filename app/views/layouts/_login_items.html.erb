@@ -1,10 +1,6 @@
 <ul class="nav pull-right">
   <% if user_signed_in? %>
-    <%= render :partial => 'optimizations/nav_menu' %>
     <li class="divider-vertical"></li>
-    <li>
-    <%= link_to 'Your Account', account_path %>
-    </li>
     <li>
     <%= link_to 'Logout', destroy_user_session_path, :method => :delete %>
     </li>
