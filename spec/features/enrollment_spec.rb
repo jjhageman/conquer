@@ -6,13 +6,14 @@ feature 'Visitor enrolle in a course' do
   end
 
   scenario 'new user successful enrollment' do
+    use_vcr_cassette
     visit courses_path
     click_link @course.name
     click_link 'Take Course'
     page.should have_content('Create Account')
     fill_in 'Email', with: 'new@user.com'
-    fill_in 'Password', with: 'secret'
-    fill_in 'Password confirmation', with: 'secret'
+    fill_in 'Password', with: 'secret99'
+    fill_in 'Password confirmation', with: 'secret99'
     click_button 'Sign up'
 
     page.should have_content("Purchase #{@course.name}")
@@ -20,6 +21,8 @@ feature 'Visitor enrolle in a course' do
     fill_in 'Security Code on Card', with: '123'
     select 'January', :from => 'card_month'
     select '2015', :from => 'card_year'
-    #click_button 'Complete Purchase'
+    click_button 'Complete Purchase'
+    
+    page.should have_content("Thank you for enrolling")
   end
 end

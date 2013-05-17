@@ -11,7 +11,8 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 
 VCR.configure do |c|
   c.cassette_library_dir     = 'spec/cassettes'
-  c.hook_into                :fakeweb
+  c.ignore_localhost         = true
+  c.hook_into                :webmock
   c.default_cassette_options = { :record => :new_episodes }
 end
 
@@ -23,7 +24,7 @@ RSpec.configure do |config|
   # config.mock_with :mocha
   # config.mock_with :flexmock
   # config.mock_with :rr
-
+  config.extend VCR::RSpec::Macros
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 

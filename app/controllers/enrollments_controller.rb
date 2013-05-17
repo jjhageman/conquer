@@ -10,6 +10,13 @@ class EnrollmentsController < ApplicationController
   end
 
   def create
+    debugger
+    @enrollment = Enrollment.new(params[:enrollment])
+    if @enrollment.save
+      redirect_to @enrollment, notice: "Thank you for enrolling"
+    else
+      render :new
+    end
   end
 
   def show

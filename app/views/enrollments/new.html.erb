@@ -6,8 +6,14 @@
   <%= javascript_include_tag 'enrollments' %>
 <% end %>
 
-<%= form_for @enrollment, html: {id: 'subscription', class: 'form-horizontal'} do |f| %>
+<%= form_for @enrollment, html: {id: 'enrollment', class: 'form-horizontal'} do |f| %>
   <fieldset>
+    <legend>Your Purchase</legend>
+    <div class="well">
+      <h4><%= @course.name %></h4>
+      <strong><%= number_to_currency @course.price %></strong>
+    </div>
+
     <% if @enrollment.errors.any? %>
       <div class="error_messages">
         <h2><%= pluralize(@enrollment.errors.count, "error") %> prohibited this enrollment from being saved:</h2>
@@ -23,28 +29,7 @@
       <noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
     </div>
 
-    <legend>Account</legend>
 
-    <div class="control-group">
-      <%= label_tag :email, 'Email Address', class: 'control-label' %>
-      <div class="controls">
-        <%= text_field_tag :email %>
-      </div>
-    </div>
-
-    <div class="control-group">
-      <%= label_tag :email, 'Email Address', class: 'control-label' %>
-      <div class="controls">
-        <%= text_field_tag :email %>
-      </div>
-    </div>
-
-    <div class="control-group">
-      <%= label_tag :email, 'Email Address', class: 'control-label' %>
-      <div class="controls">
-        <%= text_field_tag :email %>
-      </div>
-    </div>
 
     <legend>Payment Information</legend>
 
