@@ -5,8 +5,8 @@ feature 'Visitor enrolle in a course' do
     @course = FactoryGirl.create(:course)
   end
 
-  scenario 'new user successful enrollment' do
-    use_vcr_cassette
+  scenario 'new user successful enrollment', :js => true do
+    #use_vcr_cassette
     visit courses_path
     click_link @course.name
     click_link 'Take Course'
@@ -25,4 +25,8 @@ feature 'Visitor enrolle in a course' do
     
     page.should have_content("Thank you for enrolling")
   end
+
+  scenario 'new user invalid credit card'
+  scenario 'existing user successful enrollment'
+  scenario 'existing user attempts to purchase course they have already bought'
 end

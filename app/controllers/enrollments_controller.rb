@@ -10,9 +10,9 @@ class EnrollmentsController < ApplicationController
   end
 
   def create
-    debugger
     @enrollment = Enrollment.new(params[:enrollment])
-    if @enrollment.save
+    @enrollment.user = current_user
+    if @enrollment.save_and_make_payment
       redirect_to @enrollment, notice: "Thank you for enrolling"
     else
       render :new

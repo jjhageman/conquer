@@ -16,6 +16,8 @@ VCR.configure do |c|
   c.default_cassette_options = { :record => :new_episodes }
 end
 
+Capybara.javascript_driver = :webkit
+
 RSpec.configure do |config|
   # ## Mock Framework
   #

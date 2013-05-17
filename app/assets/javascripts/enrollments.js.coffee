@@ -1,5 +1,5 @@
 $(document).ready ->
-  Stripe.setPublishableKey($('meta[name="stripe-key"]').attr('content'))
+  #Stripe.setPublishableKey($('meta[name="stripe-key"]').attr('content'))
   enrollment.setupForm()
 
 enrollment =

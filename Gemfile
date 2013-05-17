@@ -34,4 +34,5 @@ group :test do
   gem 'factory_girl_rails'
   gem 'vcr'
   gem 'webmock'
+  gem 'capybara-webkit', github: 'thoughtbot/capybara-webkit', branch: 'master'
 end

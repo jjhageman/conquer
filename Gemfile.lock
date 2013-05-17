@@ -1,4 +1,13 @@
 GIT
+  remote: git://github.com/thoughtbot/capybara-webkit.git
+  revision: 7bf3c800315ebf90da1f549c028b90306c88c0f2
+  branch: master
+  specs:
+    capybara-webkit (0.14.1)
+      capybara (~> 2.0, >= 2.0.2)
+      json
+
+GIT
   remote: https://github.com/stripe/stripe-ruby
   revision: 2dbc700fc35c9f6191e274febcd283223fce7d9a
   specs:
@@ -167,6 +176,7 @@ PLATFORMS
 
 DEPENDENCIES
   capybara
+  capybara-webkit!
   coffee-rails (~> 3.2.1)
   database_cleaner
   debugger
