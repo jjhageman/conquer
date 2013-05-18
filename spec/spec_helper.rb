@@ -14,9 +14,10 @@ VCR.configure do |c|
   c.ignore_localhost         = true
   c.hook_into                :webmock
   c.default_cassette_options = { :record => :new_episodes }
+  c.configure_rspec_metadata!
 end
 
-Capybara.javascript_driver = :webkit
+#Capybara.javascript_driver = :webkit
 
 RSpec.configure do |config|
   # ## Mock Framework
@@ -26,7 +27,9 @@ RSpec.configure do |config|
   # config.mock_with :mocha
   # config.mock_with :flexmock
   # config.mock_with :rr
-  config.extend VCR::RSpec::Macros
+
+  config.treat_symbols_as_metadata_keys_with_true_values = true
+
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 

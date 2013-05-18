@@ -15,7 +15,7 @@ Conquer::Application.routes.draw do
 
   get 'about' => 'home#about'  
   get 'contact' => 'home#contact'  
-  get 'how' => 'home#how'  
+  get 'how' => 'home#how'
 
   root to: 'home#index'
 end

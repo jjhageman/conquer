@@ -33,6 +33,6 @@ group :test do
   gem 'database_cleaner'
   gem 'factory_girl_rails'
   gem 'vcr'
-  gem 'webmock'
+  gem 'webmock', '~> 1.9.3'
   gem 'capybara-webkit', github: 'thoughtbot/capybara-webkit', branch: 'master'
 end

@@ -1,12 +1,14 @@
 require 'spec_helper'
+include StripeMacro
 
-feature 'Visitor enrolle in a course' do
+feature 'Visitor enrolle in a course', :vcr do
+
   background do
+    stub_stripe_customer
     @course = FactoryGirl.create(:course)
   end
-
-  scenario 'new user successful enrollment', :js => true do
-    #use_vcr_cassette
+    
+  scenario 'new user successful enrollment' do
     visit courses_path
     click_link @course.name
     click_link 'Take Course'
