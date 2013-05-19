@@ -10,5 +10,5 @@
   <div>
     <%= @course.instructor_description %>
   </div>
-  <%= link_to 'Take Course', new_enrollment_path(course_id: @course.id) %>
+  <%= link_to 'Take Course', new_enrollment_path(@course.id) %>
 </div>

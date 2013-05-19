@@ -26,6 +26,7 @@ feature 'Visitor enrolle in a course', :vcr do
     click_button 'Complete Purchase'
     
     page.should have_content("Thank you for enrolling")
+    page.should have_content(@course.name)
   end
 
   scenario 'new user invalid credit card'

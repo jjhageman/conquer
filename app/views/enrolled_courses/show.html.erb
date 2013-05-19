@@ -1,0 +1,6 @@
+<div class="page-header">
+  <h4 class="pull-right">by <%= @course.instructor_name %></h4>
+  <h1><%= @course.name %></h1>
+</div>
+
+<%= render partial: 'playlist_player', locals: { video_list: '2360128659001'} %>

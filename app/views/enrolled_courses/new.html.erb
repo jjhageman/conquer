@@ -6,7 +6,7 @@
   <%= javascript_include_tag 'enrollments' %>
 <% end %>
 
-<%= form_for @enrollment, html: {id: 'enrollment', class: 'form-horizontal'} do |f| %>
+<%= form_for @enrollment, url: enroll_path, html: {id: 'enrollment', class: 'form-horizontal'} do |f| %>
   <fieldset>
     <legend>Your Purchase</legend>
     <div class="well">
