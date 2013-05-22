@@ -11,10 +11,16 @@ Conquer::Application.routes.draw do
   resources :courses, only: [:index, :show]
   #resources :enrollments
 
-  get '/enroll/:course_id' => 'enrolled_courses#new', as: :new_enrollment
-  post '/enroll' => 'enrolled_courses#create'
-  get '/my_courses/:course_id' => 'enrolled_courses#show', as: :user_course
-  get '/my_courses' => 'enrolled_courses#index', as: :user_root
+  get '/enroll/:course_id' => 'enrollments#new', as: :new_enrollment
+  post '/enroll' => 'enrollments#create'
+  get '/enrolled/:course_id' => 'enrollments#show', as: :enrollment
+
+  get '/my_courses/:id' => 'user_courses#show', as: :user_course
+  get '/my_courses' => 'user_courses#index', as: :user_root
+
+  get '/preorder/:id/new' => 'preorders#new', as: :new_preorder
+  post '/preorder' => 'preorders#create'
+  get '/preorder/:id' => 'preorders#show', as: :preorder
 
   get '/about' => 'home#about'  
   get '/contact' => 'home#contact'  

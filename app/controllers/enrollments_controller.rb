@@ -1,10 +1,6 @@
-class EnrolledCoursesController < ApplicationController
+class EnrollmentsController < ApplicationController
   before_filter :redirect_after_authentication, only: :new
   before_filter :authenticate_user!
-
-  def index
-    @courses = current_user.courses
-  end
 
   def show
     @course = current_user.courses.find(params[:course_id])
@@ -12,6 +8,7 @@ class EnrolledCoursesController < ApplicationController
 
   def new
     if @course = Course.find_by_id(params[:course_id])
+      redirect_to user_course_path(@course) if @course.has_student?(current_user)
       @enrollment = @course.enrollments.new
     else
       redirect_to courses_path, :alert => "Please select a valid course"
@@ -21,6 +18,7 @@ class EnrolledCoursesController < ApplicationController
   def create
     @enrollment = Enrollment.new(params[:enrollment])
     @enrollment.user = current_user
+    @enrollment.purchased = true
     if @enrollment.save_and_make_payment
       redirect_to user_course_path(@enrollment.course), notice: "Thank you for enrolling!"
     else

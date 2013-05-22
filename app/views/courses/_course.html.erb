@@ -1,5 +1,5 @@
 <div>
-  <h3><%= link_to course.name, course_path(course) %></h3>
+  <h3><%= link_to course.name, (user_signed_in? && course.has_student?(current_user)) ? user_course_path(course) : course_path(course) %></h3>
   <strong><%= course.price %></strong>
   <div>
     <%= course.description %>

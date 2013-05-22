@@ -16,4 +16,8 @@ class User < ActiveRecord::Base
     self.last_4_digits = stripe_customer.active_card.last4 if stripe_customer.active_card.last4
     save!
   end
+
+  def enrolled_in?(course)
+    enrollments.where(course_id: course.id).exits?
+  end
 end

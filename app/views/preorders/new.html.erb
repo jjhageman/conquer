@@ -1,0 +1,31 @@
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span9">
+      <h2><%= @course.instructor_name %> <small>teaches</small></h2>
+      <h3><%= @course.name %></h3>
+      <%= render partial: 'user_courses/course_player', locals: { video_player: '2361189644001'} %>
+      <h4>About the Class</h4>
+      <%= @course.description %>
+      <h4>About <%= @course.instructor_name %></h4>
+      <p><%= @course.instructor_description %></p>
+    </div>
+    <div class="span3">
+      <div class="well">
+        <h3><del>$49.99</del> <%= number_to_currency @course.price %></h3>
+        <p>Special pre-order price</p>
+        <%= form_tag preorder_path do %>
+          <script
+            src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
+              data-key="<%= STRIPE_PUBLIC_KEY %>"
+            data-amount="<%= @course.price_in_cents %>"
+            data-name="Conquer"
+            data-description="<%= @course.name %>"
+            data-image="/128x128.png">
+          </script>
+          <%= label_tag :email %>
+          <%= text_field_tag :email %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
