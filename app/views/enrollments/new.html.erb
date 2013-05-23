@@ -14,16 +14,7 @@
       <strong><%= number_to_currency @course.price %></strong>
     </div>
 
-    <% if @enrollment.errors.any? %>
-      <div class="error_messages">
-        <h2><%= pluralize(@enrollment.errors.count, "error") %> prohibited this enrollment from being saved:</h2>
-        <ul>
-        <% @enrollment.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-        </ul>
-      </div>
-    <% end %>
+    <%= render "shared/form_errors", :target => @enrollment %>
 
     <div id="stripe_error">
       <noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>

@@ -18,8 +18,9 @@ Conquer::Application.routes.draw do
   get '/my_courses/:id' => 'user_courses#show', as: :user_course
   get '/my_courses' => 'user_courses#index', as: :user_root
 
+  #resources :preorders
   get '/preorder/:id/new' => 'preorders#new', as: :new_preorder
-  post '/preorder' => 'preorders#create'
+  post '/preorders' => 'preorders#create'
   get '/preorder/:id' => 'preorders#show', as: :preorder
 
   get '/about' => 'home#about'  

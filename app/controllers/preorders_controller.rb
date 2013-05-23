@@ -13,6 +13,15 @@ class PreordersController < ApplicationController
   end
 
   def create
-
+    debugger
+    @enrollment = Enrollment.new(params[:enrollment])
+    @enrollment.user = current_user
+    @enrollment.purchased = true
+    if @enrollment.save_and_make_payment
+      redirect_to user_course_path(@enrollment.course), notice: "Thank you for enrolling!"
+    else
+      @course = @enrollment.course
+      render :new
+    end
   end
 end

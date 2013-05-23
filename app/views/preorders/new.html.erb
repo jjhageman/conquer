@@ -1,3 +1,11 @@
+<% content_for :head do %>
+  <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+<script type="text/javascript">
+Stripe.setPublishableKey("<%= STRIPE_PUBLIC_KEY %>");
+</script>
+<%= javascript_include_tag 'enrollments' %>
+<% end %>
+
 <div class="container-fluid">
   <div class="row-fluid">
     <div class="span9">
@@ -13,19 +21,89 @@
       <div class="well">
         <h3><del>$49.99</del> <%= number_to_currency @course.price %></h3>
         <p>Special pre-order price</p>
-        <%= form_tag preorder_path do %>
-          <script
-            src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
-              data-key="<%= STRIPE_PUBLIC_KEY %>"
-            data-amount="<%= @course.price_in_cents %>"
-            data-name="Conquer"
-            data-description="<%= @course.name %>"
-            data-image="/128x128.png">
-          </script>
-          <%= label_tag :email %>
-          <%= text_field_tag :email %>
-        <% end %>
+        <a href="#preOrderForm" role="button" class="btn btn-primary" data-toggle="modal">Pre-Order</a>
       </div>
     </div>
   </div>
+</div>
+
+
+<div id="preOrderForm" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="preOrderFormLabel" aria-hidden="true">
+  <%= form_for @enrollment, url: preorders_path, html: {id: 'enrollment', class: 'form-horizontal'} do |f| %>
+    <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3 id="preOrderFormLabel">Pre-Order: <%= @course.name %></h3>
+  </div>
+  <div class="modal-body">
+    <fieldset>
+
+      <%= render "shared/form_errors", :target => @enrollment %>
+
+      <div class="control-group">
+        <%= label_tag :email, 'Email', class: 'control-label' %>
+        <div class="controls">
+          <%= text_field_tag :email, nil, autofocus: true %>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <%= label_tag :password, 'Password', class: 'control-label' %>
+        <div class="controls">
+          <%= text_field_tag :password %>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <%= label_tag :password_confirmation, 'Password confirmation', class: 'control-label' %>
+        <div class="controls">
+          <%= text_field_tag :password_confirmation %>
+        </div>
+      </div>
+
+      <div id="stripe_error">
+        <noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
+      </div>
+
+      <div class="control-group">
+        <div class="controls">
+          <%= image_tag 'visa.png' %>
+          <%= image_tag 'mastercard.png' %>
+          <%= image_tag 'discover.png' %>
+          <%= image_tag 'american_express.png' %>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <%= label_tag :card_number, "Credit Card Number ", class: 'control-label' %>
+        <div class="controls">
+          <%= text_field_tag :card_number, nil, name: nil, class: 'span2', data: {stripe: 'number'} %>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <%= label_tag :card_code, "Security Code (CVV)", class: 'control-label' %>
+        <div class="controls">
+          <%= text_field_tag :card_code, nil, name: nil, class: 'span1', data: {stripe: 'cvc'}%>
+          <%= image_tag 'cvv.png', class: 'cvv_icon' %>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <%= label_tag :card_month, "Card Expiration", class: 'control-label' %>
+        <div class="controls">
+          <%= select_month nil, {add_month_numbers_true: true}, {name: nil, id: "card_month", class: 'span2', data: {stripe: 'exp-month'}} %>
+          <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year", class: 'span2', data: {stripe: 'exp-year'}}%>
+        </div>
+      </div>
+
+      <%= f.hidden_field :course_id %>
+      <%= f.hidden_field :stripe_token %>
+
+    </div>
+    <div class="modal-footer">
+      <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+      <%= f.submit "Complete Pre-Order", class: 'btn btn-primary' %>
+    </div>
+  </fieldset>
+<% end %>
 </div>
