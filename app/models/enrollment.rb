@@ -10,19 +10,35 @@ class Enrollment < ActiveRecord::Base
 
   def save_and_make_payment
     if valid?
-      customer = Stripe::Customer.create(:card => stripe_token, :description => user.email)
-
-      # Charge the Customer instead of the card
-      Stripe::Charge.create(
-        amount: course.price_in_cents,
-        currency: "usd",
-        customer: customer.id,
-        description: "#{course.id}: #{course.name}"
-      )
-
-      # Save the customer ID in your database so you can use it later
+      customer = create_stripe_customer
+      charge_customer(customer)
       user.update_stripe_attributes(customer)
       save!
     end
+
+  rescue Stripe::CardError => e
+    logger.error "Stripe error while creating customer: #{e.message}"
+    errors.add :base, "There was a problem with your credit card."
+    false
+  end
+
+  def save_and_create_stripe_customer
+    if valid?
+      customer = create_stripe_customer
+      user.update_stripe_attributes(customer)
+      save!
+    end
+  end
+
+  def create_stripe_customer
+    Stripe::Customer.create(:card => stripe_token, :description => user.email)
+  end
+
+  def charge_customer(customer)
+    Stripe::Charge.create(
+      amount: course.price_in_cents,
+      currency: "usd",
+      customer: customer.id,
+      description: "#{course.id}: #{course.name}")
   end
 end

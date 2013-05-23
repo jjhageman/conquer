@@ -13,7 +13,7 @@ Conquer::Application.routes.draw do
 
   get '/enroll/:course_id' => 'enrollments#new', as: :new_enrollment
   post '/enroll' => 'enrollments#create'
-  get '/enrolled/:course_id' => 'enrollments#show', as: :enrollment
+  get '/enrolled/:id' => 'enrollments#show', as: :enrollment
 
   get '/my_courses/:id' => 'user_courses#show', as: :user_course
   get '/my_courses' => 'user_courses#index', as: :user_root

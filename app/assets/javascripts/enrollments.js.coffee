@@ -22,5 +22,5 @@ enrollment =
       $('#enrollment_stripe_token').val(response.id)
       $('#enrollment')[0].submit()
     else
-      $('#stripe_error').text(response.error.message)
+      $('#stripe_error').text(response.error.message).addClass('alert alert-error')
       $('input[type=submit]').attr('disabled', false)

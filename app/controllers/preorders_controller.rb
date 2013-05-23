@@ -1,6 +1,9 @@
 class PreordersController < ApplicationController
-  def show
+  before_filter :authenticate_user!, only: :show
 
+  def show
+    @enrollment = current_user.enrollments.find(params[:id])
+    @course = @enrollment.course
   end
 
   def new
@@ -13,12 +16,18 @@ class PreordersController < ApplicationController
   end
 
   def create
-    debugger
     @enrollment = Enrollment.new(params[:enrollment])
-    @enrollment.user = current_user
-    @enrollment.purchased = true
-    if @enrollment.save_and_make_payment
-      redirect_to user_course_path(@enrollment.course), notice: "Thank you for enrolling!"
+    @user = User.new(params[:user])
+    if @user.save
+      sign_in @user
+      @enrollment.user = @user
+      @enrollment.purchased = false
+      if @enrollment.save_and_create_stripe_customer
+        redirect_to preorder_path(@enrollment), notice: "Thank you registering!"
+      else
+        @course = @enrollment.course
+        render :new
+      end
     else
       @course = @enrollment.course
       render :new

@@ -3,6 +3,11 @@ module StripeMacro
     Stripe::Customer.stub(:create).and_return(customer)
   end
 
+  def stub_invalid_stripe_customer
+    error = Stripe::CardError.new("Your card was declined","card_error","card_declined")
+    Stripe::Customer.stub(:create).and_raise(error)
+  end
+
   def customer
     return @customer if @customer
     @customer = mock 'customer'

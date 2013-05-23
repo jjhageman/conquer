@@ -3,7 +3,8 @@ class EnrollmentsController < ApplicationController
   before_filter :authenticate_user!
 
   def show
-    @course = current_user.courses.find(params[:course_id])
+    @enrollment = current_user.enrollments.find(params[:id])
+    @course = @enrollment.course
   end
 
   def new
@@ -20,7 +21,7 @@ class EnrollmentsController < ApplicationController
     @enrollment.user = current_user
     @enrollment.purchased = true
     if @enrollment.save_and_make_payment
-      redirect_to user_course_path(@enrollment.course), notice: "Thank you for enrolling!"
+      redirect_to enrollment_path(@enrollment), notice: "Thank you for enrolling!"
     else
       @course = @enrollment.course
       render :new

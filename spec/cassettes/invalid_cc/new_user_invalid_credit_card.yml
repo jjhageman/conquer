@@ -1,0 +1,159 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.stripe.com/v1/customers
+    body:
+      encoding: US-ASCII
+      string: card=tok_1sdlnkewcLciVb&description=new%40user.com
+    headers:
+      Accept:
+      - '*/*; q=0.5, application/xml'
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Stripe/v1 RubyBindings/1.8.3
+      Authorization:
+      - Bearer sk_test_Xnb4pUPWA0gayzQFgkjuRPfq
+      Content-Type:
+      - application/x-www-form-urlencoded
+      X-Stripe-Client-User-Agent:
+      - '{"bindings_version":"1.8.3","lang":"ruby","lang_version":"2.0.0 p195 (2013-05-14)","platform":"x86_64-darwin11.4.2","publisher":"stripe","uname":"Darwin
+        Jeremy-Hagemans-MacBook-Pro.local 11.4.2 Darwin Kernel Version 11.4.2: Thu
+        Aug 23 16:25:48 PDT 2012; root:xnu-1699.32.7~1/RELEASE_X86_64 x86_64"}'
+      Content-Length:
+      - '50'
+  response:
+    status:
+      code: 402
+      message: Payment Required
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Thu, 23 May 2013 07:32:10 GMT
+      Content-Type:
+      - application/json;charset=utf-8
+      Content-Length:
+      - '116'
+      Connection:
+      - keep-alive
+      Access-Control-Max-Age:
+      - '300'
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Cache-Control:
+      - no-cache, no-store
+    body:
+      encoding: UTF-8
+      string: &1 !ruby/string
+        str: |
+          {
+            "error": {
+              "message": "Your card was declined",
+              "type": "card_error",
+              "code": "card_declined"
+            }
+          }
+        net_http_res: !ruby/object:Net::HTTPPaymentRequired
+          http_version: '1.0'
+          code: '402'
+          message: Payment Required
+          header:
+            server:
+            - nginx
+            date:
+            - Thu, 23 May 2013 07:32:10 GMT
+            content-type:
+            - application/json;charset=utf-8
+            content-length:
+            - '116'
+            connection:
+            - keep-alive
+            access-control-max-age:
+            - '300'
+            access-control-allow-credentials:
+            - 'true'
+            cache-control:
+            - no-cache, no-store
+          body: *1
+          read: true
+          uri: 
+          decode_content: false
+          __read_body_previously_called: true
+        args:
+          :verify_ssl: 1
+          :ssl_ca_file: /Users/jjhageman/.rbenv/versions/2.0.0-p195/lib/ruby/gems/2.0.0/bundler/gems/stripe-ruby-2dbc700fc35c/lib/data/ca-certificates.crt
+          :headers:
+            :user_agent: Stripe/v1 RubyBindings/1.8.3
+            :authorization: Bearer sk_test_Xnb4pUPWA0gayzQFgkjuRPfq
+            :content_type: application/x-www-form-urlencoded
+            :x_stripe_client_user_agent: '{"bindings_version":"1.8.3","lang":"ruby","lang_version":"2.0.0
+              p195 (2013-05-14)","platform":"x86_64-darwin11.4.2","publisher":"stripe","uname":"Darwin
+              Jeremy-Hagemans-MacBook-Pro.local 11.4.2 Darwin Kernel Version 11.4.2:
+              Thu Aug 23 16:25:48 PDT 2012; root:xnu-1699.32.7~1/RELEASE_X86_64 x86_64"}'
+          :method: :post
+          :open_timeout: 30
+          :payload: card=tok_1sdlnkewcLciVb&description=new%40user.com
+          :url: https://api.stripe.com/v1/customers
+          :timeout: 80
+        code: 402
+    http_version: 
+  recorded_at: Thu, 23 May 2013 07:32:11 GMT
+- request:
+    method: post
+    uri: https://api.stripe.com/v1/customers
+    body:
+      encoding: US-ASCII
+      string: card=tok_1sdlnkewcLciVb&description=new%40user.com
+    headers:
+      Accept:
+      - '*/*; q=0.5, application/xml'
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Stripe/v1 RubyBindings/1.8.3
+      Authorization:
+      - Bearer sk_test_Xnb4pUPWA0gayzQFgkjuRPfq
+      Content-Type:
+      - application/x-www-form-urlencoded
+      X-Stripe-Client-User-Agent:
+      - '{"bindings_version":"1.8.3","lang":"ruby","lang_version":"2.0.0 p195 (2013-05-14)","platform":"x86_64-darwin11.4.2","publisher":"stripe","uname":"Darwin
+        Jeremy-Hagemans-MacBook-Pro.local 11.4.2 Darwin Kernel Version 11.4.2: Thu
+        Aug 23 16:25:48 PDT 2012; root:xnu-1699.32.7~1/RELEASE_X86_64 x86_64"}'
+      Content-Length:
+      - '50'
+  response:
+    status:
+      code: 402
+      message: Payment Required
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Thu, 23 May 2013 07:38:05 GMT
+      Content-Type:
+      - application/json;charset=utf-8
+      Content-Length:
+      - '116'
+      Connection:
+      - keep-alive
+      Access-Control-Max-Age:
+      - '300'
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Cache-Control:
+      - no-cache, no-store
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "error": {
+            "message": "Your card was declined",
+            "type": "card_error",
+            "code": "card_declined"
+          }
+        }
+    http_version: 
+  recorded_at: Thu, 23 May 2013 07:38:05 GMT
+recorded_with: VCR 2.4.0

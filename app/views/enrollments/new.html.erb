@@ -16,12 +16,6 @@
 
     <%= render "shared/form_errors", :target => @enrollment %>
 
-    <div id="stripe_error">
-      <noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
-    </div>
-
-
-
     <legend>Payment Information</legend>
 
     <div class="control-group">
@@ -31,6 +25,10 @@
         <%= image_tag 'discover.png' %>
         <%= image_tag 'american_express.png' %>
       </div>
+    </div>
+
+    <div id="stripe_error">
+      <noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
     </div>
 
     <div class="control-group">

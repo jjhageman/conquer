@@ -1,8 +1,10 @@
 require 'spec_helper'
+include StripeMacro
 
-feature 'User preorders a course' do
+feature 'User preorders a course', :vcr do
 
   background do
+    stub_stripe_customer
     @course = FactoryGirl.create(:course)
   end
 
@@ -23,4 +25,5 @@ feature 'User preorders a course' do
 
   scenario 'existing user successful preorder'
   scenario 'existing user attempts to preorder already preordered course'
+  scenario 'user preorders with discount code'
 end
