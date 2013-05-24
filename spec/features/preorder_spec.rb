@@ -54,11 +54,11 @@ feature 'User preorders a course', :vcr do
     fill_in 'Password', with: 'secret99'
     click_button 'Sign in'
 
-    page.should have_content("Pre-Order: #{@course.name}")
+    page.should_not have_content("Pre-Order")
   end
 
   scenario 'existing user attempts to preorder already paid for course' do
-    FactoryGirl.create(:enrollment, user: user, course: @course)
+    FactoryGirl.create(:purchased_enrollment, user: user, course: @course)
     
     visit new_preorder_path(@course)
     click_link 'Already a member?'
@@ -67,7 +67,7 @@ feature 'User preorders a course', :vcr do
     fill_in 'Password', with: 'secret99'
     click_button 'Sign in'
 
-    page.should_not have_content("Pre-Order: #{@course.name}")
+    page.should_not have_content("Pre-Order")
   end
 
   scenario 'user preorders with discount code'

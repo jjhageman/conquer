@@ -23,6 +23,10 @@ class User < ActiveRecord::Base
   end
 
   def enrolled_in?(course)
-    enrollments.where(course_id: course.id).exits?
+    enrollments.purchased.where(course_id: course.id).exists?
+  end
+
+  def preordered?(course)
+    enrollments.preordered.where(course_id: course.id).exists?
   end
 end

@@ -54,7 +54,7 @@ feature 'user enrolls in a course', :vcr do
   end
 
   scenario 'existing user attempts to purchase course they have already bought' do
-    FactoryGirl.create(:enrollment, user: user, course: @course)
+    FactoryGirl.create(:purchased_enrollment, user: user, course: @course)
 
     visit courses_path
     click_link @course.name

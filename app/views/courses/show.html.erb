@@ -10,5 +10,9 @@
   <div>
     <%= @course.instructor_description %>
   </div>
-  <%= link_to 'Take Course', new_enrollment_path(@course.id) %>
+  <% if @course.released? %>
+    <%= link_to 'Take Course', new_enrollment_path(@course.id) %>
+  <% else %>
+    Coming soon. <%= link_to 'Pre-Order Now!', new_preorder_path(@course.id) %>
+  <% end %>
 </div>

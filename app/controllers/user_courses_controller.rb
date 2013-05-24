@@ -2,7 +2,8 @@ class UserCoursesController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    @courses = current_user.courses
+    @purchases = current_user.purchased_courses
+    @preorders = current_user.preordered_courses
   end
 
   def show
