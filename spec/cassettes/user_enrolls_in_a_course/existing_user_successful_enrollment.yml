@@ -5,7 +5,7 @@ http_interactions:
     uri: https://api.stripe.com/v1/charges
     body:
       encoding: US-ASCII
-      string: amount=999&currency=usd&customer=cus_1qyHNtGP3pYjQQ&description=1%3A%20Course%201%3A%20How%20To%20Be%20Awesome
+      string: amount=999&currency=usd&customer=cus_1qyHNtGP3pYjQQ&description=2%3A%20Course%202%3A%20How%20To%20Be%20Awesome
     headers:
       Accept:
       - '*/*; q=0.5, application/xml'
@@ -18,9 +18,9 @@ http_interactions:
       Content-Type:
       - application/x-www-form-urlencoded
       X-Stripe-Client-User-Agent:
-      - '{"bindings_version":"1.8.3","lang":"ruby","lang_version":"2.0.0 p195 (2013-05-14)","platform":"x86_64-darwin11.4.2","publisher":"stripe","uname":"Darwin
-        Jeremy-Hagemans-MacBook-Pro.local 11.4.2 Darwin Kernel Version 11.4.2: Thu
-        Aug 23 16:25:48 PDT 2012; root:xnu-1699.32.7~1/RELEASE_X86_64 x86_64"}'
+      - '{"bindings_version":"1.8.3","lang":"ruby","lang_version":"2.0.0 p195 (2013-05-14)","platform":"x86_64-darwin12.3.0","publisher":"stripe","uname":"Darwin
+        Jeremys-MacBook-Pro.local 12.3.0 Darwin Kernel Version 12.3.0: Sun Jan  6
+        22:37:10 PST 2013; root:xnu-2050.22.13~1/RELEASE_X86_64 x86_64"}'
       Content-Length:
       - '110'
   response:
@@ -31,7 +31,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Sat, 18 May 2013 20:57:58 GMT
+      - Thu, 23 May 2013 18:40:35 GMT
       Content-Type:
       - application/json;charset=utf-8
       Content-Length:
@@ -48,9 +48,9 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "id": "ch_1qzNfI0cJ2y28O",
+          "id": "ch_1spIkj9hqgUO6c",
           "object": "charge",
-          "created": 1368910678,
+          "created": 1369334433,
           "livemode": false,
           "paid": true,
           "amount": 999,
@@ -91,9 +91,9 @@ http_interactions:
           "amount_refunded": 0,
           "customer": "cus_1qyHNtGP3pYjQQ",
           "invoice": null,
-          "description": "1: Course 1: How To Be Awesome",
+          "description": "2: Course 2: How To Be Awesome",
           "dispute": null
         }
     http_version: 
-  recorded_at: Sat, 18 May 2013 20:57:58 GMT
+  recorded_at: Thu, 23 May 2013 18:40:34 GMT
 recorded_with: VCR 2.4.0

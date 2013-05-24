@@ -8,6 +8,9 @@ class Enrollment < ActiveRecord::Base
   validates :course_id, :uniqueness => { :scope => :user_id,
     :message => "you have already enrolled in this course" }
 
+  scope :purchased, where(purchased: true)
+  scope :preordered, where(purchased: false)
+
   def save_and_make_payment
     if valid?
       customer = create_stripe_customer

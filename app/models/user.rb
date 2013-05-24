@@ -7,7 +7,12 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
 
   has_many :enrollments
+  has_many :preordered_enrollments, class_name: 'Enrollment', conditions: {purchased: false}
+  has_many :purchased_enrollments, class_name: 'Enrollment', conditions: {purchased: true}
+
   has_many :courses, through: :enrollments
+  has_many :preordered_courses, through: :preordered_enrollments, source: :course
+  has_many :purchased_courses, through: :purchased_enrollments, source: :course
 
   attr_accessible :email, :password, :password_confirmation, :remember_me, :last_4_digits, :stripe_id
 

@@ -23,7 +23,52 @@ feature 'User preorders a course', :vcr do
     page.should have_content('Congratulations')
   end
 
-  scenario 'existing user successful preorder'
-  scenario 'existing user attempts to preorder already preordered course'
+  given(:user) { FactoryGirl.create(:user) }
+
+  scenario 'existing user successful preorder' do
+    visit new_preorder_path(@course)
+    click_link 'Already a member?'
+    page.should have_content('Sign in')
+    fill_in 'Email', with: user.email
+    fill_in 'Password', with: 'secret99'
+    click_button 'Sign in'
+    page.should have_content('Payment Information')
+    page.should_not have_content('Account Information')
+
+    fill_in 'Credit Card Number', with: '4242424242424242'
+    fill_in 'Security Code', with: '123'
+    select 'January', :from => 'card_month'
+    select '2015', :from => 'card_year'
+    click_button 'Complete Pre-Order'
+
+    page.should have_content('Congratulations')
+  end
+
+  scenario 'existing user attempts to preorder already preordered course' do
+    FactoryGirl.create(:enrollment, user: user, course: @course)
+    
+    visit new_preorder_path(@course)
+    click_link 'Already a member?'
+    page.should have_content('Sign in')
+    fill_in 'Email', with: user.email
+    fill_in 'Password', with: 'secret99'
+    click_button 'Sign in'
+
+    page.should have_content("Pre-Order: #{@course.name}")
+  end
+
+  scenario 'existing user attempts to preorder already paid for course' do
+    FactoryGirl.create(:enrollment, user: user, course: @course)
+    
+    visit new_preorder_path(@course)
+    click_link 'Already a member?'
+    page.should have_content('Sign in')
+    fill_in 'Email', with: user.email
+    fill_in 'Password', with: 'secret99'
+    click_button 'Sign in'
+
+    page.should_not have_content("Pre-Order: #{@course.name}")
+  end
+
   scenario 'user preorders with discount code'
 end

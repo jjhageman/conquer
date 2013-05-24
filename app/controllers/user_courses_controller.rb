@@ -6,6 +6,6 @@ class UserCoursesController < ApplicationController
   end
 
   def show
-    @course = current_user.courses.find(params[:id])
+    @course = current_user.purchased_courses.active.find(params[:id])
   end
 end

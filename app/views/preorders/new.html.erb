@@ -21,6 +21,8 @@ Stripe.setPublishableKey("<%= STRIPE_PUBLIC_KEY %>");
       <div class="well">
         <h3><del>$49.99</del> <%= number_to_currency @course.price %></h3>
         <p>Special pre-order price</p>
+        <%= render "shared/form_errors", :target => @enrollment %>
+        <%= render("shared/form_errors", :target => @user) if @user %>
         <a href="#preOrderForm" role="button" class="btn btn-primary" data-toggle="modal">Pre-Order</a>
       </div>
     </div>
@@ -37,31 +39,32 @@ Stripe.setPublishableKey("<%= STRIPE_PUBLIC_KEY %>");
   <div class="modal-body">
     <fieldset>
 
-      <%= render "shared/form_errors", :target => @enrollment %>
 
-      <legend>Account Information</legend>
+      <% unless user_signed_in? %>
+        <legend>Account Information <small><%= link_to 'Already a member?', new_user_session_path %></small></legend>
       <%= fields_for :user do |user_fields| %>
         <div class="control-group">
-          <%= user_fields.label :email, class: 'control-label' %>
-          <div class="controls">
-            <%= user_fields.text_field :email, autofocus: true %>
-          </div>
+        <%= user_fields.label :email, class: 'control-label' %>
+        <div class="controls">
+          <%= user_fields.text_field :email, autofocus: true %>
         </div>
+      </div>
 
-        <div class="control-group">
-          <%= user_fields.label :password, 'Password', class: 'control-label' %>
-          <div class="controls">
-            <%= user_fields.password_field :password %>
-          </div>
+      <div class="control-group">
+        <%= user_fields.label :password, 'Password', class: 'control-label' %>
+        <div class="controls">
+          <%= user_fields.password_field :password %>
         </div>
+      </div>
 
-        <div class="control-group">
-          <%= user_fields.label :password_confirmation, class: 'control-label' %>
-          <div class="controls">
-            <%= user_fields.password_field :password_confirmation %>
-          </div>
+      <div class="control-group">
+        <%= user_fields.label :password_confirmation, class: 'control-label' %>
+        <div class="controls">
+          <%= user_fields.password_field :password_confirmation %>
         </div>
-      <% end %>
+      </div>
+    <% end %>
+    <% end %>
 
       <legend>Payment Information</legend>
       <div id="stripe_error">
