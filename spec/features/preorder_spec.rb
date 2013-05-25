@@ -1,7 +1,7 @@
 require 'spec_helper'
 include StripeMacro
 
-feature 'User preorders a course', :vcr do
+feature 'User preorders a course', :vcr, js: true do
 
   background do
     stub_stripe_customer
@@ -10,6 +10,7 @@ feature 'User preorders a course', :vcr do
 
   scenario 'new user successful preorder' do
     visit new_preorder_path(@course)
+    click_link 'Pre-Order'
     fill_in 'Email', with: 'new@user.com'
     fill_in 'Password', with: 'secret99'
     fill_in 'Password confirmation', with: 'secret99'
@@ -27,6 +28,7 @@ feature 'User preorders a course', :vcr do
 
   scenario 'existing user successful preorder' do
     visit new_preorder_path(@course)
+    click_link 'Pre-Order'
     click_link 'Already a member?'
     page.should have_content('Sign in')
     fill_in 'Email', with: user.email
@@ -48,19 +50,21 @@ feature 'User preorders a course', :vcr do
     FactoryGirl.create(:enrollment, user: user, course: @course)
     
     visit new_preorder_path(@course)
+    click_link 'Pre-Order'
     click_link 'Already a member?'
     page.should have_content('Sign in')
     fill_in 'Email', with: user.email
     fill_in 'Password', with: 'secret99'
     click_button 'Sign in'
 
-    page.should_not have_content("Pre-Order")
+    page.should have_content("You have already pre-ordered this course")
   end
 
   scenario 'existing user attempts to preorder already paid for course' do
     FactoryGirl.create(:purchased_enrollment, user: user, course: @course)
     
     visit new_preorder_path(@course)
+    click_link 'Pre-Order'
     click_link 'Already a member?'
     page.should have_content('Sign in')
     fill_in 'Email', with: user.email

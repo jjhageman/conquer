@@ -53,11 +53,7 @@ feature 'user enrolls in a course', :vcr do
   end
 
   scenario 'existing user attempts to purchase course they have already bought' do
-<<<<<<< Updated upstream
     FactoryGirl.create(:purchased_enrollment, user: user, course: @course)
-=======
-    FactoryGirl.create(:purchased_course, user: user, course: @course)
->>>>>>> Stashed changes
 
     visit courses_path
     click_link @course.name

@@ -9,7 +9,7 @@ class Course < ActiveRecord::Base
     enrollments.purchased.where(user_id: user.id).exists?
   end
 
-  def has_preordered_student?
+  def has_preordered_student?(user)
     enrollments.preordered.where(user_id: user.id).exists?
   end
 

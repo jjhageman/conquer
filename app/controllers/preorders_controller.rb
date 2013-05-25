@@ -2,6 +2,8 @@ class PreordersController < ApplicationController
   before_filter :set_return_path, only: :new
   before_filter :authenticate_user!, only: :show
 
+  respond_to :json, only: :create
+
   def show
     @enrollment = current_user.enrollments.find(params[:id])
     @course = @enrollment.course
@@ -31,13 +33,10 @@ class PreordersController < ApplicationController
     if @user.persisted? && @user.valid?
       @enrollment.user = @user
       @enrollment.purchased = false
-      if @enrollment.save_and_create_stripe_customer
-        redirect_to preorder_path(@enrollment), notice: "Thank you registering!"
-      else
-        render :new
-      end
+      flash[:notice] = "Thank you registering!" if @enrollment.save_and_create_stripe_customer
+      respond_with(@enrollment, location: preorder_path(@enrollment))
     else
-      render :new
+      respond_with(@user) {|format| format.html {render :new}}
     end
   end
 
