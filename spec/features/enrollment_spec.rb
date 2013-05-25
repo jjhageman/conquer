@@ -36,7 +36,6 @@ feature 'user enrolls in a course', :vcr do
     visit courses_path
     click_link @course.name
     click_link 'Take Course'
-    page.should have_content('Sign in')
     within('#new-session') do
       fill_in 'Email', with: user.email
       fill_in 'Password', with: 'secret99'
@@ -54,12 +53,15 @@ feature 'user enrolls in a course', :vcr do
   end
 
   scenario 'existing user attempts to purchase course they have already bought' do
+<<<<<<< Updated upstream
     FactoryGirl.create(:purchased_enrollment, user: user, course: @course)
+=======
+    FactoryGirl.create(:purchased_course, user: user, course: @course)
+>>>>>>> Stashed changes
 
     visit courses_path
     click_link @course.name
     click_link 'Take Course'
-    page.should have_content('Sign in')
     within('#new-session') do
       fill_in 'Email', with: user.email
       fill_in 'Password', with: 'secret99'

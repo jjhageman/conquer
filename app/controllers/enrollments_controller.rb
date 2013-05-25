@@ -9,7 +9,7 @@ class EnrollmentsController < ApplicationController
 
   def new
     if @course = Course.find_by_id(params[:course_id])
-      redirect_to user_course_path(@course) if @course.has_student?(current_user)
+      redirect_to user_course_path(@course) if user_signed_in? && @course.has_student?(current_user)
       @enrollment = @course.enrollments.new
     else
       redirect_to courses_path, :alert => "Please select a valid course"
