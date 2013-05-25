@@ -8,6 +8,7 @@ enrollment =
       $('input[type=submit]').attr('disabled', true)
       enrollment.processCard()
       false
+    enrollment.showModalForm() if enrollment.inOrderViewState()
 
   processCard: ->
     card =
@@ -27,6 +28,12 @@ enrollment =
     else
       $('#stripe_error').text(response.error.message).addClass('alert alert-error')
       $('input[type=submit]').attr('disabled', false)
+
+  inOrderViewState: ->
+    $(location).attr('hash') == '#order'
+
+  showModalForm: ->
+    $('#preOrderForm').modal('show')
 
   isRemoteForm: ->
     $('form#enrollment').data('remote')

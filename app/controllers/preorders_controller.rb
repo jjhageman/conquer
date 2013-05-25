@@ -44,7 +44,7 @@ class PreordersController < ApplicationController
 
   def set_return_path
     unless user_signed_in?
-      session[:enrollment_url] = request.fullpath
+      session[:enrollment_url] = "#{request.fullpath}#order"
     end
   end
 end

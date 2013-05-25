@@ -1,9 +1,7 @@
 <% content_for :head do %>
   <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
-<script type="text/javascript">
-Stripe.setPublishableKey("<%= STRIPE_PUBLIC_KEY %>");
-</script>
-<%= javascript_include_tag 'enrollments' %>
+  <script type="text/javascript">Stripe.setPublishableKey("<%= STRIPE_PUBLIC_KEY %>");</script>
+  <%= javascript_include_tag 'enrollments' %>
 <% end %>
 
 <div class="container-fluid">
@@ -18,6 +16,14 @@ Stripe.setPublishableKey("<%= STRIPE_PUBLIC_KEY %>");
       <p><%= @course.instructor_description %></p>
     </div>
     <div class="span3">
+      <% if user_signed_in? && @course.has_preordered_student?(current_user) %>
+
+      <div class="well">
+        You have already pre-ordered this course. <%= link_to 'View your courses', user_root_path %>
+      </div>
+
+      <% else %>
+
       <div class="well">
         <h3><del>$49.99</del> <%= number_to_currency @course.price %></h3>
         <p>Special pre-order price</p>
@@ -31,21 +37,7 @@ Stripe.setPublishableKey("<%= STRIPE_PUBLIC_KEY %>");
 
 
 <div id="preOrderForm" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="preOrderFormLabel" aria-hidden="true">
-  <% if user_signed_in? && @course.has_preordered_student?(current_user) %>
-    <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-    <h3 id="preOrderFormLabel">Pre-Order: <%= @course.name %></h3>
-  </div>
-  <div class="modal-body">
-    <div class="alert alert-success">
-      <strong>Again?</strong> You have already pre-ordered this course.
-    </div>
-  </div>
-  <div class="modal-footer">
-    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-  </div>
-<% else %>
-    <%= form_for @enrollment, url: preorders_path, remote: true, html: {id: 'enrollment', class: 'form-horizontal'} do |f| %>
+  <%= form_for @enrollment, url: preorders_path, remote: true, html: {id: 'enrollment', class: 'form-horizontal'} do |f| %>
     <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
     <h3 id="preOrderFormLabel">Pre-Order: <%= @course.name %></h3>
@@ -141,5 +133,5 @@ Stripe.setPublishableKey("<%= STRIPE_PUBLIC_KEY %>");
     <div class="modal-footer">
       <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
     </div>
-  <% end %>
   </div>
+<% end %>
