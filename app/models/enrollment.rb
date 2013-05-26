@@ -2,7 +2,7 @@ class Enrollment < ActiveRecord::Base
   belongs_to :user
   belongs_to :course
 
-  attr_accessible :user_id, :course_id, :stripe_token
+  attr_accessible :user_id, :course_id, :stripe_token, :price_paid, :purchase_date
   attr_accessor :stripe_token
 
   validates :course_id, :uniqueness => { :scope => :user_id,

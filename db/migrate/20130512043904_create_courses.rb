@@ -8,6 +8,8 @@ class CreateCourses < ActiveRecord::Migration
       t.string :instructor_name
       t.text :instructor_description
       t.string :instructor_image
+      t.boolean :released, default: true
+      t.datetime :start_date
 
       t.timestamps
     end

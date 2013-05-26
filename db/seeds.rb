@@ -6,7 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 #
-Course.create(
+course1 = Course.create(
   name: 'Business Networking Tips',
   description: <<eos,
 Most people go to an industry convention, work holiday party or even lunch and just talk to the people they already know. This is a big mistake.
@@ -22,7 +22,15 @@ eos
 Keith Ferrazzi is an American author and the founder and CEO of Ferrazzi Greenlight, a research institute and strategic consulting firm focused on relational, collaborational and behavioral sciences based in Los Angeles.
 eos
   instructor_image: 'ferrazzi.jpg',
-  released: true)
+  released: true,
+  start_date: Time.now
+)
+
+Promotion.create(
+  code: 'XQSE',
+  price: 5.99,
+  active: true,
+  course_id: course1.id)
 
 Course.create(
   name: 'How To Be Funny',

@@ -3,7 +3,7 @@ class Course < ActiveRecord::Base
 
   scope :active, where(released: true)
 
-  attr_accessible :description, :image, :instructor_image, :instructor_name, :instructor_description, :name, :price
+  attr_accessible :description, :image, :instructor_image, :instructor_name, :instructor_description, :name, :price, :released, :start_date
 
   def has_student?(user)
     enrollments.purchased.where(user_id: user.id).exists?

@@ -3,7 +3,9 @@ class CreateEnrollments < ActiveRecord::Migration
     create_table :enrollments do |t|
       t.references :user
       t.references :course
-      t.boolean :purchased, :default => false
+      t.boolean :purchased, default: false
+      t.decimal :price_paid, precision: 8, scale: 2
+      t.datetime :purchase_date
 
       t.timestamps
     end
