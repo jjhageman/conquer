@@ -6,7 +6,7 @@ FactoryGirl.define do
     instructor_name 'Rich Mullane'
     instructor_description "MTA Attorney Rich Mullane is a skilled advocate, a great instructor and a firm believer in member empowerment.. Just got a text msg from my clinical instructor Saying for such a young person you're amazing"
 
-    factory :preorder_course do
+    factory :prereleased_course do
       released false
     end
   end

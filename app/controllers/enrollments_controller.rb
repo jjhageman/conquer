@@ -1,5 +1,6 @@
 class EnrollmentsController < ApplicationController
-  before_filter :redirect_after_authentication, only: :new
+  before_filter :authentication_redirect, only: :new
+  before_filter :load_course, only: :new
   before_filter :authenticate_user!
 
   def show
@@ -8,12 +9,7 @@ class EnrollmentsController < ApplicationController
   end
 
   def new
-    if @course = Course.find_by_id(params[:course_id])
-      redirect_to user_course_path(@course) if user_signed_in? && @course.has_student?(current_user)
-      @enrollment = @course.enrollments.new
-    else
-      redirect_to courses_path, :alert => "Please select a valid course"
-    end
+    @enrollment = @course.enrollments.new
   end
 
   def create
@@ -30,10 +26,20 @@ class EnrollmentsController < ApplicationController
 
   private
   
-  def redirect_after_authentication
+  def authentication_redirect
     unless user_signed_in?
       session[:enrollment_url] = request.fullpath
       redirect_to new_user_registration_path
+    end
+  end
+
+  def load_course
+    @course = Course.find_by_id(params[:course_id])
+    if @course
+      redirect_to new_preorder_path(@course) unless @course.released?
+      redirect_to user_course_path(@course) if user_signed_in? && @course.has_student?(current_user)
+    else
+      redirect_to courses_path, :alert => "Please select a valid course" unless @course
     end
   end
 end

@@ -5,7 +5,7 @@ feature 'User preorders a course', :vcr, js: true do
 
   background do
     stub_stripe_customer
-    @course = FactoryGirl.create(:preorder_course)
+    @course = FactoryGirl.create(:prereleased_course)
   end
 
   scenario 'new user successful preorder' do

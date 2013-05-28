@@ -1,5 +1,6 @@
 class PreordersController < ApplicationController
   before_filter :set_return_path, only: :new
+  before_filter :load_course, only: :new
   before_filter :authenticate_user!, only: :show
 
   respond_to :json, only: :create
@@ -10,12 +11,7 @@ class PreordersController < ApplicationController
   end
 
   def new
-    if @course = Course.find_by_id(params[:id])
-      redirect_to user_course_path(@course) if user_signed_in? && @course.has_student?(current_user)
-      @enrollment = @course.enrollments.new
-    else
-      redirect_to courses_path, :alert => "Please select a valid course"
-    end
+    @enrollment = @course.enrollments.new
   end
 
   def create
@@ -45,6 +41,16 @@ class PreordersController < ApplicationController
   def set_return_path
     unless user_signed_in?
       session[:enrollment_url] = "#{request.fullpath}#order"
+    end
+  end
+
+  def load_course
+    @course = Course.find_by_id(params[:id])
+    if @course
+      redirect_to new_enrollment_path(@course) if @course.released?
+      redirect_to user_course_path(@course) if user_signed_in? && @course.has_student?(current_user)
+    else
+      redirect_to courses_path, :alert => "Please select a valid course"
     end
   end
 end

@@ -9,13 +9,6 @@ require 'capybara/rails'
 # in spec/support/ and its subdirectories.
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 
-VCR.configure do |c|
-  c.cassette_library_dir     = 'spec/cassettes'
-  c.ignore_localhost         = true
-  c.hook_into                :webmock
-  c.default_cassette_options = { :record => :new_episodes }
-  c.configure_rspec_metadata!
-end
 
 Capybara.javascript_driver = :webkit
 
@@ -48,18 +41,4 @@ RSpec.configure do |config|
   # the seed, which is printed after each run.
   #     --seed 1234
   config.order = "random"
-
-
-  config.before(:suite) do
-    DatabaseCleaner.strategy = :truncation
-    DatabaseCleaner.clean_with(:truncation)
-  end
-
-  config.before(:each) do
-    DatabaseCleaner.start
-  end
-
-  config.after(:each) do
-    DatabaseCleaner.clean
-  end
 end
