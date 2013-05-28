@@ -2,11 +2,11 @@ class UserCoursesController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    @purchases = current_user.purchased_courses
-    @preorders = current_user.preordered_courses
+    @courses = current_user.courses
+    @preorders = current_user.preorders
   end
 
   def show
-    @course = current_user.purchased_courses.active.find(params[:id])
+    @course = current_user.courses.find(params[:id])
   end
 end

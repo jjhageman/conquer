@@ -67,7 +67,12 @@ feature 'user enrolls in a course', :vcr do
     page.should_not have_content("Purchase #{@course.name}")
   end
 
-  scenario 'user preorders with discount code'
+  given(:promotion) { FactoryGirl.create(:promotion, course: @course) }
+
+  scenario 'user preorders with discount code' do
+    visit promotion_path(promotion)
+    page.should have_content("$#{promotion.price}")
+  end
 end
 
 feature 'invalid cc', vcr: {} do

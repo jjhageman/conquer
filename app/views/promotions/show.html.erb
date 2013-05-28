@@ -9,11 +9,16 @@
     <div class="span9">
       <h2><%= @course.instructor_name %> <small>teaches</small></h2>
       <h3><%= @course.name %></h3>
-      <%= render partial: 'shared/video_player', locals: { video_player: '2361189644001'} %>
-      <h4>About the Class</h4>
-      <%= @course.description %>
-      <h4>About <%= @course.instructor_name %></h4>
-      <p><%= @course.instructor_description %></p>
+      <%= render partial: 'shared/video_player', locals: { video_player: @promo.video_id } %>
+      
+      <% if @promo.content? %>
+        <%= raw @promo.content %>
+      <% else %>
+        <h4>About the Class</h4>
+        <%= @course.description %>
+        <h4>About <%= @course.instructor_name %></h4>
+        <p><%= @course.instructor_description %></p>
+      <% end %>
     </div>
     <div class="span3">
 
@@ -31,16 +36,20 @@
 
       <div class="well">
         <em>Special promotional price!</em>
-        <h3><%= number_to_currency @course.price %></h3>
+        <h3><del><%= number_to_currency @course.price %></del> <%= number_to_currency @promo.price %></h3>
         <%= render "shared/form_errors", :target => @enrollment %>
         <%= render("shared/form_errors", :target => @user) if @user %>
-        <a href="#preOrderForm" role="button" class="btn btn-primary" data-toggle="modal">Pre-Order</a>
-      </div>
+        <% if @course.released? %>
+          <%= link_to 'Take Course', new_enrollment_path(@course), class: 'btn btn-primary' %>
+        <% else %>
+          <a href="#preOrderForm" role="button" class="btn btn-primary" data-toggle="modal">Pre-Order</a>
+        <% end %>
+      </div><!-- end well -->
 
     </div><!-- end span3 -->
   </div><!-- end row-fluid -->
 </div><!-- end container-fluid -->
 
-<%= render 'form' %>
+<%= render 'preorders/form' %>
 
 <% end %>

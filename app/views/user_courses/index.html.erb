@@ -2,7 +2,7 @@
   <h1>My Courses</h1>
 </div>
 
-<% if @purchases.any? %>
+<% if @courses.any? %>
 <%= render :partial => "course", :collection => @purchases %>
 <% end %>
 

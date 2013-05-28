@@ -37,6 +37,9 @@ class DeviseCreateUsers < ActiveRecord::Migration
       # t.string :authentication_token
 
 
+      t.string :last_4_digits
+      t.string :stripe_id
+
       t.timestamps
     end
 

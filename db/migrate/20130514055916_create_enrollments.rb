@@ -12,9 +12,6 @@ class CreateEnrollments < ActiveRecord::Migration
     
     add_index :enrollments, :user_id
     add_index :enrollments, :course_id
-
-    add_column :users, :last_4_digits, :string
-    add_column :users, :stripe_id, :string
   end
 end
 

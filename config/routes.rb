@@ -11,6 +11,8 @@ Conquer::Application.routes.draw do
   resources :courses, only: [:index, :show]
   #resources :enrollments
 
+  get '/promo/:code' => 'promotions#show', as: :promotion
+
   get '/enroll/:course_id' => 'enrollments#new', as: :new_enrollment
   post '/enroll' => 'enrollments#create'
   get '/enrolled/:id' => 'enrollments#show', as: :enrollment

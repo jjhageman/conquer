@@ -27,12 +27,24 @@ eos
 )
 
 Promotion.create(
-  code: 'XQSE',
+  code: 'ofjrfk',
   price: 5.99,
+  video_id: '2361189644001',
+  content: <<eos,
+<h4>About the Class</h4>
+Most people go to an industry convention, work holiday party or even lunch and just talk to the people they already know. This is a big mistake.
+
+Harvard Professor Samantha Powers, pioneer of power business networking, has studied professional social interactions for decades. She&#x27;s published cutting edge research on what types of business networking lead to the best job and career outcomes and how to create intimacy quickly. She&#x27;ll share her business networking tips.
+
+In this class she&#x27;ll not only make you a better business networker, but help you figure out how to do it in a way that is authentic to you.
+
+<h4>About Keith Ferrazzi</h4>
+<p>Keith Ferrazzi is an American author and the founder and CEO of Ferrazzi Greenlight, a research institute and strategic consulting firm focused on relational, collaborational and behavioral sciences based in Los Angeles.</p>
+eos
   active: true,
   course_id: course1.id)
 
-Course.create(
+course2 = Course.create(
   name: 'How To Be Funny',
   description: <<eos,
 The ability to create humor is a skill many people don't have, yet wish they did. If you're interested in learning how to come up with jokes or witticisms on the fly, punch up dull material for an audience, or make a living as a comedy writer, this course will get you going.
@@ -48,4 +60,23 @@ eos
 Carey has appeared in several films, television series, music videos, a made-for-television film, and a computer game. He has hosted the television game show The Price Is Right since 2007. He is interested in a variety of sports, has worked as a photographer at U.S. National Team soccer games, is a minority owner of the Major League Soccer team Seattle Sounders FC and a member of the WWE Hall of Fame. Carey has written an autobiography, Dirty Jokes And Beer: Stories Of The Unrefined, detailing his early life and television career.
 eos
   instructor_image: 'carey.jpg',
+  released: false,
   start_date: Time.now + 2.months)
+
+Promotion.create(
+  code: 'zvdoiq',
+  price: 8.99,
+  video_id: '2361189644001',
+  content: <<eos,
+<h4>About the Class</h4>
+      The ability to create humor is a skill many people don&#x27;t have, yet wish they did. If you&#x27;re interested in learning how to come up with jokes or witticisms on the fly, punch up dull material for an audience, or make a living as a comedy writer, this course will get you going.
+
+Your instructor, an experienced comedy writer and working actress, will guide you through a wide range of comedic sources. You&#x27;ll learn how to write a one-liner, use physical humor, target your audience, find the humor in everyday events and much, much more. 
+
+Once you&#x27;ve learned some of the methods of creating humor, you&#x27;ll be ready to apply it to all aspects of your life. Punch up speeches and presentations so that the audience is instantly on your side. Mix laughter with learning in the classroom, and watch your students&#x27; attention spans grow. Add some humor to your web page and watch the hits explode as word gets out. Use your newfound sense of humor to entertain your friends, meet interesting people, and even make new friends! 
+
+      <h4>About Drew Carey</h4>
+      <p>Carey has appeared in several films, television series, music videos, a made-for-television film, and a computer game. He has hosted the television game show The Price Is Right since 2007. He is interested in a variety of sports, has worked as a photographer at U.S. National Team soccer games, is a minority owner of the Major League Soccer team Seattle Sounders FC and a member of the WWE Hall of Fame. Carey has written an autobiography, Dirty Jokes And Beer: Stories Of The Unrefined, detailing his early life and television career.</p>
+eos
+  active: true,
+  course_id: course2.id)

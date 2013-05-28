@@ -30,9 +30,11 @@ ActiveRecord::Schema.define(:version => 20130526002303) do
   create_table "enrollments", :force => true do |t|
     t.integer  "user_id"
     t.integer  "course_id"
-    t.boolean  "purchased",  :default => false
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
+    t.boolean  "purchased",                                   :default => false
+    t.decimal  "price_paid",    :precision => 8, :scale => 2
+    t.datetime "purchase_date"
+    t.datetime "created_at",                                                     :null => false
+    t.datetime "updated_at",                                                     :null => false
   end
 
   add_index "enrollments", ["course_id"], :name => "index_enrollments_on_course_id"
@@ -41,13 +43,15 @@ ActiveRecord::Schema.define(:version => 20130526002303) do
   create_table "promotions", :force => true do |t|
     t.string   "code"
     t.decimal  "price"
+    t.string   "video_id"
+    t.text     "content"
     t.boolean  "active",     :default => true
     t.integer  "course_id"
     t.datetime "created_at",                   :null => false
     t.datetime "updated_at",                   :null => false
   end
 
-  add_index "promotions", ["code"], :name => "index_promotions_on_code"
+  add_index "promotions", ["code"], :name => "index_promotions_on_code", :unique => true
   add_index "promotions", ["course_id"], :name => "index_promotions_on_course_id"
 
   create_table "users", :force => true do |t|
@@ -63,10 +67,10 @@ ActiveRecord::Schema.define(:version => 20130526002303) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at",                             :null => false
-    t.datetime "updated_at",                             :null => false
     t.string   "last_4_digits"
     t.string   "stripe_id"
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
