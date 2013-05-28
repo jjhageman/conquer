@@ -105,7 +105,9 @@
     <% if @promo %>
       <p>Invite your friends so that they can enjoy the special pre-order price too. Send them a link to <strong><%= promotion_url @promo %></strong> or share on your social channels.</p>
     <% end %>
-    <p>F share tweet</p>
+    <div>
+      <%= render partial: 'shared/twitter_button', locals: {text: "Take this awesome course with me!"} %>
+    </div>
   </div>
 
   <div class="modal-footer">
