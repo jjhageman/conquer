@@ -1,6 +1,7 @@
 class Course < ActiveRecord::Base
   has_many :enrollments
   has_many :promotions
+  has_many :ratings
 
   scope :active, where(released: true)
 
