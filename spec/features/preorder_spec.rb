@@ -45,8 +45,7 @@ feature 'User preorders a course', :vcr, js: true do
     click_button 'Complete Pre-Order'
 
     page.should have_content('Congratulations')
-    debugger
-    open_email('new@user.com', :with_text => @course.name)
+    open_email(user.email, :with_text => @course.name)
   end
 
   scenario 'existing user attempts to preorder already preordered course' do
