@@ -28,6 +28,7 @@ feature 'user enrolls in a course', :vcr do
     click_button 'Complete Purchase'
 
     page.should have_content("You are enrolled in: #{@course.name}")
+    open_email('new@user.com', :with_text => @course.name)
   end
 
   given(:user) { FactoryGirl.create(:user) }

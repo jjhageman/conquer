@@ -35,4 +35,7 @@ group :test do
   gem 'vcr'
   gem 'webmock', '~> 1.9.3'
   gem 'capybara-webkit', github: 'thoughtbot/capybara-webkit', branch: 'master'
+  gem 'selenium-webdriver'
+  gem 'email_spec'
+  gem 'action_mailer_cache_delivery'
 end

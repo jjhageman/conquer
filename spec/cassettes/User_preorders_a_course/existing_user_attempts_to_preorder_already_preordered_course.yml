@@ -1,0 +1,83 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.stripe.com/v1/customers
+    body:
+      encoding: US-ASCII
+      string: card=tok_1umZljVUWaEDAk&description=new%40user.com
+    headers:
+      Accept:
+      - '*/*; q=0.5, application/xml'
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Stripe/v1 RubyBindings/1.8.3
+      Authorization:
+      - Bearer sk_test_Xnb4pUPWA0gayzQFgkjuRPfq
+      Content-Type:
+      - application/x-www-form-urlencoded
+      X-Stripe-Client-User-Agent:
+      - '{"bindings_version":"1.8.3","lang":"ruby","lang_version":"2.0.0 p195 (2013-05-14)","platform":"x86_64-darwin12.3.0","publisher":"stripe","uname":"Darwin
+        Jeremys-MacBook-Pro.local 12.3.0 Darwin Kernel Version 12.3.0: Sun Jan  6
+        22:37:10 PST 2013; root:xnu-2050.22.13~1/RELEASE_X86_64 x86_64"}'
+      Content-Length:
+      - '50'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Wed, 29 May 2013 00:00:10 GMT
+      Content-Type:
+      - application/json;charset=utf-8
+      Content-Length:
+      - '700'
+      Connection:
+      - keep-alive
+      Access-Control-Max-Age:
+      - '300'
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Cache-Control:
+      - no-cache, no-store
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "object": "customer",
+          "created": 1369785610,
+          "id": "cus_1umZ33hNIDMpIb",
+          "livemode": false,
+          "description": "new@user.com",
+          "active_card": {
+            "object": "card",
+            "last4": "4242",
+            "type": "Visa",
+            "exp_month": 1,
+            "exp_year": 2015,
+            "fingerprint": "R4xLb6xtEOSBtN4h",
+            "country": "US",
+            "name": null,
+            "address_line1": null,
+            "address_line2": null,
+            "address_city": null,
+            "address_state": null,
+            "address_zip": null,
+            "address_country": null,
+            "cvc_check": "pass",
+            "address_line1_check": null,
+            "address_zip_check": null
+          },
+          "email": null,
+          "delinquent": false,
+          "subscription": null,
+          "discount": null,
+          "account_balance": 0
+        }
+    http_version: 
+  recorded_at: Wed, 29 May 2013 00:00:10 GMT
+recorded_with: VCR 2.5.0

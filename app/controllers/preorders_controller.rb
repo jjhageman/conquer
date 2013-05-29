@@ -30,7 +30,7 @@ class PreordersController < ApplicationController
       @enrollment.user = @user
       @enrollment.purchased = false
       flash[:notice] = "Thank you registering!" if @enrollment.save_and_create_stripe_customer
-      respond_with(@enrollment, location: preorder_path(@enrollment))
+      respond_with(@enrollment) { |format| format.html {redirect_to preorder_path(@enrollment)}}
     else
       respond_with(@user) {|format| format.html {render :new}}
     end

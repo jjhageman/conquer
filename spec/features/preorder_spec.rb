@@ -22,6 +22,7 @@ feature 'User preorders a course', :vcr, js: true do
     click_button 'Complete Pre-Order'
 
     page.should have_content('Congratulations')
+    open_email('new@user.com', :with_text => @course.name)
   end
 
   given(:user) { FactoryGirl.create(:user) }
@@ -44,6 +45,8 @@ feature 'User preorders a course', :vcr, js: true do
     click_button 'Complete Pre-Order'
 
     page.should have_content('Congratulations')
+    debugger
+    open_email('new@user.com', :with_text => @course.name)
   end
 
   scenario 'existing user attempts to preorder already preordered course' do
@@ -92,5 +95,29 @@ feature 'User preorders a course', :vcr, js: true do
     click_button 'Complete Pre-Order'
 
     page.should have_content('Congratulations')
+    open_email('new@user.com', :with_text => @course.name)
+  end
+end
+
+feature 'invalid cc', :vcr, js: true do
+  background do
+    @course = FactoryGirl.create(:prereleased_course)
+    stub_invalid_stripe_customer
+  end
+
+  scenario 'new user invalid credit card' do
+    visit new_preorder_path(@course)
+    click_link 'Pre-Order'
+    fill_in 'Email', with: 'new@user.com'
+    fill_in 'Password', with: 'secret99'
+    fill_in 'Password confirmation', with: 'secret99'
+
+    fill_in 'Credit Card Number', with: '4000000000000002'
+    fill_in 'Security Code', with: '123'
+    select 'January', :from => 'card_month'
+    select '2015', :from => 'card_year'
+    click_button 'Complete Pre-Order'
+
+    page.should have_content('There was a problem with your credit card')
   end
 end

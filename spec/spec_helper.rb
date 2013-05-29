@@ -11,6 +11,7 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 
 
 Capybara.javascript_driver = :webkit
+Capybara.default_wait_time = 5
 
 RSpec.configure do |config|
   # ## Mock Framework

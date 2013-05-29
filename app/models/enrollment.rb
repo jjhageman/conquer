@@ -17,6 +17,7 @@ class Enrollment < ActiveRecord::Base
       charge_customer(customer)
       user.update_stripe_attributes(customer)
       save!
+      UserMailer.purchase_email(user, course).deliver
     end
 
   rescue Stripe::CardError => e
@@ -30,7 +31,13 @@ class Enrollment < ActiveRecord::Base
       customer = create_stripe_customer
       user.update_stripe_attributes(customer)
       save!
+      UserMailer.preorder_email(user, course).deliver
     end
+
+  rescue Stripe::CardError => e
+    logger.error "Stripe error while creating customer: #{e.message}"
+    errors.add :base, "There was a problem with your credit card."
+    false
   end
 
   def create_stripe_customer
