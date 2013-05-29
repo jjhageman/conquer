@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
   #has_many :courses, through: :enrollments
   has_many :preorders, through: :preordered_enrollments, source: :course
   has_many :courses, through: :purchased_enrollments, source: :course
+  has_many :ratings
 
   attr_accessible :email, :password, :password_confirmation, :remember_me, :last_4_digits, :stripe_id
 

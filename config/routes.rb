@@ -8,8 +8,9 @@ Conquer::Application.routes.draw do
     #post "enrollments", :to => "enrollments#create", :as => :enrollments
   #end
 
-  resources :courses, only: [:index, :show]
-  #resources :enrollments
+  resources :courses, only: [:index, :show] do
+    resources :ratings, only: :create
+  end
 
   get '/promo/:code' => 'promotions#show', as: :promotion
 

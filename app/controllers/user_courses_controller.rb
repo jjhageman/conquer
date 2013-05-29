@@ -8,5 +8,6 @@ class UserCoursesController < ApplicationController
 
   def show
     @course = current_user.courses.find(params[:id])
+    @rating = Rating.where(user_id: current_user, course_id: @course).first_or_initialize
   end
 end
