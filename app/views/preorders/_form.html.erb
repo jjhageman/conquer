@@ -101,7 +101,7 @@
 
   <div class="modal-body">
     <p>You're confirmed for <%= @course.instructor_name %>'s class on <%= @course.name %>.</p>
-    <p>The class will start <%= @course.start_date %>. We will send you an email when the videos are ready</p>
+    <p>The class will start <%= @course.start_date.to_formatted_s(:long) %>. We will send you an email when the videos are ready</p>
     <% if @promo %>
       <p>Invite your friends so that they can enjoy the special pre-order price too. Send them a link to <strong><%= promotion_url @promo %></strong> or share on your social channels.</p>
     <% end %>

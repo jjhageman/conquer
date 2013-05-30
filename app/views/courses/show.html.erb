@@ -13,6 +13,6 @@
   <% if @course.released? %>
     <%= link_to 'Take Course', new_enrollment_path(@course.id) %>
   <% else %>
-    Coming soon. <%= link_to 'Pre-Order Now!', new_preorder_path(@course.id) %>
+    Coming soon (<%= @course.start_date.to_formatted_s(:long) %>) <%= link_to 'Pre-Order Now!', new_preorder_path(@course.id) %>
   <% end %>
 </div>
