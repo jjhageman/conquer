@@ -3,7 +3,6 @@
   <script type="text/javascript">
     Stripe.setPublishableKey("<%= STRIPE_PUBLIC_KEY %>");
   </script>
-  <%= javascript_include_tag 'enrollments' %>
 <% end %>
 
 <%= form_for @enrollment, url: enroll_path, html: {id: 'enrollment', class: 'form-horizontal'} do |f| %>
