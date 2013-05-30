@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(:version => 20130529054713) do
     t.text     "instructor_description"
     t.string   "instructor_image"
     t.boolean  "released",                                             :default => true
-    t.datetime "start_date"
+    t.date     "start_date"
     t.datetime "created_at",                                                             :null => false
     t.datetime "updated_at",                                                             :null => false
   end
