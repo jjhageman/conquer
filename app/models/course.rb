@@ -7,6 +7,10 @@ class Course < ActiveRecord::Base
 
   attr_accessible :description, :image, :instructor_image, :instructor_name, :instructor_description, :name, :price, :released, :start_date
 
+  validates :name, presence: true
+  validates :price, presence: true
+  validates :start_date, presence: true
+
   def has_student?(user)
     enrollments.purchased.where(user_id: user.id).exists?
   end

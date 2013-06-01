@@ -98,6 +98,30 @@ feature 'User preorders a course', :vcr, js: true do
   end
 end
 
+feature 'invalid account data', :vcr, js: true do
+  background do
+    @course = FactoryGirl.create(:prereleased_course)
+    stub_stripe_customer
+  end
+
+  scenario 'invalid email and password' do
+    visit new_preorder_path(@course)
+    click_link 'Pre-Order'
+    fill_in 'Email', with: 'invalid'
+    fill_in 'Password', with: 'short'
+    fill_in 'Password confirmation', with: 'short'
+
+    fill_in 'Credit Card Number', with: '4242424242424242'
+    fill_in 'Security Code', with: '123'
+    select 'January', :from => 'card_month'
+    select '2015', :from => 'card_year'
+    click_button 'Complete Pre-Order'
+
+    page.should have_content('email is invalid')
+    page.should have_content('password is too short')
+  end
+end
+
 feature 'invalid cc', :vcr, js: true do
   background do
     @course = FactoryGirl.create(:prereleased_course)

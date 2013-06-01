@@ -13,30 +13,42 @@ class PreordersController < ApplicationController
   def new
     @enrollment = @course.enrollments.new
   end
-
+  
   def create
-    @enrollment = Enrollment.new(params[:enrollment])
-    @course = @enrollment.course
-
     @user = if user_signed_in?
       current_user
     else
-      new_user = User.new(params[:user])
-      sign_in new_user if new_user.save
-      new_user
+      User.new(params[:user])
     end
 
-    if @user.persisted? && @user.valid?
-      @enrollment.user = @user
-      @enrollment.purchased = false
-      flash[:notice] = "Thank you registering!" if @enrollment.save_and_create_stripe_customer
-      respond_with(@enrollment) { |format| format.html {redirect_to preorder_path(@enrollment)}}
+    if user_signed_in?
+      create_and_render_enrollment
     else
-      respond_with(@user) {|format| format.html {render :new}}
+      if @user.save
+        sign_in @user 
+        create_and_render_enrollment
+      else
+        render :json => {:errors => errors_for(@user)}, :status => :unprocessable_entity
+      end
     end
+
   end
 
   private
+
+  def errors_for(object)
+    object.errors.map {|k, m| "#{k} #{m}" }
+  end
+
+  def create_and_render_enrollment
+    @enrollment = @user.enrollments.new(params[:enrollment])
+    @enrollment.purchased = false
+    if @enrollment.save_and_create_stripe_customer
+      render :json => @enrollment
+    else
+      render :json => {:errors => @enrollment.errors.full_messages}, :status => :unprocessable_entity
+    end
+  end
 
   def set_return_path
     unless user_signed_in?
