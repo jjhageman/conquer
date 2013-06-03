@@ -11,10 +11,15 @@ class Enrollment < ActiveRecord::Base
   scope :purchased, where(purchased: true)
   scope :preordered, where(purchased: false)
 
-  def save_and_make_payment
+  def save_and_do_financials
     if valid?
       customer = create_stripe_customer
-      charge_customer(customer)
+      if course.released?
+        charge_customer(customer)
+        self.purchased = true
+      else
+        self.purchased = false
+      end
       user.update_stripe_attributes(customer)
       save!
       UserMailer.purchase_email(user, course).deliver
@@ -26,19 +31,34 @@ class Enrollment < ActiveRecord::Base
     false
   end
 
-  def save_and_create_stripe_customer
-    if valid?
-      customer = create_stripe_customer
-      user.update_stripe_attributes(customer)
-      save!
-      UserMailer.preorder_email(user, course).deliver
-    end
+  #def save_and_make_payment
+    #if valid?
+      #customer = create_stripe_customer
+      #charge_customer(customer)
+      #user.update_stripe_attributes(customer)
+      #save!
+      #UserMailer.purchase_email(user, course).deliver
+    #end
 
-  rescue Stripe::CardError => e
-    logger.error "Stripe error while creating customer: #{e.message}"
-    errors.add :base, "There was a problem with your credit card."
-    false
-  end
+  #rescue Stripe::CardError => e
+    #logger.error "Stripe error while creating customer: #{e.message}"
+    #errors.add :base, "There was a problem with your credit card."
+    #false
+  #end
+
+  #def save_and_create_stripe_customer
+    #if valid?
+      #customer = create_stripe_customer
+      #user.update_stripe_attributes(customer)
+      #save!
+      #UserMailer.preorder_email(user, course).deliver
+    #end
+
+  #rescue Stripe::CardError => e
+    #logger.error "Stripe error while creating customer: #{e.message}"
+    #errors.add :base, "There was a problem with your credit card."
+    #false
+  #end
 
   def create_stripe_customer
     Stripe::Customer.create(:card => stripe_token, :description => user.email)

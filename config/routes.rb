@@ -14,21 +14,23 @@ Conquer::Application.routes.draw do
 
   get '/promo/:code' => 'promotions#show', as: :promotion
 
-  get '/enroll/:course_id' => 'enrollments#new', as: :new_enrollment
-  post '/enroll' => 'enrollments#create'
-  get '/enrolled/:id' => 'enrollments#show', as: :enrollment
+  #get '/enroll/:course_id' => 'enrollments#new', as: :new_enrollment
+  #post '/enroll' => 'enrollments#create'
+  #get '/enrolled/:id' => 'enrollments#show', as: :enrollment
 
   get '/my_courses/:id' => 'user_courses#show', as: :user_course
   get '/my_courses' => 'user_courses#index', as: :user_root
 
-  #resources :preorders
-  get '/preorder/:id/new' => 'preorders#new', as: :new_preorder
-  post '/preorders' => 'preorders#create'
-  get '/preorder/:id' => 'preorders#show', as: :preorder
+  #get '/preorder/:id/new' => 'preorders#new', as: :new_preorder
+  #post '/preorders' => 'preorders#create'
+  #get '/preorder/:id' => 'preorders#show', as: :preorder
 
   get '/about' => 'home#about'  
   get '/contact' => 'home#contact'  
   get '/how' => 'home#how'
+
+  get '/:id' => 'enrollments#new', as: :new_enrollment
+  post '/enrollments' => 'enrollments#create'
 
   root to: 'home#index'
 end

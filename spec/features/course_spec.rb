@@ -16,7 +16,7 @@ feature 'Course access' do
     course = FactoryGirl.create(:course)
 
     sign_in user
-    visit new_preorder_path(course)
+    visit new_enrollment_path(course)
     page.should have_content('Your Purchase')
   end
 end

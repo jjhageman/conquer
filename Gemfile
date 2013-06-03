@@ -7,6 +7,7 @@ gem 'pg'
 gem 'puma'
 gem 'devise'
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
+gem 'stringex'
 
 # Gems used only for assets and not required
 # in production environments by default.

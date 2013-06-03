@@ -1,63 +1,47 @@
 <% content_for :head do %>
   <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
-  <script type="text/javascript">
-    Stripe.setPublishableKey("<%= STRIPE_PUBLIC_KEY %>");
-  </script>
+  <script type="text/javascript">Stripe.setPublishableKey("<%= STRIPE_PUBLIC_KEY %>");</script>
 <% end %>
 
-<%= form_for @enrollment, url: enroll_path, html: {id: 'enrollment', class: 'form-horizontal'} do |f| %>
-  <fieldset>
-    <legend>Your Purchase</legend>
-    <div class="well">
-      <h4><%= @course.name %></h4>
-      <strong><%= number_to_currency @course.price %></strong>
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span9">
+      <h2><%= @course.instructor_name %> <small>teaches</small></h2>
+      <h3><%= @course.name %></h3>
+      <%= render partial: 'shared/video_player', locals: { video_player: '2361189644001'} %>
+      <h4>About the Class</h4>
+      <%= @course.description %>
+      <h4>About <%= @course.instructor_name %></h4>
+      <p><%= @course.instructor_description %></p>
     </div>
+    <div class="span3">
 
-    <%= render "shared/form_errors", :target => @enrollment %>
+<% if user_signed_in? && @course.has_preordered_student?(current_user) %>
 
-    <legend>Payment Information</legend>
-
-    <div class="control-group">
-      <div class="controls">
-        <%= image_tag 'visa.png' %>
-        <%= image_tag 'mastercard.png' %>
-        <%= image_tag 'discover.png' %>
-        <%= image_tag 'american_express.png' %>
+      <div class="well">
+        You have already pre-ordered this course. <%= link_to 'View your courses', user_root_path %>
       </div>
-    </div>
 
-    <div id="stripe_error">
-      <noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
-    </div>
+    </div><!-- end span3 -->
+  </div><!-- end row-fluid -->
+</div><!-- end container-fluid -->
 
-    <div class="control-group">
-      <%= label_tag :card_number, "Credit Card Number ", class: 'control-label' %>
-      <div class="controls">
-        <%= text_field_tag :card_number, nil, name: nil, class: 'span2', data: {stripe: 'number'} %>
+<% else %>
+
+      <div class="well">
+        <em>Special promotional price!</em>
+        <h3><%= number_to_currency @course.price %></h3>
+        <%= render "shared/form_errors", :target => @enrollment %>
+        <%= render("shared/form_errors", :target => @user) if @user %>
+        <a href="#preOrderForm" role="button" class="btn btn-primary" data-toggle="modal">
+          <%= @course.released? ? 'Take Course' : 'Pre-Order' %>
+        </a>
       </div>
-    </div>
 
-    <div class="control-group">
-      <%= label_tag :card_code, "Security Code on Card (CVV)", class: 'control-label' %>
-      <div class="controls">
-        <%= text_field_tag :card_code, nil, name: nil, class: 'span1', data: {stripe: 'cvc'}%>
-        <%= image_tag 'cvv.png', class: 'cvv_icon' %>
-      </div>
-    </div>
+    </div><!-- end span3 -->
+  </div><!-- end row-fluid -->
+</div><!-- end container-fluid -->
 
-    <div class="control-group">
-      <%= label_tag :card_month, "Card Expiration", class: 'control-label' %>
-      <div class="controls">
-        <%= select_month nil, {add_month_numbers_true: true}, {name: nil, id: "card_month", class: 'span2', data: {stripe: 'exp-month'}} %>
-        <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year", class: 'span1', data: {stripe: 'exp-year'}}%>
-      </div>
-    </div>
+<%= render 'form' %>
 
-    <%= f.hidden_field :course_id %>
-    <%= f.hidden_field :stripe_token %>
-
-    <div class="form-actions">
-      <%= f.submit "Complete Purchase", class: 'btn btn-primary' %>
-    </div>
-  </fieldset>
 <% end %>

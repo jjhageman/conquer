@@ -11,6 +11,8 @@ class Course < ActiveRecord::Base
   validates :price, presence: true
   validates :start_date, presence: true
 
+  acts_as_url :instructor_plus_course_name
+
   def has_student?(user)
     enrollments.purchased.where(user_id: user.id).exists?
   end
@@ -21,5 +23,13 @@ class Course < ActiveRecord::Base
 
   def price_in_cents
     Integer price*100
+  end
+
+  def instructor_plus_course_name
+    "#{instructor_name} #{name}"
+  end
+
+  def to_param
+    url
   end
 end

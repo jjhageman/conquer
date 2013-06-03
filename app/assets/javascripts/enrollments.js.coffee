@@ -58,13 +58,14 @@ enrollment =
 
   ajaxSubmit: ->
     $.ajax
-      url: '/preorders/'
+      url: '/enrollments/'
       type: 'POST'
       data: $('#enrollment').serialize()
       dataType: 'json'
       success: (data,status,response) ->
-        $('form#enrollment').remove()
-        $('#response').show()
+        $('form#enrollment').html(data)
+        #$('form#enrollment').remove()
+        #$('#response').show()
       error: (response,textStatus,error) ->
         enrollment.handleAjaxError(response)
         $('input[type=submit]').attr('disabled', false)

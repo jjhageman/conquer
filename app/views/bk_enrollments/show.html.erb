@@ -1,0 +1,6 @@
+<div class="page-header">
+  <h4>You are enrolled in: <%= @course.name %></h4>
+  <h5>by <%= @course.instructor_name %></h5>
+</div>
+
+<%= link_to 'Go to class', user_course_path(@course), class: 'btn btn-success' %>

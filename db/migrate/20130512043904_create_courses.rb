@@ -10,6 +10,7 @@ class CreateCourses < ActiveRecord::Migration
       t.string :instructor_image
       t.boolean :released, default: true
       t.date :start_date
+      t.string :url
 
       t.timestamps
     end

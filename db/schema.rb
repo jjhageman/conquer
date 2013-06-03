@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(:version => 20130529054713) do
     t.string   "instructor_image"
     t.boolean  "released",                                             :default => true
     t.date     "start_date"
+    t.string   "url"
     t.datetime "created_at",                                                             :null => false
     t.datetime "updated_at",                                                             :null => false
   end
