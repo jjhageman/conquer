@@ -111,6 +111,7 @@ end
 feature 'Released course', :vcr, js: true do
   background do
     @course = FactoryGirl.create(:course)
+    stub_stripe_customer
   end
 
   scenario 'new user successfully enrolls in a course' do
@@ -127,7 +128,32 @@ feature 'Released course', :vcr, js: true do
     select '2015', :from => 'card_year'
     click_button 'Complete Purchase'
 
-    page.should have_content("You are enrolled in: #{@course.name}")
+    page.should have_content("You're enrolled in #{@course.instructor_name}'s class on #{@course.name}")
     open_email('new@user.com', :with_text => @course.name)
+    
+    click_link 'Go To Class'
+  end
+
+  given(:user) { FactoryGirl.create(:user) }
+
+  scenario 'existing user successfully enrolls in a course' do
+    visit courses_path
+    click_link @course.name
+    click_link 'Take Course'
+      fill_in 'Email', with: user.email
+      fill_in 'Password', with: 'secret99'
+      click_button 'Sign in'
+
+    page.should have_content("Purchase #{@course.name}")
+    fill_in 'Credit Card Number', with: '4242424242424242'
+    fill_in 'Security Code on Card', with: '123'
+    select 'January', :from => 'card_month'
+    select '2015', :from => 'card_year'
+    click_button 'Complete Purchase'
+
+    page.should have_content("You're enrolled in #{@course.instructor_name}'s class on #{@course.name}")
+    open_email('new@user.com', :with_text => @course.name)
+    
+    click_link 'Go To Class'
   end
 end

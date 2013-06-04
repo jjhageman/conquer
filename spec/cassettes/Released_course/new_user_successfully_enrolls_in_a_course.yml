@@ -2,134 +2,10 @@
 http_interactions:
 - request:
     method: post
-    uri: https://api.stripe.com/v1/customers
-    body:
-      encoding: US-ASCII
-      string: card=tok_1wZt1FdAXy3CEU&description=new%40user.com
-    headers:
-      Accept:
-      - '*/*; q=0.5, application/xml'
-      Accept-Encoding:
-      - gzip, deflate
-      User-Agent:
-      - Stripe/v1 RubyBindings/1.8.3
-      Authorization:
-      - Bearer sk_test_Xnb4pUPWA0gayzQFgkjuRPfq
-      Content-Type:
-      - application/x-www-form-urlencoded
-      X-Stripe-Client-User-Agent:
-      - '{"bindings_version":"1.8.3","lang":"ruby","lang_version":"2.0.0 p195 (2013-05-14)","platform":"x86_64-darwin11.4.2","publisher":"stripe","uname":"Darwin
-        Jeremy-Hagemans-MacBook-Pro.local 11.4.2 Darwin Kernel Version 11.4.2: Thu
-        Aug 23 16:25:48 PDT 2012; root:xnu-1699.32.7~1/RELEASE_X86_64 x86_64"}'
-      Content-Length:
-      - '50'
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Server:
-      - nginx
-      Date:
-      - Sun, 02 Jun 2013 19:01:31 GMT
-      Content-Type:
-      - application/json;charset=utf-8
-      Content-Length:
-      - '700'
-      Connection:
-      - keep-alive
-      Access-Control-Max-Age:
-      - '300'
-      Access-Control-Allow-Credentials:
-      - 'true'
-      Cache-Control:
-      - no-cache, no-store
-    body:
-      encoding: UTF-8
-      string: &1 !ruby/string
-        str: |
-          {
-            "object": "customer",
-            "created": 1370199690,
-            "id": "cus_1wZtTDCzFgZ2Y6",
-            "livemode": false,
-            "description": "new@user.com",
-            "active_card": {
-              "object": "card",
-              "last4": "4242",
-              "type": "Visa",
-              "exp_month": 1,
-              "exp_year": 2015,
-              "fingerprint": "R4xLb6xtEOSBtN4h",
-              "country": "US",
-              "name": null,
-              "address_line1": null,
-              "address_line2": null,
-              "address_city": null,
-              "address_state": null,
-              "address_zip": null,
-              "address_country": null,
-              "cvc_check": "pass",
-              "address_line1_check": null,
-              "address_zip_check": null
-            },
-            "email": null,
-            "delinquent": false,
-            "subscription": null,
-            "discount": null,
-            "account_balance": 0
-          }
-        net_http_res: !ruby/object:Net::HTTPOK
-          http_version: '1.0'
-          code: '200'
-          message: OK
-          header:
-            server:
-            - nginx
-            date:
-            - Sun, 02 Jun 2013 19:01:31 GMT
-            content-type:
-            - application/json;charset=utf-8
-            content-length:
-            - '700'
-            connection:
-            - keep-alive
-            access-control-max-age:
-            - '300'
-            access-control-allow-credentials:
-            - 'true'
-            cache-control:
-            - no-cache, no-store
-          body: *1
-          read: true
-          uri: 
-          decode_content: false
-          __read_body_previously_called: true
-        args:
-          :verify_ssl: 1
-          :ssl_ca_file: /Users/jjhageman/.rbenv/versions/2.0.0-p195/lib/ruby/gems/2.0.0/bundler/gems/stripe-ruby-2dbc700fc35c/lib/data/ca-certificates.crt
-          :headers:
-            :user_agent: Stripe/v1 RubyBindings/1.8.3
-            :authorization: Bearer sk_test_Xnb4pUPWA0gayzQFgkjuRPfq
-            :content_type: application/x-www-form-urlencoded
-            :x_stripe_client_user_agent: '{"bindings_version":"1.8.3","lang":"ruby","lang_version":"2.0.0
-              p195 (2013-05-14)","platform":"x86_64-darwin11.4.2","publisher":"stripe","uname":"Darwin
-              Jeremy-Hagemans-MacBook-Pro.local 11.4.2 Darwin Kernel Version 11.4.2:
-              Thu Aug 23 16:25:48 PDT 2012; root:xnu-1699.32.7~1/RELEASE_X86_64 x86_64"}'
-          :method: :post
-          :open_timeout: 30
-          :payload: card=tok_1wjwItBMLO9Dpa&description=new%40user.com
-          :url: https://api.stripe.com/v1/customers
-          :timeout: 80
-        code: 200
-    http_version: 
-  recorded_at: Sun, 02 Jun 2013 19:01:31 GMT
-- request:
-    method: post
     uri: https://api.stripe.com/v1/charges
     body:
       encoding: US-ASCII
-      string: amount=999&currency=usd&customer=cus_1wZtTDCzFgZ2Y6&description=1%3A%20Course%207%3A%20How%20To%20Be%20Awesome
+      string: amount=999&currency=usd&customer=cus_1qyHNtGP3pYjQQ&description=1%3A%20Course%207%3A%20How%20To%20Be%20Awesome
     headers:
       Accept:
       - '*/*; q=0.5, application/xml'
@@ -142,9 +18,9 @@ http_interactions:
       Content-Type:
       - application/x-www-form-urlencoded
       X-Stripe-Client-User-Agent:
-      - '{"bindings_version":"1.8.3","lang":"ruby","lang_version":"2.0.0 p195 (2013-05-14)","platform":"x86_64-darwin11.4.2","publisher":"stripe","uname":"Darwin
-        Jeremy-Hagemans-MacBook-Pro.local 11.4.2 Darwin Kernel Version 11.4.2: Thu
-        Aug 23 16:25:48 PDT 2012; root:xnu-1699.32.7~1/RELEASE_X86_64 x86_64"}'
+      - '{"bindings_version":"1.8.3","lang":"ruby","lang_version":"2.0.0 p195 (2013-05-14)","platform":"x86_64-darwin12.3.0","publisher":"stripe","uname":"Darwin
+        Jeremys-MacBook-Pro.local 12.3.0 Darwin Kernel Version 12.3.0: Sun Jan  6
+        22:37:10 PST 2013; root:xnu-2050.22.13~1/RELEASE_X86_64 x86_64"}'
       Content-Length:
       - '110'
   response:
@@ -155,11 +31,11 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Mon, 03 Jun 2013 05:24:46 GMT
+      - Mon, 03 Jun 2013 23:33:30 GMT
       Content-Type:
       - application/json;charset=utf-8
       Content-Length:
-      - '1065'
+      - '1066'
       Connection:
       - keep-alive
       Access-Control-Max-Age:
@@ -172,9 +48,9 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "id": "ch_1wjwf00upYb5Bl",
+          "id": "ch_1x1ViMd3vpGjRn",
           "object": "charge",
-          "created": 1370237086,
+          "created": 1370302410,
           "livemode": false,
           "paid": true,
           "amount": 999,
@@ -195,8 +71,8 @@ http_interactions:
             "object": "card",
             "last4": "4242",
             "type": "Visa",
-            "exp_month": 1,
-            "exp_year": 2015,
+            "exp_month": 12,
+            "exp_year": 2013,
             "fingerprint": "R4xLb6xtEOSBtN4h",
             "country": "US",
             "name": null,
@@ -214,11 +90,11 @@ http_interactions:
           "failure_message": null,
           "failure_code": null,
           "amount_refunded": 0,
-          "customer": "cus_1wZtTDCzFgZ2Y6",
+          "customer": "cus_1qyHNtGP3pYjQQ",
           "invoice": null,
           "description": "1: Course 7: How To Be Awesome",
           "dispute": null
         }
     http_version: 
-  recorded_at: Mon, 03 Jun 2013 05:24:48 GMT
+  recorded_at: Mon, 03 Jun 2013 23:33:30 GMT
 recorded_with: VCR 2.5.0

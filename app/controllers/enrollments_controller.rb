@@ -42,10 +42,8 @@ class EnrollmentsController < ApplicationController
 
   def create_and_render_enrollment
     @enrollment = @user.enrollments.new(params[:enrollment])
-    #@enrollment.purchased = false
     if @enrollment.save_and_do_financials
-      render :partial => 'preorder_success', :locals => { :course => @enrollment.course } 
-      #render :json => @enrollment
+      render :json => @enrollment
     else
       render :json => {:errors => @enrollment.errors.full_messages}, :status => :unprocessable_entity
     end

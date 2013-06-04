@@ -6,8 +6,8 @@
   </div>
 
   <div class="modal-body">
-    <p>You're confirmed for <strong><%= @course.instructor_name %>'s</strong> class on <strong><%= @course.name %></strong>.</p>
-    <p>The class will start <strong><%= @course.start_date.to_s(:month_and_year) %></strong>. We will send you an email when the videos are ready</p>
+    <p>You're enrolled in <strong><%= @course.instructor_name %>'s</strong> class on <strong><%= @course.name %></strong>.</p>
+    <%= link_to 'Go To Class', user_course_path(@course), class: 'btn' %>
     <% if @promo %>
       <p>Invite your friends so that they can enjoy the special pre-order price too. Send them a link to <strong><%= promotion_url @promo %></strong> or share on your social channels.</p>
     <% end %>
