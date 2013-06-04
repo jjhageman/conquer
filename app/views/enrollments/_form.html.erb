@@ -83,6 +83,8 @@
 
       <%= f.hidden_field :course_id %>
       <%= f.hidden_field :stripe_token %>
+      <%= f.hidden_field :promotion_id %>
+      <%= f.hidden_field :course_price %>
 
     </div><!-- end modal-body -->
 
@@ -95,5 +97,5 @@
 <% end %>
 
 <div id="response" class="hide">
-  <%= render partial: (@course.released? ? 'purchase_success' : 'preorder_success') %>
+  <%= render partial: "enrollments/#{(@course.released? ? 'purchase_success' : 'preorder_success')}" %>
 </div>

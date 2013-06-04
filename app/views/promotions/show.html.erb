@@ -38,17 +38,15 @@
         <h3><del><%= number_to_currency @course.price %></del> <%= number_to_currency @promo.price %></h3>
         <%= render "shared/form_errors", :target => @enrollment %>
         <%= render("shared/form_errors", :target => @user) if @user %>
-        <% if @course.released? %>
-          <%= link_to 'Take Course', new_enrollment_path(@course), class: 'btn btn-primary' %>
-        <% else %>
-          <a href="#preOrderForm" role="button" class="btn btn-primary" data-toggle="modal">Pre-Order</a>
-        <% end %>
+        <a href="#preOrderForm" role="button" class="btn btn-primary" data-toggle="modal">
+          <%= @course.released? ? 'Take Course' : 'Pre-Order' %>
+        </a>
       </div><!-- end well -->
 
     </div><!-- end span3 -->
   </div><!-- end row-fluid -->
 </div><!-- end container-fluid -->
 
-<%= render 'preorders/form' %>
+<%= render 'enrollments/form' %>
 
 <% end %>

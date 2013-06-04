@@ -1,8 +1,9 @@
 class Enrollment < ActiveRecord::Base
   belongs_to :user
   belongs_to :course
+  belongs_to :promotion
 
-  attr_accessible :user_id, :course_id, :stripe_token, :price_paid, :purchase_date
+  attr_accessible :user_id, :course_id, :promotion_id, :stripe_token, :course_price, :purchase_date
   attr_accessor :stripe_token
 
   validates :course_id, :uniqueness => { :scope => :user_id,
@@ -17,6 +18,7 @@ class Enrollment < ActiveRecord::Base
       if course.released?
         charge_customer(customer)
         self.purchased = true
+        self.purchase_date = Time.now
       else
         self.purchased = false
       end

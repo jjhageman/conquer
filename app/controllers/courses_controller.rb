@@ -4,6 +4,8 @@ class CoursesController < ApplicationController
   end
 
   def show
-    @course = Course.find_by_url params[:id]
+    unless @course = Course.find_by_url(params[:id])
+      redirect_to courses_path, :alert => "Please select a valid course"
+    end
   end
 end

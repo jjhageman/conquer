@@ -58,7 +58,6 @@ class EnrollmentsController < ApplicationController
   def load_course
     @course = Course.find_by_url(params[:id])
     if @course
-      #redirect_to new_enrollment_path(@course) if @course.released?
       redirect_to user_course_path(@course) if user_signed_in? && @course.has_student?(current_user)
     else
       redirect_to courses_path, :alert => "Please select a valid course"

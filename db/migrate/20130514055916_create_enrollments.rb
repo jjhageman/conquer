@@ -3,8 +3,9 @@ class CreateEnrollments < ActiveRecord::Migration
     create_table :enrollments do |t|
       t.references :user
       t.references :course
+      t.references :promotion
       t.boolean :purchased, default: false
-      t.decimal :price_paid, precision: 8, scale: 2
+      t.decimal :course_price, precision: 8, scale: 2
       t.datetime :purchase_date
 
       t.timestamps
@@ -12,6 +13,7 @@ class CreateEnrollments < ActiveRecord::Migration
     
     add_index :enrollments, :user_id
     add_index :enrollments, :course_id
+    add_index :enrollments, :promotion_id
   end
 end
 

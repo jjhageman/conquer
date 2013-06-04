@@ -1,5 +1,6 @@
 class Promotion < ActiveRecord::Base
   belongs_to :course
+  belongs_to :enrollment
 
   scope :active, where(active: true)
 

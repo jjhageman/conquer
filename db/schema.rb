@@ -31,14 +31,16 @@ ActiveRecord::Schema.define(:version => 20130529054713) do
   create_table "enrollments", :force => true do |t|
     t.integer  "user_id"
     t.integer  "course_id"
+    t.integer  "promotion_id"
     t.boolean  "purchased",                                   :default => false
-    t.decimal  "price_paid",    :precision => 8, :scale => 2
+    t.decimal  "course_price",  :precision => 8, :scale => 2
     t.datetime "purchase_date"
     t.datetime "created_at",                                                     :null => false
     t.datetime "updated_at",                                                     :null => false
   end
 
   add_index "enrollments", ["course_id"], :name => "index_enrollments_on_course_id"
+  add_index "enrollments", ["promotion_id"], :name => "index_enrollments_on_promotion_id"
   add_index "enrollments", ["user_id"], :name => "index_enrollments_on_user_id"
 
   create_table "promotions", :force => true do |t|

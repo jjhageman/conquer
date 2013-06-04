@@ -17,6 +17,6 @@ feature 'Course access' do
 
     sign_in user
     visit new_enrollment_path(course)
-    page.should have_content('Your Purchase')
+    page.should have_content('Take Course')
   end
 end
