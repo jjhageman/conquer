@@ -7,7 +7,7 @@
 
   <div class="modal-body">
     <p>You're enrolled in <strong><%= @course.instructor_name %>'s</strong> class on <strong><%= @course.name %></strong>.</p>
-    <%= link_to 'Go To Class', user_course_path(@course), class: 'btn' %>
+    <p><%= link_to 'Go To Class', user_course_path(@course), class: 'btn' %></p>
     <% if @promo %>
       <p>Invite your friends so that they can enjoy the special pre-order price too. Send them a link to <strong><%= promotion_url @promo %></strong> or share on your social channels.</p>
     <% end %>
