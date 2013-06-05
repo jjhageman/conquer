@@ -3,16 +3,22 @@ $(document).ready ->
 
 rating =
   setupStars: ->
-    $('.rating_star').click (event) ->
-      rating.ajaxSubmit()
+    $('.rateit').bind 'rated reset', (event) ->
+      ri = $(this)
+      rating_data =
+        course_id: ri.data('courseid')
+        user_id: ri.data('userid')
+        stars: ri.rateit('value')
+      ri.rateit('readonly', true)
+      rating.ajaxSubmit(rating_data)
 
-  ajaxSubmit: ->
+  ajaxSubmit: (rtdata) ->
     $.ajax
-      url: $('#new_rating').attr('action')
+      url: '/ratings'
       type: 'POST'
-      data: $('#new_rating').serialize()
+      data: rtdata
       dataType: 'json'
-      success: (data,status,response) ->
-        $('form#enrollment').remove()
-      error: (response,textStatus,error) ->
-        enrollment.handleAjaxError(response)
+      success: (data) ->
+        $('#response').append('<li>' + data + '</li>')
+      error: (jxhr, msg, err) ->
+        $('#response').append('<li style="color:red">' + msg + '</li>')

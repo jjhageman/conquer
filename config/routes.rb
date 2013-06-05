@@ -11,6 +11,7 @@ Conquer::Application.routes.draw do
   resources :courses, only: [:index, :show] do
     resources :ratings, only: :create
   end
+  resources :ratings, only: :create
 
   get '/promo/:code' => 'promotions#show', as: :promotion
 
