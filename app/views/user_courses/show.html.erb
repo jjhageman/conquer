@@ -5,6 +5,8 @@
 
 <%= render partial: 'shared/playlist_player', locals: { video_list: '2360128659001'} %>
 
-<%= render partial: 'shared/rating', :locals => { rating: @rating, course: @course } %>
+<div class="well well-small">
+  Rate this course: <div class="rateit"></div>
+</div>
 
 <%= link_to 'Class Forum', '#', class: 'btn btn-info' %>

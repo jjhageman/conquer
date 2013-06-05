@@ -1,8 +1,1 @@
-<%= form_for [course, rating] , :html => {:class => 'star_rating_form'} do |f| %>
-  <%= f.hidden_field :stars %>
-<% end %>
-<ul>
-<% (1..5).each do |i| %>
-  <li id="course_<%= course.id %>_rating_<%= i %>" class="rating_star" data-stars="<%= i %>" data-form-id="course_<%= course.id %>_rating"></li>
-<% end %>
-</ul>
+<div class="rateit"></div>
