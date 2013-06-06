@@ -4,8 +4,9 @@ class RatingsController < ApplicationController
   respond_to :json
 
   def create
-    @course = Course.find(params[:course_id])
     @rating = Rating.new(params[:rating])
-    respond_with @course
+    @rating.user = current_user
+    flash[:notice] = 'User was successfully created.' if @rating.save
+    respond_with @rating
   end
 end
