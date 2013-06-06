@@ -6,9 +6,10 @@ rating =
     $('.rateit').bind 'rated reset', (event) ->
       ri = $(this)
       rating_data =
-        course_id: ri.data('courseid')
-        user_id: ri.data('userid')
-        stars: ri.rateit('value')
+        rating:
+          course_id: ri.data('courseid')
+          user_id: ri.data('userid')
+          stars: ri.rateit('value')
       ri.rateit('readonly', true)
       rating.ajaxSubmit(rating_data)
 

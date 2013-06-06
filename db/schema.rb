@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(:version => 20130529054713) do
     t.boolean  "released",                                             :default => true
     t.date     "start_date"
     t.string   "url"
+    t.decimal  "rating_average",         :precision => 6, :scale => 2, :default => 0.0
     t.datetime "created_at",                                                             :null => false
     t.datetime "updated_at",                                                             :null => false
   end
@@ -58,7 +59,7 @@ ActiveRecord::Schema.define(:version => 20130529054713) do
   add_index "promotions", ["course_id"], :name => "index_promotions_on_course_id"
 
   create_table "ratings", :force => true do |t|
-    t.float    "stars"
+    t.float    "stars",      :null => false
     t.integer  "user_id"
     t.integer  "course_id"
     t.datetime "created_at", :null => false

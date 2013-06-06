@@ -11,6 +11,7 @@ class CreateCourses < ActiveRecord::Migration
       t.boolean :released, default: true
       t.date :start_date
       t.string :url
+      t.decimal :rating_average, default: 0, precision: 6, scale: 2
 
       t.timestamps
     end

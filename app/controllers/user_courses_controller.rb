@@ -8,6 +8,6 @@ class UserCoursesController < ApplicationController
 
   def show
     @course = current_user.courses.find_by_url(params[:id])
-    @rating = Rating.where(user_id: current_user, course_id: @course).first_or_initialize
+    @rating = CourseRating.new(course: @course, user: current_user).stars_by_user_or_average
   end
 end
