@@ -33,12 +33,8 @@ class Course < ActiveRecord::Base
     url
   end
 
-  def total_ratings
-    ratings.size
-  end
-
-  def ratings_sum
-    ratings.sum(:stars)
+  def rated_by?(user)
+    ratings.where(user_id: user.id).any?
   end
 
   def update_cached_average
@@ -52,5 +48,13 @@ class Course < ActiveRecord::Base
       avg = self.ratings_sum.to_f / self.total_ratings.to_f
       avg.nan? ? 0.0 : avg
     end
+  end
+
+  def total_ratings
+    ratings.size
+  end
+
+  def ratings_sum
+    ratings.sum(:stars)
   end
 end

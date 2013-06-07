@@ -5,9 +5,10 @@ class UserMailer < ActionMailer::Base
     mail to: user.email, subject: 'Welcome to Conquer'
   end
 
-  def purchase_email(user, course)
+  def purchase_email(user, course, price)
     @user = user
     @course = course
+    @price = price
     mail to: @user.email, subject: 'Successful registration'
   end
 

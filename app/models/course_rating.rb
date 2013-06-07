@@ -3,14 +3,8 @@ class CourseRating
 
   def initialize(*args)
     options = args.extract_options!
-    @opt_course = options.delete(:course)
-    @opt_user = options.delete(:user)
-    @opt_rating = options.delete(:rating)
-  end
-
-  def update_or_create_rating
-    new_rating = Rating.find_or_initialize_by_course_id_and_user_id(course_id: rating[:course_id], user_id: user)
-    new_rating.update_attribute :stars, rating[:stars]
+    @opt_course, @opt_user, @opt_rating =
+      options.values_at(:course, :user, :rating)
   end
 
   def course

@@ -4,7 +4,6 @@ class RatingsController < ApplicationController
   respond_to :json
 
   def create
-    @rating = CourseRating.new(rating: params[:rating], user: current_user).update_or_create_rating
-    respond_with @rating
+    respond_with Rating.update_or_create_rating(params.merge(user_id: current_user.id))
   end
 end

@@ -5,9 +5,8 @@
 
 <%= render partial: 'shared/playlist_player', locals: { video_list: '2360128659001'} %>
 
-<div class="well well-small">
-  <ul id="response"></ul>
-  Rate this course: <div data-courseid="<%= @course.id %>" data-rateit-resetable="false" data-rateit-value="<%= @rating %>" class="rateit"></div>
+<div id="rating" class="well well-small">
+  <span><%= @course.rated_by?(current_user) ? 'Your rating' : 'Rate this course' %>:</span> <div data-courseid="<%= @course.id %>" data-rateit-resetable="false" data-rateit-value="<%= @rating %>" class="rateit"></div>
 </div>
 
 <%= link_to 'Class Forum', '#', class: 'btn btn-info' %>

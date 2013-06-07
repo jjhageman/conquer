@@ -24,7 +24,7 @@ class Enrollment < ActiveRecord::Base
       end
       user.update_stripe_attributes(customer)
       save!
-      UserMailer.purchase_email(user, course).deliver
+      UserMailer.purchase_email(user, course, course_price).deliver
     end
 
   rescue Stripe::CardError => e
@@ -62,13 +62,21 @@ class Enrollment < ActiveRecord::Base
     #false
   #end
 
+  def course_price
+    @course_price ||= self.promotion ? self.promotion.price : course.price
+  end
+
+  def course_price_in_cents
+    Integer course_price*100
+  end
+
   def create_stripe_customer
     Stripe::Customer.create(:card => stripe_token, :description => user.email)
   end
 
   def charge_customer(customer)
     Stripe::Charge.create(
-      amount: course.price_in_cents,
+      amount: course_price_in_cents,
       currency: "usd",
       customer: customer.id,
       description: "#{course.id}: #{course.name}")
