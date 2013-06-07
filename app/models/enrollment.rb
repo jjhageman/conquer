@@ -6,8 +6,8 @@ class Enrollment < ActiveRecord::Base
   attr_accessible :user_id, :course_id, :promotion_id, :stripe_token, :course_price, :purchase_date
   attr_accessor :stripe_token
 
-  validates :course_id, :uniqueness => { :scope => :user_id,
-    :message => "you have already enrolled in this course" }
+  validates :course_id, uniqueness: { scope: :user_id,
+    message: "you have already enrolled in this course" }
 
   scope :purchased, where(purchased: true)
   scope :preordered, where(purchased: false)

@@ -4,9 +4,7 @@ class RatingsController < ApplicationController
   respond_to :json
 
   def create
-    @rating = Rating.new(params[:rating])
-    @rating.user = current_user
-    flash[:notice] = 'User was successfully created.' if @rating.save
+    @rating = CourseRating.new(rating: params[:rating], user: current_user).update_or_create_rating
     respond_with @rating
   end
 end

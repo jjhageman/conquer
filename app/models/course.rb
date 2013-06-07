@@ -32,7 +32,7 @@ class Course < ActiveRecord::Base
   def to_param
     url
   end
-  
+
   def total_ratings
     ratings.size
   end
@@ -45,12 +45,12 @@ class Course < ActiveRecord::Base
     update_attribute :rating_average, rating_average(false)
   end
 
-  #def rating_average(cached = true)
-    #if cached
-      #read_attribute :rating_average
-    #else
-      #avg = self.ratings_sum.to_f / self.total_ratings.to_f
-      #avg.nan? ? 0.0 : avg
-    #end
-  #end
+  def rating_average(cached = true)
+    if cached
+      read_attribute :rating_average
+    else
+      avg = self.ratings_sum.to_f / self.total_ratings.to_f
+      avg.nan? ? 0.0 : avg
+    end
+  end
 end

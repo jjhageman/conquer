@@ -5,15 +5,32 @@ class CourseRating
     options = args.extract_options!
     @opt_course = options.delete(:course)
     @opt_user = options.delete(:user)
-    @rating = options.delete(:rating)
+    @opt_rating = options.delete(:rating)
+  end
+
+  def update_or_create_rating
+    new_rating = Rating.find_or_initialize_by_course_id_and_user_id(course_id: rating[:course_id], user_id: user)
+    new_rating.update_attribute :stars, rating[:stars]
   end
 
   def course
-    @course ||= @opt_course || rating.course
+    @course ||= @opt_course || rating_course
   end
 
   def user
-    @user ||= @opt_user || rating.user
+    @user ||= @opt_user || rating_user
+  end
+
+  def rating
+    @rating ||= @opt_rating || user_rating
+  end
+
+  def rating_course
+    rating.try(:course) if rating.is_a?(Rating)
+  end
+
+  def rating_user
+    rating.try(:user) if rating.is_a?(User)
   end
 
   def user_rating
@@ -25,15 +42,6 @@ class CourseRating
   end
 
   def stars_by_user_or_average
-    user_stars || course_average
-  end
-
-  def course_average(cached = true)
-    if cached
-       course.rating_average
-    else
-      avg = course.ratings_sum.to_f / course.total_ratings.to_f
-      avg.nan? ? 0.0 : avg
-    end
+    user_stars || course.try(:rating_average)
   end
 end
