@@ -11,8 +11,7 @@ feature 'Presale course', :vcr, js: true do
     visit courses_path
     click_link @course.name
     click_link 'Pre-Order'
-    fill_in 'First Name', with: 'Jeremy'
-    fill_in 'Last Name', with: 'Hageman'
+    fill_in 'Full Name', with: 'Jeremy Hageman'
     fill_in 'Email', with: 'new@user.com'
     fill_in 'Password', with: 'secret99'
     fill_in 'Password confirmation', with: 'secret99'
