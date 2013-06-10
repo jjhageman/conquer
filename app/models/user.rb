@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   has_many :courses, through: :purchased_enrollments, source: :course
   has_many :ratings
 
-  attr_accessible :first_name, :last_name, :email, :password, :password_confirmation, :remember_me, :last_4_digits, :stripe_id
+  attr_accessible :full_name, :email, :password, :password_confirmation, :remember_me, :last_4_digits, :stripe_id
 
   def update_stripe_attributes(stripe_customer)
     self.stripe_id = stripe_customer.id if stripe_customer.id

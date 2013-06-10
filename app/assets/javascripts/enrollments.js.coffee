@@ -6,7 +6,7 @@ enrollment =
   setupForm: ->
     $('#enrollment').submit (event) ->
       enrollment.clearErrorMessages()
-      $('input[type=submit]').attr('disabled', true)
+      $('#submitBtn').button('loading')
       enrollment.processCard()
       false
     enrollment.showModalForm() if enrollment.inOrderViewState()
@@ -28,7 +28,7 @@ enrollment =
         $('#enrollment')[0].submit()
     else
       $('#stripe_error').text(response.error.message).addClass('alert alert-error')
-      $('input[type=submit]').attr('disabled', false)
+      $('#submitBtn').button('reset')
 
   clearErrorMessages: ->
     $('#enrollment-errors').remove()
@@ -67,4 +67,4 @@ enrollment =
         $('#response').show()
       error: (response,textStatus,error) ->
         enrollment.handleAjaxError(response)
-        $('input[type=submit]').attr('disabled', false)
+        $('#submitBtn').button('reset')

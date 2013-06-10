@@ -70,8 +70,7 @@ ActiveRecord::Schema.define(:version => 20130529054713) do
   add_index "ratings", ["user_id"], :name => "index_ratings_on_user_id"
 
   create_table "users", :force => true do |t|
-    t.string   "first_name"
-    t.string   "last_name"
+    t.string   "full_name"
     t.string   "email",                  :default => "", :null => false
     t.string   "encrypted_password",     :default => "", :null => false
     t.string   "reset_password_token"

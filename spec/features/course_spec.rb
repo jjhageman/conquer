@@ -8,7 +8,8 @@ feature 'Course access' do
     course = FactoryGirl.create(:prereleased_course)
 
     sign_in user
-    visit new_enrollment_path(course)
+    visit courses_path
+    click_link course.name
     page.should have_content('Pre-Order')
   end
 
@@ -16,7 +17,8 @@ feature 'Course access' do
     course = FactoryGirl.create(:course)
 
     sign_in user
-    visit new_enrollment_path(course)
+    visit courses_path
+    click_link course.name
     page.should have_content('Take Course')
   end
 end
