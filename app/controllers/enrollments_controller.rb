@@ -1,9 +1,7 @@
 class EnrollmentsController < ApplicationController
   before_filter :set_return_path, only: :new
-  before_filter :load_course, only: :new
+  before_filter :load_course, only: [:new, :create]
   before_filter :authenticate_user!, only: :show
-
-  respond_to :json, only: :create
 
   def show
     @enrollment = current_user.enrollments.find(params[:id])
@@ -25,14 +23,33 @@ class EnrollmentsController < ApplicationController
       create_and_render_enrollment
     else
       if @user.save
-        sign_in @user 
+        sign_in @user
         create_and_render_enrollment
       else
-        render :json => {:errors => errors_for(@user)}, :status => :unprocessable_entity
+        @enrollment = Enrollment.new(params[:enrollment])
+        render :new
       end
     end
-
   end
+  #def create
+    #@user = if user_signed_in?
+      #current_user
+    #else
+      #User.new(params[:user])
+    #end
+
+    #if user_signed_in?
+      #create_and_render_enrollment
+    #else
+      #if @user.save
+        #sign_in @user 
+        #create_and_render_enrollment
+      #else
+        #render :json => {:errors => errors_for(@user)}, :status => :unprocessable_entity
+      #end
+    #end
+
+  #end
 
   private
 
@@ -43,22 +60,23 @@ class EnrollmentsController < ApplicationController
   def create_and_render_enrollment
     @enrollment = @user.enrollments.new(params[:enrollment])
     if @enrollment.save_and_do_financials
-      render :json => @enrollment
+      redirect_to @enrollment, notice: "Thank you for enrolling!"
     else
-      render :json => {:errors => @enrollment.errors.full_messages}, :status => :unprocessable_entity
+      render :new
     end
   end
 
   def set_return_path
     unless user_signed_in?
-      session[:enrollment_url] = "#{request.fullpath}#order"
+      session[:enrollment_url] = request.fullpath
     end
   end
 
   def load_course
-    @course = Course.find_by_url(params[:id])
+    @course = Course.find_by_url(params[:course_id])
     if @course
       redirect_to user_course_path(@course) if user_signed_in? && @course.has_student?(current_user)
+      redirect_to course_path(@course) if user_signed_in? && @course.has_preordered_student?(current_user)
     else
       redirect_to courses_path, :alert => "Please select a valid course"
     end

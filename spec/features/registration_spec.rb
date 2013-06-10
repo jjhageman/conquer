@@ -8,8 +8,11 @@ feature 'Presale course', :vcr, js: true do
   end
 
   scenario 'new user successfully preorders a course' do
-    visit new_enrollment_path(@course)
+    visit courses_path
+    click_link @course.name
     click_link 'Pre-Order'
+    fill_in 'First Name', with: 'Jeremy'
+    fill_in 'Last Name', with: 'Hageman'
     fill_in 'Email', with: 'new@user.com'
     fill_in 'Password', with: 'secret99'
     fill_in 'Password confirmation', with: 'secret99'
@@ -22,14 +25,13 @@ feature 'Presale course', :vcr, js: true do
 
     page.should have_content("You're confirmed for #{@course.instructor_name}'s class on #{@course.name}")
     open_email('new@user.com', :with_text => @course.name)
-
-    click_button 'Close'
   end
 
   given(:user) { FactoryGirl.create(:user) }
 
   scenario 'existing user successfully preorders a course' do
-    visit new_enrollment_path(@course)
+    visit courses_path
+    click_link @course.name
     click_link 'Pre-Order'
     click_link 'Already a member?'
     page.should have_content('Sign in')
@@ -52,7 +54,8 @@ feature 'Presale course', :vcr, js: true do
   scenario 'existing user attempts to preorder already preordered course' do
     FactoryGirl.create(:enrollment, user: user, course: @course)
     
-    visit new_enrollment_path(@course)
+    visit courses_path
+    click_link @course.name
     click_link 'Pre-Order'
     click_link 'Already a member?'
     page.should have_content('Sign in')
@@ -66,7 +69,8 @@ feature 'Presale course', :vcr, js: true do
   scenario 'existing user attempts to preorder already paid for course' do
     FactoryGirl.create(:purchased_enrollment, user: user, course: @course)
     
-    visit new_enrollment_path(@course)
+    visit courses_path
+    click_link @course.name
     click_link 'Pre-Order'
     click_link 'Already a member?'
     page.should have_content('Sign in')
@@ -78,7 +82,8 @@ feature 'Presale course', :vcr, js: true do
   end
 
   scenario 'new user attempts to preorder with invalid email and password' do
-    visit new_enrollment_path(@course)
+    visit courses_path
+    click_link @course.name
     click_link 'Pre-Order'
     fill_in 'Email', with: 'invalid'
     fill_in 'Password', with: 'short'
@@ -90,13 +95,14 @@ feature 'Presale course', :vcr, js: true do
     select '2015', :from => 'card_year'
     click_button 'Complete Pre-Order'
 
-    page.should have_content('email is invalid')
-    page.should have_content('password is too short')
+    page.should have_content('Email is invalid')
+    page.should have_content('Password is too short')
   end
 
   scenario 'new user attempts to preorder with invalid credit card' do
     stub_invalid_stripe_customer
-    visit new_enrollment_path(@course)
+    visit courses_path
+    click_link @course.name
     click_link 'Pre-Order'
     fill_in 'Email', with: 'new@user.com'
     fill_in 'Password', with: 'secret99'

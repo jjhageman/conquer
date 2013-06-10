@@ -1,7 +1,20 @@
 <div class="page-header">
   <h1>Congratulations!</h1>
-  <h4>You are preregistered to <%= @course.name %></h4>
-  <h5>by <%= @course.instructor_name %></h5>
 </div>
 
-<p>You will be notified once the course is available</p>
+<% if @course.released? %>
+<p>You're enrolled in <strong><%= @course.instructor_name %>'s</strong> class on <strong><%= @course.name %></strong>.</p>
+<p><%= link_to 'Go To Class', user_course_path(@course), class: 'btn' %></p>
+<% else %>
+<p>You're confirmed for <strong><%= @course.instructor_name %>'s</strong> class on <strong><%= @course.name %></strong>.</p>
+<p>The class will start <strong><%= @course.start_date.to_s(:month_and_year) %></strong>. We will send you an email when the videos are ready</p>
+<% end %>
+
+<% if @promo %>
+  <p>Invite your friends so that they can enjoy the special pre-order price too. Send them a link to <strong><%= promotion_url @promo %></strong> or share on your social channels.</p>
+<% end %>
+
+<div>
+  <%= render partial: 'shared/twitter_button', locals: {text: "Take this awesome @course with me!"} %> 
+  <%= render partial: 'shared/facebook_button', locals: {url: course_url(@course)} %>
+</div>
