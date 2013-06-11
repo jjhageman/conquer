@@ -21,8 +21,8 @@ class EnrollmentsController < ApplicationController
     if user_signed_in?
       create_and_render_enrollment
     else
+      @user.skip_confirmation_notification!
       if @user.save
-        #sign_in @user
         create_and_render_enrollment
       else
         @enrollment = Enrollment.new(params[:enrollment])

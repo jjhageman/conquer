@@ -84,6 +84,7 @@ ActiveRecord::Schema.define(:version => 20130529054713) do
     t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
     t.string   "last_4_digits"
     t.string   "stripe_id"
     t.datetime "created_at",                             :null => false

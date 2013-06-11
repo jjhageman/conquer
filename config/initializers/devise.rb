@@ -121,7 +121,7 @@ Devise.setup do |config|
   # config.extend_remember_period = false
 
   # Options to be passed to the created cookie. For instance, you can set
-  # :secure => true in order to force SSL only cookies.
+  # :secure => true in ordee to force SSL only cookies.
   # config.rememberable_options = {}
 
   # ==> Configuration for :validatable

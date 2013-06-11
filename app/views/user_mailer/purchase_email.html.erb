@@ -4,4 +4,6 @@ Dear <%= @user.email %>,
 
 <p>Course total: <%= number_to_currency @price %></p>
 
-<p><%= link_to 'View your course', confirmation_url(@user, :confirmation_token => @user.confirmation_token) %></p>
+<p>You can confirm your account email through the link below:</p>
+
+<p><%= link_to 'Confirm my account and view course', confirmation_url(@user, :confirmation_token => @user.confirmation_token) %></p>

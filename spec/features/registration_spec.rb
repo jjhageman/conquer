@@ -128,8 +128,6 @@ feature 'Released course', :vcr, js: true do
     click_link @course.name
     click_link 'Take Course'
     fill_in 'Email', with: 'new@user.com'
-    #fill_in 'Password', with: 'secret99'
-    #fill_in 'Password confirmation', with: 'secret99'
 
     fill_in 'Credit Card Number', with: '4242424242424242'
     fill_in 'Security Code', with: '123'
@@ -138,15 +136,15 @@ feature 'Released course', :vcr, js: true do
     click_button 'Complete Purchase'
 
     page.should have_content("You're enrolled in #{@course.instructor_name}'s class on #{@course.name}")
+    unread_emails_for('new@user.com').size.should == 1
     open_email('new@user.com', :with_text => @course.name)
-    #EmailSpec::EmailViewer::save_and_open_email(current_email)
-    visit_in_email('View your course')
-save_and_open_page
+    visit_in_email('Confirm my account and view course')
+
     fill_in 'Password', with: 'secret99'
     fill_in 'Password confirmation', with: 'secret99'
     click_button 'Confirm Account'
     
-    click_link 'Go To Class'
+    current_path.should == user_course_path(@course)
   end
 
   given(:user) { FactoryGirl.create(:user) }

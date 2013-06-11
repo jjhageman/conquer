@@ -3,11 +3,15 @@
 </div>
 
 <% if @course.released? %>
-<p>You're enrolled in <strong><%= @course.instructor_name %>'s</strong> class on <strong><%= @course.name %></strong>.</p>
-<p><%= link_to 'Go To Class', user_course_path(@course), class: 'btn' %></p>
+  <p>You're enrolled in <strong><%= @course.instructor_name %>'s</strong> class on <strong><%= @course.name %></strong>.</p>
+  <% if current_user %>
+    <p><%= link_to 'Go To Class', user_course_path(@course), class: 'btn' %></p>
+  <% else %>
+    <p>Please check your email for account confirmation and attendance instructions.</p>
+  <% end %>
 <% else %>
-<p>You're confirmed for <strong><%= @course.instructor_name %>'s</strong> class on <strong><%= @course.name %></strong>.</p>
-<p>The class will start <strong><%= @course.start_date.to_s(:month_and_year) %></strong>. We will send you an email when the videos are ready</p>
+  <p>You're confirmed for <strong><%= @course.instructor_name %>'s</strong> class on <strong><%= @course.name %></strong>.</p>
+  <p>The class will start <strong><%= @course.start_date.to_s(:month_and_year) %></strong>. We will send you an email when the videos are ready</p>
 <% end %>
 
 <% if @promo %>
