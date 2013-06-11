@@ -11,10 +11,10 @@ feature 'Presale course', :vcr, js: true do
     visit courses_path
     click_link @course.name
     click_link 'Pre-Order'
-    fill_in 'Full Name', with: 'Jeremy Hageman'
+    fill_in 'Full Name', with: 'Marie-Élise L’Antisémite'
     fill_in 'Email', with: 'new@user.com'
-    fill_in 'Password', with: 'secret99'
-    fill_in 'Password confirmation', with: 'secret99'
+    #fill_in 'Password', with: 'secret99'
+    #fill_in 'Password confirmation', with: 'secret99'
 
     fill_in 'Credit Card Number', with: '4242424242424242'
     fill_in 'Security Code', with: '123'
@@ -85,8 +85,8 @@ feature 'Presale course', :vcr, js: true do
     click_link @course.name
     click_link 'Pre-Order'
     fill_in 'Email', with: 'invalid'
-    fill_in 'Password', with: 'short'
-    fill_in 'Password confirmation', with: 'short'
+    #fill_in 'Password', with: 'short'
+    #fill_in 'Password confirmation', with: 'short'
 
     fill_in 'Credit Card Number', with: '4242424242424242'
     fill_in 'Security Code', with: '123'
@@ -104,8 +104,8 @@ feature 'Presale course', :vcr, js: true do
     click_link @course.name
     click_link 'Pre-Order'
     fill_in 'Email', with: 'new@user.com'
-    fill_in 'Password', with: 'secret99'
-    fill_in 'Password confirmation', with: 'secret99'
+    #fill_in 'Password', with: 'secret99'
+    #fill_in 'Password confirmation', with: 'secret99'
 
     fill_in 'Credit Card Number', with: '4000000000000002'
     fill_in 'Security Code', with: '123'
@@ -128,8 +128,8 @@ feature 'Released course', :vcr, js: true do
     click_link @course.name
     click_link 'Take Course'
     fill_in 'Email', with: 'new@user.com'
-    fill_in 'Password', with: 'secret99'
-    fill_in 'Password confirmation', with: 'secret99'
+    #fill_in 'Password', with: 'secret99'
+    #fill_in 'Password confirmation', with: 'secret99'
 
     fill_in 'Credit Card Number', with: '4242424242424242'
     fill_in 'Security Code', with: '123'
@@ -139,6 +139,12 @@ feature 'Released course', :vcr, js: true do
 
     page.should have_content("You're enrolled in #{@course.instructor_name}'s class on #{@course.name}")
     open_email('new@user.com', :with_text => @course.name)
+    #EmailSpec::EmailViewer::save_and_open_email(current_email)
+    visit_in_email('View your course')
+save_and_open_page
+    fill_in 'Password', with: 'secret99'
+    fill_in 'Password confirmation', with: 'secret99'
+    click_button 'Confirm Account'
     
     click_link 'Go To Class'
   end

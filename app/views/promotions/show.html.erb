@@ -31,7 +31,7 @@
       <div class="well">
         <em>Special promotional price!</em>
         <h3><del><%= number_to_currency @course.price %></del> <%= number_to_currency @promo.price %></h3>
-        <%= link_to (@course.released? ? 'Take Course' : 'Pre-Order'), new_enrollment_path(@course), class: 'btn btn-primary' %>
+        <%= link_to (@course.released? ? 'Take Course' : 'Pre-Order'), new_enrollment_path(@course, p: @promo.code), class: 'btn btn-primary' %>
       </div><!-- end well -->
 
     </div><!-- end span3 -->

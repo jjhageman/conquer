@@ -1,5 +1,7 @@
 Dear <%= @user.email %>,
 
-You have successfully registered in <%= @course.name %>
+<p>You have successfully registered in <%= @course.name %></p>
 
-Course total: <%= number_to_currency @price %>
+<p>Course total: <%= number_to_currency @price %></p>
+
+<p><%= link_to 'View your course', confirmation_url(@user, :confirmation_token => @user.confirmation_token) %></p>

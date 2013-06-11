@@ -1,12 +1,10 @@
 Conquer::Application.routes.draw do
 
-  devise_for :users, path: '', path_names: {sign_in: 'login', sign_out: 'logout'}
+  devise_for :users, path: '', path_names: {sign_in: 'login', sign_out: 'logout'}, controllers: {confirmations: 'confirmations'}
 
-  #devise_scope :user do
-    #get "enrollment/:id", :to => "enrollments#show", :as => :enrollments
-    #get "enrollments/new", :to => "enrollments#new", :as => :new_enrollment
-    #post "enrollments", :to => "enrollments#create", :as => :enrollments
-  #end
+  devise_scope :user do
+    put "/confirm" => "confirmations#confirm"
+  end
 
   resources :ratings, only: [:show, :create]
 

@@ -1,10 +1,9 @@
 class EnrollmentsController < ApplicationController
   before_filter :set_return_path, only: :new
   before_filter :load_course, only: [:new, :create]
-  before_filter :authenticate_user!, only: :show
 
   def show
-    @enrollment = current_user.enrollments.find(params[:id])
+    @enrollment = Enrollment.find(params[:id])
     @course = @enrollment.course
   end
 
@@ -23,7 +22,7 @@ class EnrollmentsController < ApplicationController
       create_and_render_enrollment
     else
       if @user.save
-        sign_in @user
+        #sign_in @user
         create_and_render_enrollment
       else
         @enrollment = Enrollment.new(params[:enrollment])
@@ -31,31 +30,8 @@ class EnrollmentsController < ApplicationController
       end
     end
   end
-  #def create
-    #@user = if user_signed_in?
-      #current_user
-    #else
-      #User.new(params[:user])
-    #end
-
-    #if user_signed_in?
-      #create_and_render_enrollment
-    #else
-      #if @user.save
-        #sign_in @user 
-        #create_and_render_enrollment
-      #else
-        #render :json => {:errors => errors_for(@user)}, :status => :unprocessable_entity
-      #end
-    #end
-
-  #end
 
   private
-
-  def errors_for(object)
-    object.errors.map {|k, m| "#{k} #{m}" }
-  end
 
   def create_and_render_enrollment
     @enrollment = @user.enrollments.new(params[:enrollment])

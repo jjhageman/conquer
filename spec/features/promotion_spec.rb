@@ -55,5 +55,6 @@ feature 'Presale course promotional code', :vcr, js: true do
 
     page.should have_content("You're confirmed for #{@course.instructor_name}'s class on #{@course.name}")
     open_email('new@user.com', :with_text => @course.name)
+    current_email.default_part_body.to_s.should include(promotion.price.to_s)
   end
 end

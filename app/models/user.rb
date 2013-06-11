@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
+  devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
@@ -16,6 +16,17 @@ class User < ActiveRecord::Base
   has_many :ratings
 
   attr_accessible :full_name, :email, :password, :password_confirmation, :remember_me, :last_4_digits, :stripe_id
+
+  def password_required?
+    super if confirmed?
+  end
+
+  def password_match?
+    self.errors[:password] << "can't be blank" if password.blank?
+    self.errors[:password_confirmation] << "can't be blank" if password_confirmation.blank?
+    self.errors[:password_confirmation] << "does not match password" if password != password_confirmation
+    password == password_confirmation && !password.blank?
+  end
 
   def update_stripe_attributes(stripe_customer)
     self.stripe_id = stripe_customer.id if stripe_customer.id

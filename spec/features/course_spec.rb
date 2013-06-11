@@ -22,3 +22,7 @@ feature 'Course access' do
     page.should have_content('Take Course')
   end
 end
+
+feature 'Course goes live' do
+  scenario 'Users should get email notifications to set up their accounts'
+end
