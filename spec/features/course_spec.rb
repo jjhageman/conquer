@@ -24,5 +24,5 @@ feature 'Course access' do
 end
 
 feature 'Course goes live' do
-  scenario 'Users should get email notifications to set up their accounts'
+  scenario 'Pre-ordered users should be charged and receive email notification'
 end

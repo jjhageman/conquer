@@ -18,10 +18,4 @@ class UserMailer < ActionMailer::Base
     @price = price
     mail to: @user.email, subject: 'Successful registration'
   end
-
-  def preorder_email(user, course)
-    @user = user
-    @course = course
-    mail to: @user.email, subject: 'Successful pre-registration'
-  end
 end

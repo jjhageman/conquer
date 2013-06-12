@@ -1,6 +1,7 @@
 class EnrollmentsController < ApplicationController
-  before_filter :set_return_path, only: :new
+  before_filter :set_return_path, :load_promotion, only: :new
   before_filter :load_course, only: [:new, :create]
+  before_filter :load_promotion, only: [:new]
 
   def show
     @enrollment = Enrollment.find(params[:id])
@@ -9,6 +10,7 @@ class EnrollmentsController < ApplicationController
 
   def new
     @enrollment = @course.enrollments.new
+    @enrollment.promotion = @promo if @promo
   end
   
   def create
@@ -33,9 +35,14 @@ class EnrollmentsController < ApplicationController
 
   private
 
+  def load_promotion
+    @promo = @course.promotions.find_by_code(params[:p]) if params[:p]
+  end
+
   def create_and_render_enrollment
     @enrollment = @user.enrollments.new(params[:enrollment])
     if @enrollment.save_and_do_financials
+      @enrollment.send_confirmation_email
       redirect_to @enrollment, notice: "Thank you for enrolling!"
     else
       render :new

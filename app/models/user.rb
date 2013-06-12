@@ -17,6 +17,20 @@ class User < ActiveRecord::Base
 
   attr_accessible :full_name, :email, :password, :password_confirmation, :remember_me, :last_4_digits, :stripe_id
 
+  def enrolled_in?(course)
+    enrollments.purchased.where(course_id: course.id).exists?
+  end
+
+  def preordered?(course)
+    enrollments.preordered.where(course_id: course.id).exists?
+  end
+
+  def update_stripe_attributes(stripe_customer)
+    self.stripe_id = stripe_customer.id if stripe_customer.id
+    self.last_4_digits = stripe_customer.active_card.last4 if stripe_customer.active_card.last4
+    save!
+  end
+
   def password_required?
     super if confirmed?
   end
@@ -26,19 +40,5 @@ class User < ActiveRecord::Base
     self.errors[:password_confirmation] << "can't be blank" if password_confirmation.blank?
     self.errors[:password_confirmation] << "does not match password" if password != password_confirmation
     password == password_confirmation && !password.blank?
-  end
-
-  def update_stripe_attributes(stripe_customer)
-    self.stripe_id = stripe_customer.id if stripe_customer.id
-    self.last_4_digits = stripe_customer.active_card.last4 if stripe_customer.active_card.last4
-    save!
-  end
-
-  def enrolled_in?(course)
-    enrollments.purchased.where(course_id: course.id).exists?
-  end
-
-  def preordered?(course)
-    enrollments.preordered.where(course_id: course.id).exists?
   end
 end

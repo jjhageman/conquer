@@ -1,6 +1,6 @@
 $(document).ready ->
   #Stripe.setPublishableKey($('meta[name="stripe-key"]').attr('content'))
-  enrollment.setupForm()
+  #enrollment.setupForm()
 
 enrollment =
   setupForm: ->

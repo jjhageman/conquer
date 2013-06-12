@@ -11,7 +11,8 @@
   <% end %>
 <% else %>
   <p>You're confirmed for <strong><%= @course.instructor_name %>'s</strong> class on <strong><%= @course.name %></strong>.</p>
-  <p>The class will start <strong><%= @course.start_date.to_s(:month_and_year) %></strong>. We will send you an email when the videos are ready</p>
+  <p>Please check your email for account confirmation and attendance instructions.</p>
+  <p>The class will start <strong><%= @course.start_date.to_s(:month_and_year) %></strong>.
 <% end %>
 
 <% if @promo %>

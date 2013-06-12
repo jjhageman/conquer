@@ -24,7 +24,6 @@ class Enrollment < ActiveRecord::Base
       end
       user.update_stripe_attributes(customer)
       save!
-      user.confirmed? ? UserMailer.purchase_email(user, course, course_price).deliver : UserMailer.confirmation_and_purchase_email(user, course, course_price).deliver
     end
 
   rescue Stripe::CardError => e
@@ -33,35 +32,6 @@ class Enrollment < ActiveRecord::Base
     false
   end
 
-  #def save_and_make_payment
-    #if valid?
-      #customer = create_stripe_customer
-      #charge_customer(customer)
-      #user.update_stripe_attributes(customer)
-      #save!
-      #UserMailer.purchase_email(user, course).deliver
-    #end
-
-  #rescue Stripe::CardError => e
-    #logger.error "Stripe error while creating customer: #{e.message}"
-    #errors.add :base, "There was a problem with your credit card."
-    #false
-  #end
-
-  #def save_and_create_stripe_customer
-    #if valid?
-      #customer = create_stripe_customer
-      #user.update_stripe_attributes(customer)
-      #save!
-      #UserMailer.preorder_email(user, course).deliver
-    #end
-
-  #rescue Stripe::CardError => e
-    #logger.error "Stripe error while creating customer: #{e.message}"
-    #errors.add :base, "There was a problem with your credit card."
-    #false
-  #end
-
   def course_price
     @course_price ||= self.promotion ? self.promotion.price : course.price
   end
@@ -69,6 +39,12 @@ class Enrollment < ActiveRecord::Base
   def course_price_in_cents
     Integer course_price*100
   end
+
+  def send_confirmation_email
+    user.confirmed? ? UserMailer.purchase_email(user, course, course_price).deliver : UserMailer.confirmation_and_purchase_email(user, course, course_price).deliver
+  end
+
+  private
 
   def create_stripe_customer
     Stripe::Customer.create(:card => stripe_token, :description => user.email)

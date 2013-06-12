@@ -1,7 +1,7 @@
 require 'spec_helper'
 include StripeMacro
 
-feature 'Released course promotional code', :vcr, js: true do
+feature 'Released course promotional code', :vcr do
   background do
     stub_stripe_customer
     @course = FactoryGirl.create(:course)
@@ -14,9 +14,8 @@ feature 'Released course promotional code', :vcr, js: true do
     page.should have_content("$#{promotion.price}")
 
     click_link 'Take Course'
+    fill_in 'Full Name', with: 'Marie-Élise L’Antisémite'
     fill_in 'Email', with: 'new@user.com'
-    fill_in 'Password', with: 'secret99'
-    fill_in 'Password confirmation', with: 'secret99'
 
     fill_in 'Credit Card Number', with: '4242424242424242'
     fill_in 'Security Code', with: '123'
@@ -25,8 +24,16 @@ feature 'Released course promotional code', :vcr, js: true do
     click_button 'Complete Purchase'
 
     page.should have_content("You're enrolled in #{@course.instructor_name}'s class on #{@course.name}")
+    unread_emails_for('new@user.com').size.should == 1
     open_email('new@user.com', :with_text => @course.name)
     current_email.default_part_body.to_s.should include(promotion.price.to_s)
+    visit_in_email('Confirm my account and view course')
+
+    fill_in 'Password', with: 'secret99'
+    fill_in 'Password confirmation', with: 'secret99'
+    click_button 'Confirm Account'
+
+    current_path.should == user_course_path(@course)
   end
 end
 
@@ -43,9 +50,8 @@ feature 'Presale course promotional code', :vcr, js: true do
     page.should have_content("$#{promotion.price}")
 
     click_link 'Pre-Order'
+    fill_in 'Full Name', with: 'Marie-Élise L’Antisémite'
     fill_in 'Email', with: 'new@user.com'
-    fill_in 'Password', with: 'secret99'
-    fill_in 'Password confirmation', with: 'secret99'
 
     fill_in 'Credit Card Number', with: '4242424242424242'
     fill_in 'Security Code', with: '123'
@@ -54,7 +60,15 @@ feature 'Presale course promotional code', :vcr, js: true do
     click_button 'Complete Pre-Order'
 
     page.should have_content("You're confirmed for #{@course.instructor_name}'s class on #{@course.name}")
+    unread_emails_for('new@user.com').size.should == 1
     open_email('new@user.com', :with_text => @course.name)
     current_email.default_part_body.to_s.should include(promotion.price.to_s)
+    visit_in_email('Confirm my account and view course')
+
+    fill_in 'Password', with: 'secret99'
+    fill_in 'Password confirmation', with: 'secret99'
+    click_button 'Confirm Account'
+
+    current_path.should == course_path(@course)
   end
 end
