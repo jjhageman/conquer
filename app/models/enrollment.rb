@@ -24,7 +24,7 @@ class Enrollment < ActiveRecord::Base
       end
       user.update_stripe_attributes(customer)
       save!
-      UserMailer.purchase_email(user, course, course_price).deliver
+      user.confirmed? ? UserMailer.purchase_email(user, course, course_price).deliver : UserMailer.confirmation_and_purchase_email(user, course, course_price).deliver
     end
 
   rescue Stripe::CardError => e

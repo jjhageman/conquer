@@ -12,6 +12,13 @@ class UserMailer < ActionMailer::Base
     mail to: @user.email, subject: 'Successful registration'
   end
 
+  def confirmation_and_purchase_email(user, course, price)
+    @user = user
+    @course = course
+    @price = price
+    mail to: @user.email, subject: 'Successful registration'
+  end
+
   def preorder_email(user, course)
     @user = user
     @course = course

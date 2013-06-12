@@ -165,7 +165,9 @@ feature 'Released course', :vcr, js: true do
     click_button 'Complete Purchase'
 
     page.should have_content("You're enrolled in #{@course.instructor_name}'s class on #{@course.name}")
+    unread_emails_for(user.email).size.should == 1
     open_email(user.email, :with_text => @course.name)
+    current_email.default_part_body.to_s.should_not include('Confirm my account and view course')
     
     click_link 'Go To Class'
   end
@@ -182,6 +184,7 @@ feature 'Released course', :vcr, js: true do
     click_button 'Sign in'
 
     current_path.should == user_course_path(@course)
+    unread_emails_for(user.email).size.should be_zero
   end
 
   scenario 'new user attempts to purchase course with invalid credit card' do
@@ -201,5 +204,6 @@ feature 'Released course', :vcr, js: true do
     click_button 'Complete Purchase'
 
     page.should have_content('There was a problem with your credit card')
+    unread_emails_for(user.email).size.should be_zero
   end
 end
