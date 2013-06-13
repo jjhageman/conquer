@@ -18,6 +18,6 @@ class Rating < ActiveRecord::Base
   end
 
   def update_course_average_rating
-    course.update_cached_average
+    self.course.update_cached_average
   end
 end

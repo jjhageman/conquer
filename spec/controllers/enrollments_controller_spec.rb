@@ -6,21 +6,6 @@ describe EnrollmentsController do
 
   describe 'POST create', :vcr do
 
-    context 'invalid email' do
-      let(:params) {{
-        'user' => {'full_name' => 'Marie-Élise L’Antisémite', 'email' => 'invalid'},
-        'enrollment' => {'course_id' => course.id, 'stripe_token' => 'tok_20ViXjlKQQQ21j'},
-        'course_id' => course.url
-      }}
-
-      it 'should not create a user or enrollment' do
-        User.should_not_receive(:new)
-
-        expect {
-          post :create, params
-        }.to change{Enrollment.count}.by(0)
-      end
-    end
 
     context 'New user' do
       let(:params) {{
@@ -37,6 +22,26 @@ describe EnrollmentsController do
         expect {
           post :create, params
         }.to change{User.count}.from(0).to(1)
+      end
+
+      context 'invalid email' do
+        let(:params) {{
+          'user' => {'full_name' => 'Marie-Élise L’Antisémite', 'email' => 'invalid'},
+          'enrollment' => {'course_id' => course.id, 'stripe_token' => 'tok_20ViXjlKQQQ21j'},
+          'course_id' => course.url
+        }}
+
+        it 'should not create a user' do
+          expect {
+            post :create, params
+          }.to change{User.count}.by(0)
+        end
+
+        it 'should not create an enrollment' do
+          expect {
+            post :create, params
+          }.to change{Enrollment.count}.by(0)
+        end
       end
     end
 
@@ -67,7 +72,7 @@ describe EnrollmentsController do
       it 'should send a confirmation email' do
         emailer = double 'email'
         emailer.should_receive(:deliver)
-        
+
         UserMailer.should_receive(:purchase_email).with(user, course, course.price).and_return(emailer)
         post :create, params
       end

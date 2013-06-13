@@ -6,9 +6,10 @@ rating =
     $('.rateit').bind 'rated reset', (event) ->
       ri = $(this)
       rating_data =
-        course_id: ri.data('courseid')
-        user_id: ri.data('userid')
-        stars: ri.rateit('value')
+        rating:
+          course_id: ri.data('courseid')
+          user_id: ri.data('userid')
+          stars: ri.rateit('value')
       ri.rateit('readonly', true)
       rating.ajaxSubmit(rating_data)
 
@@ -21,5 +22,6 @@ rating =
       success: (data) ->
         $('#rating span').html('Your rating:')
       error: (jxhr, msg, err) ->
+        $('.rateit').rateit('readonly', false)
         $('#rating').prepend '<div id="rating-errors" class="alert alert-error fade in">
-          <button type="button" class="close" data-dismiss="alert">×</button>'+msg+'</div>'
+          <button type="button" class="close" data-dismiss="alert">×</button>'+err+'</div>'

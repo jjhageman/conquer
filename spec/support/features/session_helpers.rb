@@ -16,5 +16,12 @@ module Features
         click_button 'Sign up'
       end
     end
+
+    def enrolled_user
+      @user = FactoryGirl.create(:user)
+      @course = FactoryGirl.create(:course)
+      FactoryGirl.create(:purchased_enrollment, user: @user, course: @course)
+      sign_in @user
+    end
   end
 end
