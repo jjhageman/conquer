@@ -23,7 +23,6 @@ class EnrollmentsController < ApplicationController
     if user_signed_in?
       create_and_render_enrollment
     else
-      @user.skip_confirmation_notification!
       if @user.save
         create_and_render_enrollment
       else

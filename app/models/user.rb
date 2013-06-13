@@ -31,6 +31,12 @@ class User < ActiveRecord::Base
     save!
   end
 
+  ### Devise monkeypatches ###
+
+  def send_confirmation_notification?
+    false
+  end
+
   def password_required?
     super if confirmed?
   end
