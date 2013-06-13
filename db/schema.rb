@@ -11,7 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130529054713) do
+ActiveRecord::Schema.define(:version => 20130613065053) do
+
+  create_table "alternatives", :force => true do |t|
+    t.string   "which"
+    t.integer  "participants", :default => 0
+    t.integer  "conversions",  :default => 0
+    t.text     "experiment"
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
+  end
+
+  add_index "alternatives", ["which"], :name => "index_alternatives_on_which"
 
   create_table "courses", :force => true do |t|
     t.string   "name",                                                                   :null => false
