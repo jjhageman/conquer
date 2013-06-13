@@ -1,0 +1,100 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.stripe.com/v1/charges
+    body:
+      encoding: US-ASCII
+      string: amount=999&currency=usd&customer=cus_1qyHNtGP3pYjQQ&description=1%3A%20Course%201%3A%20How%20To%20Be%20Awesome
+    headers:
+      Accept:
+      - '*/*; q=0.5, application/xml'
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Stripe/v1 RubyBindings/1.8.3
+      Authorization:
+      - Bearer sk_test_Xnb4pUPWA0gayzQFgkjuRPfq
+      Content-Type:
+      - application/x-www-form-urlencoded
+      X-Stripe-Client-User-Agent:
+      - '{"bindings_version":"1.8.3","lang":"ruby","lang_version":"2.0.0 p195 (2013-05-14)","platform":"x86_64-darwin11.4.2","publisher":"stripe","uname":"Darwin
+        Jeremy-Hagemans-MacBook-Pro.local 11.4.2 Darwin Kernel Version 11.4.2: Thu
+        Aug 23 16:25:48 PDT 2012; root:xnu-1699.32.7~1/RELEASE_X86_64 x86_64"}'
+      Content-Length:
+      - '110'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Thu, 13 Jun 2013 04:11:21 GMT
+      Content-Type:
+      - application/json;charset=utf-8
+      Content-Length:
+      - '1066'
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - no-cache, no-store
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Max-Age:
+      - '300'
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "id": "ch_20T1fPOqH5XLnH",
+          "object": "charge",
+          "created": 1371096680,
+          "livemode": false,
+          "paid": true,
+          "amount": 999,
+          "currency": "usd",
+          "refunded": false,
+          "fee": 59,
+          "fee_details": [
+            {
+              "amount": 59,
+              "currency": "usd",
+              "type": "stripe_fee",
+              "description": "Stripe processing fees",
+              "application": null,
+              "amount_refunded": 0
+            }
+          ],
+          "card": {
+            "object": "card",
+            "last4": "4242",
+            "type": "Visa",
+            "exp_month": 12,
+            "exp_year": 2013,
+            "fingerprint": "R4xLb6xtEOSBtN4h",
+            "country": "US",
+            "name": null,
+            "address_line1": null,
+            "address_line2": null,
+            "address_city": null,
+            "address_state": null,
+            "address_zip": null,
+            "address_country": null,
+            "cvc_check": null,
+            "address_line1_check": null,
+            "address_zip_check": null
+          },
+          "captured": true,
+          "failure_message": null,
+          "failure_code": null,
+          "amount_refunded": 0,
+          "customer": "cus_1qyHNtGP3pYjQQ",
+          "invoice": null,
+          "description": "1: Course 1: How To Be Awesome",
+          "dispute": null
+        }
+    http_version: 
+  recorded_at: Thu, 13 Jun 2013 04:11:21 GMT
+recorded_with: VCR 2.5.0
