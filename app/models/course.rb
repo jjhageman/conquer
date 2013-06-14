@@ -1,7 +1,8 @@
 class Course < ActiveRecord::Base
-  has_many :enrollments
-  has_many :promotions
-  has_many :ratings
+  has_many :enrollments, dependent: :destroy
+  has_many :promotions, dependent: :destroy
+  has_many :ratings, dependent: :destroy
+  has_many :forums, dependent: :destroy
 
   scope :active, where(released: true)
 

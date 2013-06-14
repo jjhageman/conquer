@@ -17,9 +17,13 @@ Conquer::Application.routes.draw do
   get '/my_courses/:id' => 'user_courses#show', as: :user_course
   get '/my_courses' => 'user_courses#index', as: :user_root
 
-  #get '/preorder/:id/new' => 'preorders#new', as: :new_preorder
-  #post '/preorders' => 'preorders#create'
-  #get '/preorder/:id' => 'preorders#show', as: :preorder
+  scope 'my_courses' do
+    scope ':course_id' do
+      resources :forums do
+        resources :topics, controller: 'forum_topics'
+      end
+    end
+  end
 
   get '/about' => 'home#about'
   get '/contact' => 'home#contact'

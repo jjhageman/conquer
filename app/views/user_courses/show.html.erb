@@ -9,4 +9,4 @@
   <span><%= @course.rated_by?(current_user) ? 'Your rating' : 'Rate this course' %>:</span> <div data-courseid="<%= @course.id %>" data-rateit-resetable="false" data-rateit-value="<%= @rating %>" class="rateit"></div>
 </div>
 
-<%= link_to 'Class Forum', '#', class: 'btn btn-info' %>
+<%= link_to 'Class Forum', forums_path(@course), class: 'btn btn-info' %>

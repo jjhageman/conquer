@@ -4,11 +4,13 @@ class CreateForums < ActiveRecord::Migration
       t.string :name
       t.text :description
       t.string :url
+      t.references :course
 
       t.timestamps
     end
 
     add_index :forums, :url
+    add_index :forums, :course_id
     
     create_table :forum_topics do |t|
       t.string :subject
@@ -24,9 +26,9 @@ class CreateForums < ActiveRecord::Migration
       t.timestamps
     end
 
-    add_index :topics, :forum_id
-    add_index :topics, :user_id
-    add_index :courses, :url
+    add_index :forum_topics, :forum_id
+    add_index :forum_topics, :user_id
+    add_index :forum_topics, :url
 
     create_table :forum_posts do |t|
       t.text :text
@@ -42,7 +44,18 @@ class CreateForums < ActiveRecord::Migration
     add_index :forum_posts, :forum_topic_id
 
     create_table :forum_views do |t|
-      t.integer :count
+      t.integer :count, default: 0
+      t.integer :viewable_id
+      t.string :viewable_type
+      t.datetime :current_viewed_at
+      t.datetime :past_viewed_at
+      t.references :user
+
+      t.timestamps
     end
+
+    add_index :forum_views, :user_id
+    add_index :forum_views, :viewable_id
+    add_index :forum_views, :updated_at
   end
 end

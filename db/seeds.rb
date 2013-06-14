@@ -80,3 +80,15 @@ Once you&#x27;ve learned some of the methods of creating humor, you&#x27;ll be r
 eos
   active: true,
   course_id: course2.id)
+
+Forum.create(
+  name: 'Assignments',
+  description: 'Specific questions and clarifications about the assignments.',
+  course: course1
+)
+
+Forum.create(
+  name: 'General Discussion',
+  description: 'General discussion about the course, life, and everything under the sun.',
+  course: course1
+)
