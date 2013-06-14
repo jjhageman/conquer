@@ -1,4 +1,4 @@
-class ForemPost < ActiveRecord::Base
+class ForumPost < ActiveRecord::Base
   belongs_to :forum_topic
   belongs_to :user
   belongs_to :reply_to, :class_name => "Post"
