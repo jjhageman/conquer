@@ -2,11 +2,11 @@
   <h1>My Courses</h1>
 </div>
 
-<% if @courses.any? %>
-<%= render :partial => "course", :collection => @courses %>
+<% unless @courses.blank? %>
+<%= render partial: 'course', collection: @courses %>
 <% end %>
 
-<% if @preorders.any? %>
+<% unless @preorders.blank? %>
 <h2>Coming Soon</h2>
-<%= render :partial => "preorder", :collection => @preorders %>
+<%= render partial: 'preorder', collection: @preorders %>
 <% end %>

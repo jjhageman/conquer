@@ -1,0 +1,10 @@
+<div class="page-header">
+  <h1><%= @course.name %> <small> <%= @promotion.code %></small></h1>
+</div>
+
+<p><strong>Price:</strong> <%= @promotion.price %></p>
+<p><strong>Active:</strong> <%= @promotion.active %></p>
+<%= render partial: 'shared/video_player', locals: { video_player: @promotion.video_id } %>
+<p><strong>Content:</strong>
+  <%= raw @promotion.content %>
+</p>

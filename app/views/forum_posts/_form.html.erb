@@ -1,0 +1,24 @@
+<div id="new-post">
+  <div class="page-header">
+    <h4>New Post</h4>
+  </div>
+
+  <%= form_for @topic.posts.new, remote: true, html: {id: 'post-form'} do |f| %>
+    <%= f.text_area :text, id: 'new-post', class: 'input-block-level wysihtml5', rows: 6 %>
+    <div class="form-actions">
+      <%= f.hidden_field :forum_topic_id %>
+      <%= f.submit 'Add post', id: 'submitBtn', class: 'btn', data: {'loading-text' => 'Posting...'} %>
+    </div>
+  <% end %>
+
+  <script type="text/javascript">
+    $('.wysihtml5').each(function(i, elem) {
+      $(elem).wysihtml5({
+        'font-styles': false,
+        'underline': false,
+        'outdent': false,
+        'indent': false
+      });
+    });
+  </script>
+</div>

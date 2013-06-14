@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130613065053) do
+ActiveRecord::Schema.define(:version => 20130613235835) do
 
   create_table "alternatives", :force => true do |t|
     t.string   "which"
@@ -40,6 +40,8 @@ ActiveRecord::Schema.define(:version => 20130613065053) do
     t.datetime "updated_at",                                                             :null => false
   end
 
+  add_index "courses", ["url"], :name => "index_courses_on_url"
+
   create_table "enrollments", :force => true do |t|
     t.integer  "user_id"
     t.integer  "course_id"
@@ -54,6 +56,64 @@ ActiveRecord::Schema.define(:version => 20130613065053) do
   add_index "enrollments", ["course_id"], :name => "index_enrollments_on_course_id"
   add_index "enrollments", ["promotion_id"], :name => "index_enrollments_on_promotion_id"
   add_index "enrollments", ["user_id"], :name => "index_enrollments_on_user_id"
+
+  create_table "forum_posts", :force => true do |t|
+    t.text     "text"
+    t.integer  "replied_to_id"
+    t.integer  "user_id"
+    t.integer  "forum_topic_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  add_index "forum_posts", ["forum_topic_id"], :name => "index_forum_posts_on_forum_topic_id"
+  add_index "forum_posts", ["replied_to_id"], :name => "index_forum_posts_on_replied_to_id"
+  add_index "forum_posts", ["user_id"], :name => "index_forum_posts_on_user_id"
+
+  create_table "forum_topics", :force => true do |t|
+    t.string   "subject"
+    t.boolean  "locked",       :default => false
+    t.boolean  "pinned",       :default => false
+    t.boolean  "hidden",       :default => false
+    t.datetime "last_post_at"
+    t.integer  "views_count",  :default => 0
+    t.string   "url"
+    t.integer  "forum_id"
+    t.integer  "user_id"
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
+  end
+
+  add_index "forum_topics", ["forum_id"], :name => "index_forum_topics_on_forum_id"
+  add_index "forum_topics", ["url"], :name => "index_forum_topics_on_url"
+  add_index "forum_topics", ["user_id"], :name => "index_forum_topics_on_user_id"
+
+  create_table "forum_views", :force => true do |t|
+    t.integer  "count",             :default => 0
+    t.integer  "viewable_id"
+    t.string   "viewable_type"
+    t.datetime "current_viewed_at"
+    t.datetime "past_viewed_at"
+    t.integer  "user_id"
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
+  end
+
+  add_index "forum_views", ["updated_at"], :name => "index_forum_views_on_updated_at"
+  add_index "forum_views", ["user_id"], :name => "index_forum_views_on_user_id"
+  add_index "forum_views", ["viewable_id"], :name => "index_forum_views_on_viewable_id"
+
+  create_table "forums", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "url"
+    t.integer  "course_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "forums", ["course_id"], :name => "index_forums_on_course_id"
+  add_index "forums", ["url"], :name => "index_forums_on_url"
 
   create_table "promotions", :force => true do |t|
     t.string   "code"
@@ -82,8 +142,8 @@ ActiveRecord::Schema.define(:version => 20130613065053) do
 
   create_table "users", :force => true do |t|
     t.string   "full_name"
-    t.string   "email",                  :default => "", :null => false
-    t.string   "encrypted_password",     :default => "", :null => false
+    t.string   "email",                  :default => "",    :null => false
+    t.string   "encrypted_password",     :default => "",    :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -98,8 +158,9 @@ ActiveRecord::Schema.define(:version => 20130613065053) do
     t.string   "unconfirmed_email"
     t.string   "last_4_digits"
     t.string   "stripe_id"
-    t.datetime "created_at",                             :null => false
-    t.datetime "updated_at",                             :null => false
+    t.boolean  "admin",                  :default => false, :null => false
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true

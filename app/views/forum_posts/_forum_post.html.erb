@@ -1,0 +1,13 @@
+<li class="media">
+  <a class="pull-left" href="#">
+    <img class="media-object" data-src="holder.js/64x64">
+  </a>
+  <div class="media-body">
+    <div class="well well-small">
+      <h4 class="media-heading"><%= forum_post.user.full_name %> · <%= time_ago_in_words forum_post.created_at %></h4>
+    </div>
+    <div class="media">
+      <%= simple_format forum_post.text %>
+   </div>
+  </div>
+</li>

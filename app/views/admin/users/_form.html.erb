@@ -1,0 +1,47 @@
+<%= form_for [:admin, @user], html: {id: 'course-form', class: 'form-horizontal'} do |f| %>
+  <%= render("shared/form_errors", :target => @user) if @user %>
+
+  <div class="control-group">
+    <%= f.label :full_name, class: 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :full_name %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :email, class: 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :email %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :password, 'Password', class: 'control-label' %>
+    <div class="controls">
+      <%= f.password_field :password, autofocus: true %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :password_confirmation, class: 'control-label' %>
+    <div class="controls">
+      <%= f.password_field :password_confirmation %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <div class="controls">
+  <label class="checkbox">
+    <input type="checkbox" value="">
+    <%= check_box_tag :skip_confirmation %>
+    Skip email confirmation
+  </label>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <div class="controls">
+      <%= f.submit class: 'btn btn-primary' %>
+    </div>
+  </div>
+<% end %>

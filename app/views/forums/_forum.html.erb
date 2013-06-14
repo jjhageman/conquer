@@ -1,0 +1,7 @@
+  <tr>
+    <td>
+      <h5><%= link_to forum.name, forum_topics_path(@course, forum)%></h5>
+      <p><%= forum.description %></p>
+    </td>
+    <td><%= last_forum_activity(forum) %></td>
+  </tr>

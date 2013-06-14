@@ -1,0 +1,18 @@
+<div class="page-header">
+  <%= link_to 'New User', new_admin_user_path, class: 'btn pull-right' %>
+  <h1>Users</h1>
+</div>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Sign Ins</th>
+      <th>Last Sign Ins</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render @users %>
+  </tbody>
+</table>

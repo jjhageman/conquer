@@ -14,7 +14,6 @@ feature 'Released course promotional code', :vcr do
     page.should have_content("$#{promotion.price}")
 
     click_link 'Take Course'
-    fill_in 'Full Name', with: 'Marie-Élise L’Antisémite'
     fill_in 'Email', with: 'new@user.com'
 
     fill_in 'Credit Card Number', with: '4242424242424242'
@@ -29,6 +28,7 @@ feature 'Released course promotional code', :vcr do
     current_email.default_part_body.to_s.should include(promotion.price.to_s)
     visit_in_email('Confirm my account and view course')
 
+    fill_in 'Full Name', with: 'Marie-Élise L’Antisémite'
     fill_in 'Password', with: 'secret99'
     fill_in 'Password confirmation', with: 'secret99'
     click_button 'Confirm Account'
@@ -37,7 +37,7 @@ feature 'Released course promotional code', :vcr do
   end
 end
 
-feature 'Presale course promotional code', :vcr, js: true do
+feature 'Presale course promotional code', :vcr do
   background do
     stub_stripe_customer
     @course = FactoryGirl.create(:prereleased_course)
@@ -50,7 +50,6 @@ feature 'Presale course promotional code', :vcr, js: true do
     page.should have_content("$#{promotion.price}")
 
     click_link 'Pre-Order'
-    fill_in 'Full Name', with: 'Marie-Élise L’Antisémite'
     fill_in 'Email', with: 'new@user.com'
 
     fill_in 'Credit Card Number', with: '4242424242424242'
@@ -65,6 +64,7 @@ feature 'Presale course promotional code', :vcr, js: true do
     current_email.default_part_body.to_s.should include(promotion.price.to_s)
     visit_in_email('Confirm my account and view course')
 
+    fill_in 'Full Name', with: 'Marie-Élise L’Antisémite'
     fill_in 'Password', with: 'secret99'
     fill_in 'Password confirmation', with: 'secret99'
     click_button 'Confirm Account'

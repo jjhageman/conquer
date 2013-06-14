@@ -6,6 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 #
+
 course1 = Course.create(
   name: 'Business Networking Tips',
   description: <<eos,
@@ -80,3 +81,64 @@ Once you&#x27;ve learned some of the methods of creating humor, you&#x27;ll be r
 eos
   active: true,
   course_id: course2.id)
+
+forum1 = Forum.create(
+  name: 'Assignments',
+  description: 'Specific questions and clarifications about the assignments.',
+  course: course1
+)
+
+forum2 = Forum.create(
+  name: 'General Discussion',
+  description: 'General discussion about the course, life, and everything under the sun.',
+  course: course1
+)
+
+user1 = User.create(
+  full_name: 'Yalgın Muzaffer Özseçen',
+  email: 'new@user.com',
+  password: 'secret99',
+  password_confirmation: 'secret99',
+)
+user1.confirm!
+
+admin = User.create(
+  full_name: 'Admin User',
+  email: 'admin@user.com',
+  password: 'secret99',
+  password_confirmation: 'secret99'
+)
+admin.update_attribute(:admin, true)
+admin.confirm!
+
+e = Enrollment.create(
+  user_id: user1.id,
+  course_id: course1.id
+)
+e.update_attribute :purchased, true
+
+topic1 = ForumTopic.new(
+  subject: 'Is this course coming back soon?',
+  last_post_at: 2.months.ago,
+  views_count: 23,
+  forum: forum2,
+  user: user1
+)
+
+topic1.posts << ForumPost.new(
+  text:<<eos,
+A friend told me about this course on Monday evening (he's taking it at the moment). I signed up but realise its way too late to work through the materials and assignments at this stage.
+
+I would love to take this course when it comes round again, and have some questions:
+
+When will this course run again?
+Do I have to be enrolled to access the course materials? 
+Will I be penalised for remaining enrolled on a course which I didn't submit anything towards (particularly in terms of taking it when it starts).
+
+I did see elsewhere in the forum that the materials do remain available after the course ends.
+eos
+  user: user1,
+  topic: topic1
+)
+
+topic1.save

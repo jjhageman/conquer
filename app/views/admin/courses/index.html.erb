@@ -1,0 +1,20 @@
+<div class="page-header">
+  <div class="btn-group">
+    <%= link_to 'Manage Users', admin_users_path, class: 'btn' %>
+  </div>
+  <%= link_to 'New Course', new_admin_course_path, class: 'btn pull-right' %>
+  <h1>Courses</h1>
+</div>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Course</th>
+      <th>Start Date</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render @courses %>
+  </tbody>
+</table>

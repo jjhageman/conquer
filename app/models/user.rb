@@ -6,14 +6,17 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
 
-  has_many :enrollments
+  has_many :enrollments, dependent: :destroy
   has_many :preordered_enrollments, class_name: 'Enrollment', conditions: {purchased: false}
   has_many :purchased_enrollments, class_name: 'Enrollment', conditions: {purchased: true}
 
-  #has_many :courses, through: :enrollments
   has_many :preorders, through: :preordered_enrollments, source: :course
   has_many :courses, through: :purchased_enrollments, source: :course
-  has_many :ratings
+  has_many :ratings, dependent: :destroy
+  has_many :topics, class_name: 'ForumTopic'
+  has_many :posts, class_name: 'ForumPost'
+
+  validates :full_name, presence: true, if: :confirmed?
 
   attr_accessible :full_name, :email, :password, :password_confirmation, :remember_me, :last_4_digits, :stripe_id
 

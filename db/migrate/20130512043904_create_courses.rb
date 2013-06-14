@@ -15,5 +15,7 @@ class CreateCourses < ActiveRecord::Migration
 
       t.timestamps
     end
+    
+    add_index :courses, :url
   end
 end
