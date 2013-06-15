@@ -5,6 +5,10 @@ class ForumTopicsController < ApplicationController
     @topics = @forum.topics
   end
 
+  def show
+    @topic = @forum.topics.includes(:posts).find_by_url(params[:id])
+  end
+
   private
 
   def load_resources

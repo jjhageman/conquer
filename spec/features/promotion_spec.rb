@@ -37,7 +37,7 @@ feature 'Released course promotional code', :vcr do
   end
 end
 
-feature 'Presale course promotional code', :vcr, js: true do
+feature 'Presale course promotional code', :vcr do
   background do
     stub_stripe_customer
     @course = FactoryGirl.create(:prereleased_course)

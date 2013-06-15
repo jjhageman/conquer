@@ -1,0 +1,9 @@
+<div class="page-header">
+  <h3><%= @topic.subject %></h3>
+</div>
+<ul class="media-list">
+<%= render @topic.posts %>
+</ul>
+
+<h4>New Post</h4>
+<%= render 'forum_posts/form' %>

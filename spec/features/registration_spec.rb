@@ -110,6 +110,7 @@ feature 'Presale course', :vcr do
     visit courses_path
     click_link @course.name
     click_link 'Pre-Order'
+    fill_in 'Full Name', with: 'Marie-Élise L’Antisémite'
     fill_in 'Email', with: 'new@user.com'
 
     fill_in 'Credit Card Number', with: '4242424242424242'
@@ -134,6 +135,7 @@ feature 'Presale course', :vcr do
     visit courses_path
     click_link @course.name
     click_link 'Pre-Order'
+    fill_in 'Full Name', with: 'Marie-Élise L’Antisémite'
     fill_in 'Email', with: 'new@user.com'
 
     fill_in 'Credit Card Number', with: '4000000000000002'
@@ -156,6 +158,7 @@ feature 'Released course', :vcr do
     visit courses_path
     click_link @course.name
     click_link 'Take Course'
+    fill_in 'Full Name', with: 'Marie-Élise L’Antisémite'
     fill_in 'Email', with: 'new@user.com'
 
     fill_in 'Credit Card Number', with: '4242424242424242'

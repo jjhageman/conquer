@@ -25,6 +25,8 @@ Conquer::Application.routes.draw do
     end
   end
 
+  resource :forum_posts
+
   get '/about' => 'home#about'
   get '/contact' => 'home#contact'
   get '/how' => 'home#how'
