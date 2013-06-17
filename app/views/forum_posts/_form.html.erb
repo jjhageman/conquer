@@ -1,31 +1,19 @@
-<div id="wysihtml5-toolbar" style="display: none;">
-  <a data-wysihtml5-command="bold">bold</a>
-  <a data-wysihtml5-command="italic">italic</a>
-  
-  <!-- Some wysihtml5 commands require extra parameters -->
-  <a data-wysihtml5-command="foreColor" data-wysihtml5-command-value="red">red</a>
-  <a data-wysihtml5-command="foreColor" data-wysihtml5-command-value="green">green</a>
-  <a data-wysihtml5-command="foreColor" data-wysihtml5-command-value="blue">blue</a>
-  
-  <!-- Some wysihtml5 commands like 'createLink' require extra paramaters specified by the user (eg. href) -->
-  <a data-wysihtml5-command="createLink">insert link</a>
-  <div data-wysihtml5-dialog="createLink" style="display: none;">
-    <label>
-      Link:
-      <input data-wysihtml5-dialog-field="href" value="http://" class="text">
-    </label>
-    <a data-wysihtml5-dialog-action="save">OK</a> <a data-wysihtml5-dialog-action="cancel">Cancel</a>
+<div id="new-post">
+  <div class="page-header">
+    <h4>New Post</h4>
   </div>
+
+  <%= form_for @topic.posts.new, remote: true, html: {id: 'forum-post'} do |f| %>
+    <%= f.text_area :text, id: 'new-post', class: 'input-block-level wysihtml5', rows: 6 %>
+    <div class="form-actions">
+      <%= f.hidden_field :forum_topic_id %>
+      <%= f.submit 'Add post', id: 'submitBtn', class: 'btn', data: {'loading-text' => 'Posting...'} %>
+    </div>
+  <% end %>
+
+  <script type="text/javascript">
+    $('.wysihtml5').each(function(i, elem) {
+      $(elem).wysihtml5();
+    });
+  </script>
 </div>
-
-<%= form_for ForumPost.new do |f| %>
-  <%= f.text_area :text, id: 'wysihtml5-textarea', rows: 5 %>
-  <%= f.submit 'Add post', class: 'btn' %>
-<% end %>
-
-<script>
-var editor = new wysihtml5.Editor("wysihtml5-textarea", { // id of textarea element
-  toolbar:      "wysihtml5-toolbar", // id of toolbar element
-  parserRules:  wysihtml5ParserRules // defined in parser rules set 
-});
-</script>

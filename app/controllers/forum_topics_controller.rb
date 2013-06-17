@@ -1,5 +1,5 @@
 class ForumTopicsController < ApplicationController
-  before_filter :load_resources
+  before_filter :authenticate_user!, :load_resources
 
   def index
     @topics = @forum.topics

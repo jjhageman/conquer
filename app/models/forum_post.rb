@@ -9,5 +9,5 @@ class ForumPost < ActiveRecord::Base
 
   validates :text, :presence => true
 
-  attr_accessible :replied_to_id, :text, :user, :topic
+  attr_accessible :replied_to_id, :text, :user, :topic, :forum_topic_id
 end
