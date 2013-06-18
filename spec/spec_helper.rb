@@ -10,7 +10,7 @@ require 'capybara/rails'
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 
 
-Capybara.javascript_driver = :webkit
+Capybara.javascript_driver = :selenium
 #Capybara.default_wait_time = 5
 
 RSpec.configure do |config|

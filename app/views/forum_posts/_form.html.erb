@@ -3,7 +3,7 @@
     <h4>New Post</h4>
   </div>
 
-  <%= form_for @topic.posts.new, remote: true, html: {id: 'forum-post'} do |f| %>
+  <%= form_for @topic.posts.new, remote: true, html: {id: 'post-form'} do |f| %>
     <%= f.text_area :text, id: 'new-post', class: 'input-block-level wysihtml5', rows: 6 %>
     <div class="form-actions">
       <%= f.hidden_field :forum_topic_id %>

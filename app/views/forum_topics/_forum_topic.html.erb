@@ -1,7 +1,9 @@
   <tr>
     <td>
       <h5><%= link_to forum_topic.subject, forum_topic_path(@course, @forum, forum_topic)%></h5>
-      <p>Last post <%= time_ago_in_words forum_topic.last_post_at %> ago</p>
+      <% if forum_topic.last_post_at %>
+        <p>Last post <%= time_ago_in_words forum_topic.last_post_at %> ago</p>
+      <% end %>
     </td>
     <td><%= forum_topic.posts.count %></td>
     <td><%= forum_topic.views_count %></td>

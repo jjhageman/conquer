@@ -1,1 +1,2 @@
-$('#forum-post').append('<%= escape_javascript(render 'forum_post') %>');
+$('#new-post').remove();
+$('#forum-posts').append('<%= j render(@post) %>');

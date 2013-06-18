@@ -1,6 +1,5 @@
 class ForumsController < ApplicationController
-  before_filter :authenticate_user!
-  before_filter :load_course
+  before_filter :authenticate_user!, :load_course
 
   def index
     @forums = @course.forums
