@@ -1,0 +1,42 @@
+<%= form_for @topic, html: {id: 'topic-form', class: 'form-horizontal'} do |f| %>
+  <%= render("shared/form_errors", :target => @user) if @user %>
+
+  <div class="control-group">
+    <%= f.label :subject, class: 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :subject, class: 'input-xxlarge' %>
+    </div>
+  </div>
+
+  <%= f.fields_for :posts do |p| %>
+  <div class="control-group">
+    <%= p.label :text, 'Content', class: 'control-label' %>
+    <div class="controls">
+    <%= p.text_area :text, id: 'new-post', class: 'input-xxlarge wysihtml5', rows: 6 %>
+    </div>
+  </div>
+  <% end %>
+
+  <div class="control-group">
+    <div class="controls">
+      <%= f.hidden_field :forum_id %>
+      <%= f.submit class: 'btn btn-primary' %>
+    </div>
+  </div>
+
+<% end %>
+
+<script type="text/javascript">
+  $('.wysihtml5').each(function(i, elem) {
+    $(elem).wysihtml5({
+      'font-styles': false,
+      'underline': false,
+      'lists': {
+        'unordered': true,
+        'ordered': true,
+        'outdent': false,
+        'indent': false
+      }
+    });
+  });
+</script>

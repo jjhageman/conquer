@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
   has_many :preorders, through: :preordered_enrollments, source: :course
   has_many :courses, through: :purchased_enrollments, source: :course
   has_many :ratings, dependent: :destroy
+  has_many :topics, class_name: 'ForumTopic'
   has_many :posts, class_name: 'ForumPost'
 
   validates :full_name, presence: true

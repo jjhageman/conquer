@@ -4,7 +4,10 @@
 <table class="table table-hover">
   <thead>
     <tr>
-      <th>Discussion</th>
+      <th>
+        Discussion 
+        <%= link_to 'Start new topic', new_forum_topic_path(@course, @forum), class: 'btn btn-small btn-new-topic' %>
+      </th>
       <th>Posts</th>
       <th>Views</th>
     </tr>

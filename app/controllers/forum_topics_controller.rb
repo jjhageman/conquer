@@ -9,6 +9,20 @@ class ForumTopicsController < ApplicationController
     @topic = @forum.topics.includes(:posts).find_by_url(params[:id])
   end
 
+  def new
+    @topic = @forum.topics.build
+    @topic.posts.build
+  end
+
+  def create
+    @topic = current_user.topics.new(params[:forum_topic])
+    if @topic.save
+      redirect_to forum_topic_path(@course, @forum, @topic), notice: 'Topic successfully created.'
+    else
+      render :new
+    end
+  end
+
   private
 
   def load_resources
