@@ -108,7 +108,7 @@ e = Enrollment.create(
 )
 e.update_attribute :purchased, true
 
-topic1 = ForumTopic.create(
+topic1 = ForumTopic.new(
   subject: 'Is this course coming back soon?',
   last_post_at: 2.months.ago,
   views_count: 23,
@@ -116,7 +116,7 @@ topic1 = ForumTopic.create(
   user: user1
 )
 
-ForumPost.create(
+topic1.posts << ForumPost.new(
   text:<<eos,
 A friend told me about this course on Monday evening (he's taking it at the moment). I signed up but realise its way too late to work through the materials and assignments at this stage.
 
@@ -131,3 +131,5 @@ eos
   user: user1,
   topic: topic1
 )
+
+topic1.save

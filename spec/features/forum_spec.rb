@@ -13,7 +13,8 @@ feature 'Course forum', js: true do
     click_link 'Class Forum'
     click_link @forum.name
     click_link @topic.subject
-    #find(:xpath, "/html/body[@class='input-block-level wysihtml5 wysihtml5-editor']").set('This is a test post.')
+    fill_in_wysihtml5 'This is a test post.'
+    click_button 'Add post'
   end
 
   scenario 'user creates topic in course forum' do
@@ -22,5 +23,8 @@ feature 'Course forum', js: true do
     click_link 'Class Forum'
     click_link @forum.name
     click_link 'Start new topic'
+    fill_in 'Subject', with: 'New Topic 99'
+    fill_in_wysihtml5 'Topic body content text.'
+    click_button 'Create Forum topic'
   end
 end

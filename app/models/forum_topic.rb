@@ -30,7 +30,6 @@ class ForumTopic < ActiveRecord::Base
       view.past_viewed_at = view.current_viewed_at = Time.now
     end
 
-      debugger
     # Update the current_viewed_at if it is BEFORE 15 minutes ago.
     if view.current_viewed_at < 15.minutes.ago
       view.past_viewed_at    = view.current_viewed_at
@@ -42,7 +41,8 @@ class ForumTopic < ActiveRecord::Base
   private 
 
   def set_first_post_user
-    post = posts.first
-    post.user = user
+    if post = posts.first
+      post.user = user
+    end
   end
 end
