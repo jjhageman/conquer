@@ -4,10 +4,10 @@
   </a>
   <div class="media-body">
     <div class="well well-small">
-      <h4 class="media-heading"><%=h forum_post.user.full_name %> · <%= time_ago_in_words forum_post.created_at %></h4>
+      <h4 class="media-heading"><%= forum_post.user.full_name %> · <%= time_ago_in_words forum_post.created_at %></h4>
     </div>
     <div class="media">
-      <%=h simple_format forum_post.text %>
+      <%= simple_format forum_post.text %>
    </div>
   </div>
 </li>

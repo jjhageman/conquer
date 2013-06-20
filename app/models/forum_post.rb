@@ -4,14 +4,19 @@ class ForumPost < ActiveRecord::Base
   belongs_to :reply_to, class_name: 'ForumPost'
 
   has_many :replies, class_name:   'ForumPost',
-                     foreign_key:  'reply_to_id',
-                     dependent:    :nullify
+    foreign_key:  'reply_to_id',
+    dependent:    :nullify
 
   validates :text, :presence => true
 
   after_create :set_topic_last_post_at
 
   attr_accessible :replied_to_id, :text, :user, :topic, :forum_topic_id
+
+  def self.by_created_at
+    order :created_at
+  end
+
 
   protected
 

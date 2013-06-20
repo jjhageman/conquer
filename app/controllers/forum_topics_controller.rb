@@ -6,7 +6,11 @@ class ForumTopicsController < ApplicationController
   end
 
   def show
-    @topic = @forum.topics.includes(:posts).find_by_url(params[:id])
+    if @topic = @forum.topics.includes(:posts).find_by_url(params[:id])
+      register_view @topic, current_user
+    else
+      redirect_to forum_topics_path(@course, @forum), alert: 'Invalid topic'
+    end
   end
 
   def new
@@ -24,6 +28,10 @@ class ForumTopicsController < ApplicationController
   end
 
   private
+
+  def register_view(topic, user)
+    topic.register_view_by user
+  end
 
   def load_resources
     unless @course = Course.find_by_url(params[:course_id])
