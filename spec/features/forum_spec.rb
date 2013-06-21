@@ -1,5 +1,16 @@
 require 'spec_helper'
 
+feature 'Forum authorization' do
+  background do
+    enrolled_user
+  end
+
+  scenario 'non admin cannot create course forums' do
+    visit new_forum_path(@course)
+    page.should have_content('Not authorized')
+  end
+end
+
 feature 'Course forum', js: true do
   background do
     enrolled_user
@@ -15,6 +26,7 @@ feature 'Course forum', js: true do
     click_link @topic.subject
     fill_in_wysihtml5 'This is a test post.'
     click_button 'Add post'
+    page.should have_content('This is a test post')
   end
 
   scenario 'user creates topic in course forum' do
@@ -26,5 +38,8 @@ feature 'Course forum', js: true do
     fill_in 'Subject', with: 'New Topic 99'
     fill_in_wysihtml5 'Topic body content text.'
     click_button 'Create Forum topic'
+    page.should have_content('Topic successfully created')
+    page.should have_content('New Topic 99')
+    page.should have_content('Topic body content text')
   end
 end
