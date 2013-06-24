@@ -27,4 +27,8 @@ feature 'Admin' do
     click_button 'Create Forum'
     page.should have_content('Forum successfully created')
   end
+
+  scenario 'can view any course' do
+    visit user_course_path(@course)
+  end
 end
