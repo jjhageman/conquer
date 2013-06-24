@@ -1,5 +1,5 @@
 <%= form_for @topic, html: {id: 'topic-form', class: 'form-horizontal'} do |f| %>
-  <%= render("shared/form_errors", :target => @user) if @user %>
+  <%= render("shared/form_errors", :target => @topic) if @topic %>
 
   <div class="control-group">
     <%= f.label :subject, class: 'control-label' %>

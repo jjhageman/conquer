@@ -5,10 +5,6 @@ class ForumsController < ApplicationController
     @forums = @course.forums
   end
 
-  def new
-    @forum = @course.forums.build
-  end
-
   private
 
   def load_course

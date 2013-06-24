@@ -102,6 +102,15 @@ user1 = User.create(
 )
 user1.confirm!
 
+admin = User.create(
+  full_name: 'Admin User',
+  email: 'admin@user.com',
+  password: 'secret99',
+  password_confirmation: 'secret99'
+)
+admin.update_attribute(:admin, true)
+admin.confirm!
+
 e = Enrollment.create(
   user_id: user1.id,
   course_id: course1.id

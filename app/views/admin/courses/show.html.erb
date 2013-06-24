@@ -1,0 +1,23 @@
+<div class="page-header">
+  <h4 class="pull-right">by <%= @course.instructor_name %></h4>
+  <h1><%= @course.name %></h1>
+</div>
+
+<p><%= @course.description %></p>
+
+<div class="page-header">
+  <%= link_to 'New Forum', new_admin_course_forum_path(@course), class: 'btn pull-right' %>
+  <h3>Forums</h3>
+
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Discussion</th>
+        <th>Latest Activity</th>
+      </tr>
+    </thead>
+    <tbody>
+    <%= render partial: 'forums/forum', collection: @course.forums %>
+    </tbody>
+  </table>
+</div>

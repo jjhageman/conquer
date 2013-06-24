@@ -5,21 +5,29 @@
 
 <%= form_for(resource, :as => resource_name, :url => confirm_path, html: {class: 'form-horizontal'}) do |f| %>
   <%= devise_error_messages! %>
+
   <div class="control-group">
-        <%= f.label :password, 'Password', class: 'control-label' %>
-        <div class="controls">
-          <%= f.password_field :password, autofocus: true %>
-        </div>
-      </div>
+    <%= f.label :full_name, 'Full Name', class: 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :full_name, autofocus: true %>
+    </div>
+  </div>
 
-      <div class="control-group">
-        <%= f.label :password_confirmation, class: 'control-label' %>
-        <div class="controls">
-          <%= f.password_field :password_confirmation %>
-        </div>
-      </div>
+  <div class="control-group">
+    <%= f.label :password, 'Password', class: 'control-label' %>
+    <div class="controls">
+      <%= f.password_field :password, autofocus: true %>
+    </div>
+  </div>
 
-    <%= f.hidden_field :confirmation_token %>
-    
-    <%= f.button 'Confirm Account', class: 'btn btn-primary', data: {'loading-text' => 'Processing...'} %>
+  <div class="control-group">
+    <%= f.label :password_confirmation, class: 'control-label' %>
+    <div class="controls">
+      <%= f.password_field :password_confirmation %>
+    </div>
+  </div>
+
+  <%= f.hidden_field :confirmation_token %>
+
+  <%= f.button 'Confirm Account', class: 'btn btn-primary', data: {'loading-text' => 'Processing...'} %>
 <% end %>

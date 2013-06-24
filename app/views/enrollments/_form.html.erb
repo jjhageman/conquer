@@ -7,12 +7,6 @@
     <%= render("shared/form_errors", :target => @user) if @user %>
 
     <%= fields_for :user do |user_fields| %>
-      <div class="control-group">
-      <%= user_fields.label :full_name, 'Full Name', class: 'control-label' %>
-        <div class="controls">
-          <%= user_fields.text_field :full_name, autofocus: true %>
-        </div>
-      </div>
 
       <div class="control-group">
       <%= user_fields.label :email, class: 'control-label' %>
@@ -20,7 +14,6 @@
           <%= user_fields.text_field :email, autofocus: true %>
         </div>
       </div>
-
 
     <% end %>
   <% end %>

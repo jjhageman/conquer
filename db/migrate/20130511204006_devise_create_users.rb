@@ -38,6 +38,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
 
       t.string :last_4_digits
       t.string :stripe_id
+      t.boolean :admin, null: false, default: false
 
       t.timestamps
     end

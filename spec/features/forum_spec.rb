@@ -4,11 +4,6 @@ feature 'Forum authorization' do
   background do
     enrolled_user
   end
-
-  scenario 'non admin cannot create course forums' do
-    visit new_forum_path(@course)
-    page.should have_content('Not authorized')
-  end
 end
 
 feature 'Course forum', js: true do

@@ -5,5 +5,9 @@ FactoryGirl.define do
     password 'secret99'
     password_confirmation 'secret99'
     confirmed_at Time.now
+
+    factory :admin do
+      admin true
+    end
   end
 end

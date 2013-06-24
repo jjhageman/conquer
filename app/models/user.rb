@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
   has_many :topics, class_name: 'ForumTopic'
   has_many :posts, class_name: 'ForumPost'
 
-  validates :full_name, presence: true
+  validates :full_name, presence: true, if: :confirmed?
 
   attr_accessible :full_name, :email, :password, :password_confirmation, :remember_me, :last_4_digits, :stripe_id
 

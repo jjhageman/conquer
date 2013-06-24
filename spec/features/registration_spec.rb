@@ -11,7 +11,6 @@ feature 'Presale course', :vcr do
     visit courses_path
     click_link @course.name
     click_link 'Pre-Order'
-    fill_in 'Full Name', with: 'Marie-Élise L’Antisémite'
     fill_in 'Email', with: 'new@user.com'
 
     fill_in 'Credit Card Number', with: '4242424242424242'
@@ -25,6 +24,7 @@ feature 'Presale course', :vcr do
     open_email('new@user.com', :with_text => @course.name)
     visit_in_email('Confirm my account and view course')
 
+    fill_in 'Full Name', with: 'Marie-Élise L’Antisémite'
     fill_in 'Password', with: 'secret99'
     fill_in 'Password confirmation', with: 'secret99'
     click_button 'Confirm Account'
@@ -110,7 +110,6 @@ feature 'Presale course', :vcr do
     visit courses_path
     click_link @course.name
     click_link 'Pre-Order'
-    fill_in 'Full Name', with: 'Marie-Élise L’Antisémite'
     fill_in 'Email', with: 'new@user.com'
 
     fill_in 'Credit Card Number', with: '4242424242424242'
@@ -124,6 +123,7 @@ feature 'Presale course', :vcr do
     open_email('new@user.com', :with_text => @course.name)
     visit_in_email('Confirm my account and view course')
 
+    fill_in 'Full Name', with: 'Marie-Élise L’Antisémite'
     fill_in 'Password', with: 'short'
     fill_in 'Password confirmation', with: 'short'
     click_button 'Confirm Account'
@@ -135,7 +135,6 @@ feature 'Presale course', :vcr do
     visit courses_path
     click_link @course.name
     click_link 'Pre-Order'
-    fill_in 'Full Name', with: 'Marie-Élise L’Antisémite'
     fill_in 'Email', with: 'new@user.com'
 
     fill_in 'Credit Card Number', with: '4000000000000002'
@@ -158,7 +157,6 @@ feature 'Released course', :vcr do
     visit courses_path
     click_link @course.name
     click_link 'Take Course'
-    fill_in 'Full Name', with: 'Marie-Élise L’Antisémite'
     fill_in 'Email', with: 'new@user.com'
 
     fill_in 'Credit Card Number', with: '4242424242424242'
@@ -172,6 +170,7 @@ feature 'Released course', :vcr do
     open_email('new@user.com', :with_text => @course.name)
     visit_in_email('Confirm my account and view course')
 
+    fill_in 'Full Name', with: 'Marie-Élise L’Antisémite'
     fill_in 'Password', with: 'secret99'
     fill_in 'Password confirmation', with: 'secret99'
     click_button 'Confirm Account'

@@ -23,5 +23,10 @@ module Features
       FactoryGirl.create(:purchased_enrollment, user: @user, course: @course)
       sign_in @user
     end
+
+    def signed_in_admin
+      @user = FactoryGirl.create(:admin)
+      sign_in @user
+    end
   end
 end

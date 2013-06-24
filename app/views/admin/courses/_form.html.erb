@@ -1,0 +1,58 @@
+<%= form_for [:admin, @course], html: {id: 'course-form', class: 'form-horizontal'} do |f| %>
+  <%= render("shared/form_errors", :target => @course) if @course %>
+
+  <div class="control-group">
+    <%= f.label :name, class: 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :name %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :description, class: 'control-label' %>
+    <div class="controls">
+      <%= f.text_area :description %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :price, class: 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :price %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :instructor_name, class: 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :instructor_name %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :instructor_name, class: 'control-label' %>
+    <div class="controls">
+      <%= f.text_area :instructor_description %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :released, class: 'control-label' %>
+    <div class="controls">
+      <%= f.check_box :released %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :start_date, class: 'control-label' %>
+    <div class="controls">
+      <%= f.date_select :start_date %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <div class="controls">
+      <%= f.submit class: 'btn btn-primary' %>
+    </div>
+  </div>
+<% end %>

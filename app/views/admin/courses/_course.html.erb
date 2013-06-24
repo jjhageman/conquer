@@ -1,0 +1,5 @@
+<tr>
+  <td><%= link_to course.name, admin_course_path(course) %></td>
+  <td><%= course.start_date.to_s(:month_and_year) %></td>
+  <td><%= course.released ? 'Released' : 'Preorder'%></td>
+</tr>

@@ -27,6 +27,13 @@ Conquer::Application.routes.draw do
 
   resources :forum_posts
 
+  namespace :admin do
+    get '/' => 'courses#index', as: :root
+    resources :courses do
+      resources :forums
+    end
+  end
+
   get '/about' => 'home#about'
   get '/contact' => 'home#contact'
   get '/how' => 'home#how'
