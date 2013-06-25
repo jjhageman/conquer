@@ -1,0 +1,22 @@
+<div class="page-header">
+  <h1><%= @user.full_name %> <small> <%= @user.email %></small></h1>
+</div>
+
+<div>
+  <% if @user.admin? %><p><span class="label label-success">Admin</span></p><% end %>
+  <p><strong>Sign In Count:</strong> <%= @user.sign_in_count %></p>
+  <p><strong>Last Sign In:</strong> <%= @user.last_sign_in_at.to_formatted_s(:long_ordinal) if @user.last_sign_in_at %></p>
+  <p><strong>Last Sign In IP Address:</strong> <%= @user.last_sign_in_ip %></p>
+  <p><strong>Confirmation Email Sent At:</strong> <%= @user.confirmation_sent_at.to_formatted_s(:long_ordinal) if @user.confirmation_sent_at %></p>
+  <p><strong>Confirmed At:</strong> <%= @user.confirmed_at.to_formatted_s(:long_ordinal) if @user.confirmed_at %></p>
+  <p><strong>Reset Password Sent At:</strong> <%= @user.reset_password_sent_at.to_formatted_s(:long_ordinal) if @user.reset_password_sent_at %></p>
+  <p><strong>Stripe Customer Date:</strong> <%= @user.stripe_id? %>
+</div>
+
+<h4>Purchased Enrollments (<%=  @user.purchased_enrollments.count %>)</h4>
+
+<%= render partial: 'enrollment_table', locals: { enrollments:  @user.purchased_enrollments } if @user.purchased_enrollments.any? %>
+
+<h4>Preordered Enrollments (<%=  @user.preordered_enrollments.count %>)</h4>
+
+<%= render partial: 'enrollment_table', locals: { enrollments:  @user.preordered_enrollments } if @user.preordered_enrollments.any? %>

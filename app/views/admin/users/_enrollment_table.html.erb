@@ -1,0 +1,26 @@
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Purchase Date</th>
+      <th>Price</th>
+      <th>Promotion</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% enrollments.each do |p| %>
+      <tr>
+        <td><%= p.course.name %></td>
+        <td><%= p.course_price %></td>
+        <td><%= p.created_at.to_formatted_s(:long_ordinal) %></td>
+        <td>
+          <% if p.promotion %>
+            <%= p.promotion.price %>
+          <% else %>
+            None
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
