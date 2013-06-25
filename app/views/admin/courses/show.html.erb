@@ -6,18 +6,36 @@
 <p><%= @course.description %></p>
 
 <div class="page-header">
+  <%= link_to 'New Promotion', new_admin_course_promotion_path(@course), class: 'btn pull-right' %>
+  <h3>Promotions</h3>
+</div>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Code</th>
+      <th>Price</th>
+      <th>Active</th>
+    </tr>
+  </thead>
+  <tbody>
+  <%= render @course.promotions %>
+  </tbody>
+</table>
+
+<div class="page-header">
   <%= link_to 'New Forum', new_admin_course_forum_path(@course), class: 'btn pull-right' %>
   <h3>Forums</h3>
-
-  <table class="table table-hover">
-    <thead>
-      <tr>
-        <th>Discussion</th>
-        <th>Latest Activity</th>
-      </tr>
-    </thead>
-    <tbody>
-    <%= render partial: 'forums/forum', collection: @course.forums %>
-    </tbody>
-  </table>
 </div>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Discussion</th>
+      <th>Latest Activity</th>
+    </tr>
+  </thead>
+  <tbody>
+  <%= render partial: 'forums/forum', collection: @course.forums %>
+  </tbody>
+</table>
