@@ -1,0 +1,9 @@
+<tr>
+  <td>
+    <% if user.admin? %><span class="label label-success">Admin</span><% end %>
+    <%= link_to user.full_name, admin_user_path(user) %>
+  </td>
+  <td><%= user.email %></td>
+  <td><%= user.sign_in_count %></td>
+  <td><%= user.last_sign_in_at.in_time_zone if user.last_sign_in_at %></td>
+</tr>

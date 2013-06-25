@@ -32,6 +32,7 @@ Conquer::Application.routes.draw do
     resources :courses do
       resources :forums
     end
+    resources :users
   end
 
   get '/about' => 'home#about'

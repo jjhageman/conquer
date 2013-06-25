@@ -28,7 +28,4 @@ feature 'Admin' do
     page.should have_content('Forum successfully created')
   end
 
-  scenario 'can view any course' do
-    visit user_course_path(@course)
-  end
 end
