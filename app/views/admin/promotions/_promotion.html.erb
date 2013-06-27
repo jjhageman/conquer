@@ -1,0 +1,6 @@
+<tr>
+  <td><%= link_to promotion.code, admin_course_promotion_path(@course, promotion) %></td>
+  <td><%= promotion.price %></td>
+  <td><%= promotion.active %></td>
+  <td><%= link_to 'edit', edit_admin_course_promotion_path(@course, promotion) %></td>
+</tr>
