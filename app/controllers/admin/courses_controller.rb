@@ -5,7 +5,7 @@ module Admin
     end
 
     def show
-      @course = Course.find_by_url(params[:id])
+      @course = Course.includes(:promotions, forums: [:topics, :posts]).find_by_url(params[:id])
     end
 
     def new

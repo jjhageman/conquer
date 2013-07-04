@@ -1,0 +1,44 @@
+<%= form_for [:admin, @course, @promotion], html: {id: 'course-form', class: 'form-horizontal'} do |f| %>
+  <%= render("shared/form_errors", :target => @promotion) if @promotion %>
+
+  <div class="control-group">
+    <%= f.label :code, class: 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :code %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :price, class: 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :price %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :vdeo_id, class: 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :video_id %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :content, class: 'control-label' %>
+    <div class="controls">
+      <%= f.text_area :content %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :active, class: 'control-label' %>
+    <div class="controls">
+      <%= f.check_box :active %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <div class="controls">
+      <%= f.submit class: 'btn btn-primary' %>
+    </div>
+  </div>
+<% end %>
