@@ -4,6 +4,9 @@ class ForumTopic < ActiveRecord::Base
   has_many   :posts, class_name: 'ForumPost', dependent: :destroy, order: "forum_posts.created_at ASC"
   has_many   :views, class_name: 'ForumView', as: :viewable
 
+  scope :visible, -> {where(hidden: false)}
+  scope :by_pinned_or_most_recent_post, -> {order('pinned DESC', 'last_post_at DESC')}
+
   accepts_nested_attributes_for :posts
 
   validates :subject, :presence => true
@@ -17,6 +20,10 @@ class ForumTopic < ActiveRecord::Base
 
   def to_param
     url
+  end
+
+  def instructor_replies_count
+    posts.joins(:user).where(users: {admin: true}).count
   end
 
   def register_view_by(user)
@@ -36,6 +43,15 @@ class ForumTopic < ActiveRecord::Base
       view.current_viewed_at = Time.now
       view.save
     end
+  end
+
+  # Provide convenience methods for pinning, unpinning a topic
+  def pin!
+    update_attribute(:pinned, true)
+  end
+
+  def unpin!
+    update_attribute(:pinned, false)
   end
 
   private 

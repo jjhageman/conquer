@@ -2,7 +2,7 @@ class ForumTopicsController < ApplicationController
   before_filter :authenticate_user!, :load_resources
 
   def index
-    @topics = @forum.topics
+    @topics = @forum.topics.visible.by_pinned_or_most_recent_post
   end
 
   def show

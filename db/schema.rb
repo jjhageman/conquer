@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130613235835) do
+ActiveRecord::Schema.define(:version => 20130707224712) do
 
   create_table "alternatives", :force => true do |t|
     t.string   "which"
@@ -72,16 +72,17 @@ ActiveRecord::Schema.define(:version => 20130613235835) do
 
   create_table "forum_topics", :force => true do |t|
     t.string   "subject"
-    t.boolean  "locked",       :default => false
-    t.boolean  "pinned",       :default => false
-    t.boolean  "hidden",       :default => false
+    t.boolean  "locked",             :default => false
+    t.boolean  "pinned",             :default => false
+    t.boolean  "hidden",             :default => false
     t.datetime "last_post_at"
-    t.integer  "views_count",  :default => 0
+    t.integer  "views_count",        :default => 0
     t.string   "url"
     t.integer  "forum_id"
     t.integer  "user_id"
-    t.datetime "created_at",                      :null => false
-    t.datetime "updated_at",                      :null => false
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
+    t.boolean  "instructor_replied"
   end
 
   add_index "forum_topics", ["forum_id"], :name => "index_forum_topics_on_forum_id"

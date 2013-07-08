@@ -1,11 +1,20 @@
   <tr>
     <td>
-      <h5><%= link_to forum_topic.subject, forum_topic_path(@course, @forum, forum_topic)%></h5>
+      <h5>
+        <% if forum_topic.pinned? %>
+          <span title="Pinned by instructor" class="icon-pushpin"></span>
+        <% end %>
+        <%= link_to forum_topic.subject, forum_topic_path(@course, @forum, forum_topic)%>
+      </h5>
       <% if forum_topic.last_post_at %>
-        <p>Last post <%= time_ago_in_words forum_topic.last_post_at %> ago</p>
+        <p>
+          <% if forum_topic.instructor_replied? %> 
+            <span class="label">Instructor Replied</span>
+          <% end %>
+          Last post <%= time_ago_in_words forum_topic.last_post_at %> ago
+        </p>
       <% end %>
     </td>
     <td><%= forum_topic.posts.count %></td>
     <td><%= forum_topic.views_count %></td>
   </tr>
-

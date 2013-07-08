@@ -9,7 +9,8 @@ class ForumPost < ActiveRecord::Base
 
   validates :text, :presence => true
 
-  after_create :set_topic_last_post_at
+  after_create :set_topic_last_post_at, :set_topic_instructor_replied
+  after_destroy :set_topic_instructor_replied
 
   attr_accessible :replied_to_id, :text, :user, :topic, :forum_topic_id
 
@@ -22,5 +23,10 @@ class ForumPost < ActiveRecord::Base
 
   def set_topic_last_post_at
     topic.update_attribute(:last_post_at, created_at)
+  end
+
+  def set_topic_instructor_replied
+    instructor_replied = topic.instructor_replies_count > 0
+    topic.update_attribute(:instructor_replied, instructor_replied)
   end
 end

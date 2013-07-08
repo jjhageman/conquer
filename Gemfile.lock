@@ -1,11 +1,4 @@
 GIT
-  remote: git://github.com/Nerian/bootstrap-wysihtml5-rails.git
-  revision: 75d8c060fcee2b5967603abcad5b02a82f83d093
-  specs:
-    bootstrap-wysihtml5-rails (0.3.1.20)
-      railties (>= 3.0)
-
-GIT
   remote: git://github.com/thoughtbot/capybara-webkit.git
   revision: 9bbf4f6b5572f7c63485f6eca915b49c581b13b2
   branch: master
@@ -101,6 +94,8 @@ GEM
       factory_girl (~> 4.2.0)
       railties (>= 3.0.0)
     ffi (1.9.0)
+    font-awesome-rails (3.2.1.2)
+      railties (>= 3.2, < 5.0)
     hike (1.2.3)
     i18n (0.6.1)
     journey (1.0.4)
@@ -204,7 +199,6 @@ PLATFORMS
 
 DEPENDENCIES
   action_mailer_cache_delivery
-  bootstrap-wysihtml5-rails!
   capybara
   capybara-webkit!
   coffee-rails (~> 3.2.1)
@@ -213,6 +207,7 @@ DEPENDENCIES
   devise
   email_spec
   factory_girl_rails
+  font-awesome-rails
   jquery-rails
   launchy
   pg

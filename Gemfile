@@ -9,9 +9,10 @@ gem 'devise'
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 gem 'stringex'
 gem 'simple_abs'
-gem 'bootstrap-wysihtml5-rails',
-  :require => 'bootstrap-wysihtml5-rails',
-  :git => 'git://github.com/Nerian/bootstrap-wysihtml5-rails.git'
+#gem 'bootstrap-wysihtml5-rails',
+  #:require => 'bootstrap-wysihtml5-rails',
+  #:git => 'git://github.com/Nerian/bootstrap-wysihtml5-rails.git'
+gem 'font-awesome-rails'
 
 # Gems used only for assets and not required
 # in production environments by default.
