@@ -10,6 +10,9 @@ gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 gem 'stringex'
 gem 'simple_abs'
 gem 'carrierwave'
+gem 'rmagick'
+gem 'fog'
+gem 'remotipart'
 gem 'font-awesome-rails'
 
 # Gems used only for assets and not required

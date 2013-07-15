@@ -6,6 +6,7 @@ class ForumPost < ActiveRecord::Base
   has_many :replies, class_name:   'ForumPost',
     foreign_key:  'reply_to_id',
     dependent:    :nullify
+  has_one :gallery, :class_name => 'ForumGallery', :dependent => :destroy
 
   validates :text, :presence => true
 

@@ -1,0 +1,4 @@
+s3_key: 'AKIAI5ZJ24FYTZH74NUA'
+s3_secret: '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'
+s3_region: 'us-west-1'
+s3_bucket_name: 'dev-forum-images'

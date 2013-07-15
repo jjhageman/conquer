@@ -1,0 +1,9 @@
+// Display a Javascript alert
+<% if remotipart_submitted? %>
+    <% debugger %>
+  editor.currentView.element.focus();
+  editor.composer.commands.exec("insertImage", { src: "<%= @image.image_url %>", alt: "this is an image" });  
+  alert('submitted via remotipart')
+<% else %>
+  alert('submitted via native jquery-ujs')
+<% end %>

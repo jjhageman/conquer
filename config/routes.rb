@@ -26,6 +26,7 @@ Conquer::Application.routes.draw do
   end
 
   resources :forum_posts
+  resources :forum_images
 
   namespace :admin do
     get '/' => 'courses#index', as: :root

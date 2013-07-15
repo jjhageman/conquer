@@ -1,0 +1,9 @@
+<%= form_for @image, :html => {:multipart => true}, :remote => true do |f| %>
+  <p>
+    <label>My Avatar</label>
+    <%= image_tag(@image.image_url) if @image.image? %>
+    <%= f.file_field :image %>
+    <%#= f.hidden_field :image_cache %>
+  </p>
+  <%= f.submit %>
+<% end %>

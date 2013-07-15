@@ -27,7 +27,7 @@
         </div>
 
         <div class="btn-group">
-          <a class="btn" data-wysihtml5-command="insertImage" title="Insert an image" href="javascript:;" unselectable="on">
+          <a href="#myModal" class="btn" data-toggle="modal" title="Insert an image" unselectable="on">
             <i class="icon-picture"></i>
           </a>
         </div>
@@ -56,33 +56,34 @@
           <button data-wysihtml5-dialog-action="cancel" class="btn" type="button">Cancel</button>
         </div>
       </div>
-      
-      <div data-wysihtml5-dialog="insertImage" style="display: none;">
-        <div class="input-append">
-          <input data-wysihtml5-dialog-field="href" value="http://" type="text">
-          <button data-wysihtml5-dialog-action="save" class="btn btn-primary" type="button">Insert</button>
-          <button data-wysihtml5-dialog-action="cancel" class="btn" type="button">Cancel</button>
-        </div>
 
-        <label>
-          Image:
-          <input data-wysihtml5-dialog-field="src" value="http://">
-        </label>
-        <label>
-          Align:
-          <select data-wysihtml5-dialog-field="className">
-            <option value="">default</option>
-            <option value="wysiwyg-float-left">left</option>
-            <option value="wysiwyg-float-right">right</option>
-          </select>
-        </label>
-        <a data-wysihtml5-dialog-action="save">OK</a>&nbsp;<a data-wysihtml5-dialog-action="cancel">Cancel</a>
-      </div>
+      <%#<div data-wysihtml5-dialog="insertImage" style="display: none;">%>
+        <%#<div class="input-append">%>
+          <%#<input data-wysihtml5-dialog-field="href" value="http://" type="text">%>
+          <%#<button data-wysihtml5-dialog-action="save" class="btn btn-primary" type="button">Insert</button>%>
+          <%#<button data-wysihtml5-dialog-action="cancel" class="btn" type="button">Cancel</button>%>
+        <%#</div>%>
+
+        <%#<label>%>
+          <%#Image:%>
+          <%#<input data-wysihtml5-dialog-field="src" value="http://">%>
+        <%#</label>%>
+        <%#<label>%>
+          <%#Align:%>
+          <%#<select data-wysihtml5-dialog-field="className">%>
+            <%#<option value="">default</option>%>
+            <%#<option value="wysiwyg-float-left">left</option>%>
+            <%#<option value="wysiwyg-float-right">right</option>%>
+          <%#</select>%>
+        <%#</label>%>
+        <%#<a data-wysihtml5-dialog-action="save">OK</a>&nbsp;<a data-wysihtml5-dialog-action="cancel">Cancel</a>%>
+      <%#</div>%>
       
     </div>
     <%= f.text_area(:text, id: 'wysihtml5-textarea', class: 'input-block-level wysihtml5', rows: 6, placeholder: "Enter your text ...") %>
     <div class="form-actions">
       <%= f.hidden_field :forum_topic_id %>
+      <%= f.hidden_field :forum_gallery_id %>
       <%= f.submit 'Add post', id: 'submitBtn', class: 'btn', data: {'loading-text' => 'Posting...'} %>
     </div>
   <% end %>
@@ -96,3 +97,11 @@
   </script>
 
 </div>
+<%= form_for ForumImage.new, :html => {:multipart => true}, :remote => true do |f| %>
+  <p>
+    <label>My Avatar</label>
+    <%= f.file_field :image %>
+    <%= f.hidden_field :image_cache %>
+  </p>
+  <%= f.submit %>
+<% end %>
