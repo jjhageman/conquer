@@ -27,7 +27,7 @@
         </div>
 
         <div class="btn-group">
-          <a href="#myModal" class="btn" data-toggle="modal" title="Insert an image" unselectable="on">
+          <a class="btn" data-wysihtml5-command="insertImage" title="Insert an image" href="javascript:;" unselectable="on">
             <i class="icon-picture"></i>
           </a>
         </div>
@@ -57,6 +57,9 @@
         </div>
       </div>
 
+      <div data-wysihtml5-dialog="insertImage" style="display: none;">
+        <input type="file" title="Search for a file to add">
+      </div>
       <%#<div data-wysihtml5-dialog="insertImage" style="display: none;">%>
         <%#<div class="input-append">%>
           <%#<input data-wysihtml5-dialog-field="href" value="http://" type="text">%>
