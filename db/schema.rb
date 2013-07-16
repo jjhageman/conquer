@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130707224712) do
+ActiveRecord::Schema.define(:version => 20130713203602) do
 
   create_table "alternatives", :force => true do |t|
     t.string   "which"
@@ -56,6 +56,15 @@ ActiveRecord::Schema.define(:version => 20130707224712) do
   add_index "enrollments", ["course_id"], :name => "index_enrollments_on_course_id"
   add_index "enrollments", ["promotion_id"], :name => "index_enrollments_on_promotion_id"
   add_index "enrollments", ["user_id"], :name => "index_enrollments_on_user_id"
+
+  create_table "forum_images", :force => true do |t|
+    t.string   "image"
+    t.integer  "forum_post_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "forum_images", ["forum_post_id"], :name => "index_forum_images_on_forum_post_id"
 
   create_table "forum_posts", :force => true do |t|
     t.text     "text"

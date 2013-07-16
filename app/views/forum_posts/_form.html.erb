@@ -83,7 +83,8 @@
     <%= f.text_area(:text, id: 'wysihtml5-textarea', class: 'input-block-level wysihtml5', rows: 6, placeholder: "Enter your text ...") %>
     <div class="form-actions">
       <%= f.hidden_field :forum_topic_id %>
-      <%= f.hidden_field :forum_gallery_id %>
+      <%#= f.hidden_field :image_ids %>
+      <%= hidden_field_tag 'image_ids' %>
       <%= f.submit 'Add post', id: 'submitBtn', class: 'btn', data: {'loading-text' => 'Posting...'} %>
     </div>
   <% end %>

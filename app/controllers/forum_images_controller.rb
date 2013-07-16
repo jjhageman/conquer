@@ -10,8 +10,7 @@ class ForumImagesController < ApplicationController
   end
 
   def create
-    @gallery = ForumGallery.new
-    @image = @gallery.images.new(params[:forum_image])
+    @image = ForumImage.new(params[:forum_image])
     respond_to do |format|
       if @image.save
         format.html { redirect_to @image }
