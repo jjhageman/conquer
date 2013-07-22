@@ -1,4 +1,4 @@
 $(document).ready ->
   $('input[type=file]').bootstrapFileInput()
-  $('button#instertImage').click ->
-
+  $('button#insertImage').click ->
+    $('#imageForm').toggle()

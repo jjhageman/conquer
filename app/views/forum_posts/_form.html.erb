@@ -3,7 +3,21 @@
     <h4>New Post</h4>
   </div>
 
+
+  <div id="imageForm" class="well" style="display: none">
+    <%= form_for ForumImage.new, :html => {:multipart => true}, :remote => true do |f| %>
+      <p>
+        <label>Pick a file:</label>
+        <%= f.file_field :image %>
+        <%= f.hidden_field :image_cache %>
+      </p>
+      <%= f.submit class: 'btn btn-primary'%>
+    <% end %>
+  </div>
+
   <%= form_for @topic.posts.new, remote: true, html: {id: 'post-form'} do |f| %>
+
+
     <div id="toolbar" style="display: none;">
       <div class="btn-toolbar">
         <div class="btn-group">
@@ -27,12 +41,19 @@
         </div>
 
         <div class="btn-group">
-          <a class="btn" data-wysihtml5-command="insertImage" title="Insert an image" href="javascript:;" unselectable="on">
+          <button id="insertImage" class="btn" type="button">
             <i class="icon-picture"></i>
-          </a>
+          </button>
         </div>
       </div>
 
+      <div data-wysihtml5-dialog="createLink" class="well" style="display: none;">
+        <div class="input-append">
+          <input data-wysihtml5-dialog-field="href" value="http://" type="text">
+          <button data-wysihtml5-dialog-action="save" class="btn btn-primary" type="button">Link</button>
+          <button data-wysihtml5-dialog-action="cancel" class="btn" type="button">Cancel</button>
+        </div>
+      </div>
       <%#<a data-wysihtml5-command="bold" title="CTRL+B">bold</a> |%>
       <%#<a data-wysihtml5-command="italic" title="CTRL+I">italic</a> |%>
       <%#<a data-wysihtml5-command="createLink">insert link</a> |%>
@@ -49,17 +70,10 @@
       <%#<a data-wysihtml5-command="insertSpeech">speech</a>%>
       <%#<a data-wysihtml5-action="change_view">switch to html view</a>%>
       
-      <div data-wysihtml5-dialog="createLink" style="display: none;">
-        <div class="input-append">
-          <input data-wysihtml5-dialog-field="href" value="http://" type="text">
-          <button data-wysihtml5-dialog-action="save" class="btn btn-primary" type="button">Link</button>
-          <button data-wysihtml5-dialog-action="cancel" class="btn" type="button">Cancel</button>
-        </div>
-      </div>
 
-      <div data-wysihtml5-dialog="insertImage" style="display: none;">
-        <input type="file" title="Search for a file to add">
-      </div>
+      <%#<div data-wysihtml5-dialog="insertImage" style="display: none;">%>
+        <%#<input type="file" title="Search for a file to add">%>
+      <%#</div>%>
       <%#<div data-wysihtml5-dialog="insertImage" style="display: none;">%>
         <%#<div class="input-append">%>
           <%#<input data-wysihtml5-dialog-field="href" value="http://" type="text">%>
@@ -101,11 +115,3 @@
   </script>
 
 </div>
-<%= form_for ForumImage.new, :html => {:multipart => true}, :remote => true do |f| %>
-  <p>
-    <label>My Avatar</label>
-    <%= f.file_field :image %>
-    <%= f.hidden_field :image_cache %>
-  </p>
-  <%= f.submit %>
-<% end %>
