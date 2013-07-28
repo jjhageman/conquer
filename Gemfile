@@ -11,7 +11,7 @@ gem 'stringex'
 gem 'simple_abs'
 gem 'carrierwave'
 gem 'rmagick'
-gem 'fog'
+gem "fog", "~> 1.3.1"
 gem 'remotipart'
 gem 'font-awesome-rails'
 

@@ -1,4 +1,4 @@
-S3_KEY: <S3_KEY>
-S3_SECRET: <S3_SECRET>
-S3_REGION: <S3_REGION>
-S3_BUCKET_NAME: <S3_BUCKET_NAME>
+s3_key: <S3_KEY>
+s3_secret: <S3_SECRET>
+s3_region: <S3_REGION>
+s3_bucket_name: <S3_BUCKET_NAME>

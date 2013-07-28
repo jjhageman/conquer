@@ -1,9 +1,11 @@
 <% if remotipart_submitted? %>
   editor.currentView.element.focus();
-  editor.composer.commands.exec("insertImage", { src: "<%= @image.image_url %>", alt: "this is an image" });  
+  editor.composer.commands.exec("insertImage", { src: "<%= @image.image_url %>", alt: "Your image" });  
   var ids = $('#post-form #image_ids').val();
   var arr = (ids == '') ? '<%= @image.id %>' : ids+',<%= @image.id %>'
   $('#post-form #image_ids').val(arr);
+  $('#imageModal').modal('hide')
+  $('.fileupload').fileupload('reset')
 <% else %>
   console.log('submitted via native jquery-ujs')
 <% end %>
