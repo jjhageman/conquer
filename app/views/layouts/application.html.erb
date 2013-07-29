@@ -18,15 +18,16 @@
     fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));</script>
 
-  <div class="navbar navbar-fixed-top">
-    <div class="navbar-inner">
+  <div id="header">
+    <div class="nav">
       <div class="container">
-        <%= link_to 'Conquer', user_signed_in? ? user_root_path : root_path, class: 'brand' %>
-        <%= render 'layouts/navigation' %>
-        <%= render 'layouts/login_items' unless devise_controller? %>
+          <%= link_to image_tag('master_class.png', alt: 'Master Class'), user_signed_in? ? user_root_path : root_path, class: 'brand' %>
+          <%= render 'layouts/navigation' %>
+          <%= render 'layouts/login_items' unless devise_controller? %>
       </div>
     </div>
   </div>
+
   <div class="container">
     <% flash.delete(:timedout).each do |key, msg| %>
       <div class="alert alert-<%= key == :notice ? "success" : "error" %>">

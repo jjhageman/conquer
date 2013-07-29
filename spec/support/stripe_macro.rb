@@ -10,7 +10,7 @@ module StripeMacro
 
   def customer
     return @customer if @customer
-    @customer = mock 'customer'
+    @customer = double 'customer'
     @customer.stub(:id).and_return('cus_1qyHNtGP3pYjQQ')
     @customer.stub(:object).and_return('customer')
     @customer.stub(:created).and_return(1368906576)
@@ -24,7 +24,7 @@ module StripeMacro
 
   def active_card
     return @active_card if @active_card
-    @active_card = mock 'active_card'
+    @active_card = double 'active_card'
     @active_card.stub(:object).and_return('card')
     @active_card.stub(:last4).and_return('4242')
     @active_card.stub(:type).and_return('Visa')

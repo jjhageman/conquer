@@ -9,12 +9,13 @@
   </div>
 
   <%= f.fields_for :posts do |p| %>
-  <div class="control-group">
-    <%= p.label :text, 'Content', class: 'control-label' %>
-    <div class="controls">
-    <%= p.text_area :text, id: 'new-post', class: 'input-xxlarge wysihtml5', rows: 6 %>
+    <%= render 'forum_posts/wysihtml5_menu' %>
+    <%= p.text_area(:text, id: 'wysihtml5-textarea', class: 'input-block-level wysihtml5', rows: 6, placeholder: "Enter your text ...") %>
+    <div class="form-actions">
+      <%= p.hidden_field :forum_topic_id %>
+      <%= hidden_field_tag 'image_ids' %>
+      <%= p.submit 'Add post', id: 'submitBtn', class: 'btn', data: {'loading-text' => 'Posting...'} %>
     </div>
-  </div>
   <% end %>
 
   <div class="control-group">
@@ -26,17 +27,10 @@
 
 <% end %>
 
-<script type="text/javascript">
-  $('.wysihtml5').each(function(i, elem) {
-    $(elem).wysihtml5({
-      'font-styles': false,
-      'underline': false,
-      'lists': {
-        'unordered': true,
-        'ordered': true,
-        'outdent': false,
-        'indent': false
-      }
-    });
+  <script>
+  var editor = new wysihtml5.Editor("wysihtml5-textarea", { // id of textarea element
+    toolbar:      "toolbar", // id of toolbar element
+    stylesheets:  "/assets/wysihtml5.css",
+    parserRules:  wysihtml5ParserRules // defined in parser rules set 
   });
-</script>
+  </script>
