@@ -1,3 +1,15 @@
 // Place all the styles related to the Course controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+body { background-color: #f0f0ef; }
+
+/** HEADER **/
+#header { padding: 25px 0; background-color: #fff; }
+.menu ul li { float: left; }
+
+.container { width: 978px; margin: auto; }
+
+[class^="icon-"],
+[class*=" icon-"] {
+  background-image: url("glyphicons-halflings.png");
+}
