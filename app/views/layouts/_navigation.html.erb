@@ -1,8 +1,13 @@
-        <ul class="menu">
-          <li class="">
-            <%= link_to 'Courses', courses_path %>
-          </li>
-          <li class="">
-            <%= link_to 'About', about_path %>
-          </li>
-        </ul>
+<div class="primary-nav">
+  <%= link_to 'Courses', courses_path %>
+  <%= link_to 'About', about_path %>
+  <% unless devise_controller? %>
+    <% if user_signed_in? %>
+      <span class="divider-vertical"></span>
+      <%= link_to 'My Courses', user_root_path %>
+      <%= link_to 'Logout', destroy_user_session_path, :method => :delete %>
+    <% else %>
+      <%= link_to 'Login', new_user_session_path %>
+    <% end %>
+  <% end %>
+</div>

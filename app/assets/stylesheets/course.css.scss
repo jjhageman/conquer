@@ -4,10 +4,26 @@
 body { background-color: #f0f0ef; }
 
 /** HEADER **/
-#header { padding: 25px 0; background-color: #fff; }
-.menu ul li { float: left; }
+#header { padding: 25px 0; background-color: #fff;
+  h1#logo { float: left; display: inline-block; margin: 0; padding: 0; }
+  .primary-nav { float: right;
+    a { padding: 15px; color: #000; display: inline-block; text-transform: uppercase; font-weight: bold; font-size: 12px; }
+    a:link, a:visited { text-decoration: none; }
+    a:hover, a:active { text-decoration: underline; }
+    a:last-child { padding-right: 0; }
+  }
+}
 
 .container { width: 978px; margin: auto; }
+.container:before,
+.container:after {
+  display: table;
+  content: " ";
+  clear: both;
+}
+
+/*COURSE*/
+.hero { background-color: #000; color: #FFF; }
 
 [class^="icon-"],
 [class*=" icon-"] {
