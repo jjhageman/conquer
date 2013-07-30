@@ -1,17 +1,20 @@
-<ul class="breadcrumb">
-  <li><%= link_to 'Topics', forums_path(@course) %>  <span class="divider">/</span></li>
-  <li><%= link_to @forum.name, forum_topics_path(@course, @forum) %>  <span class="divider">/</span></li>
-  <li class="active"><%= @topic.subject %></li>
-</ul>
-<div class="page-header">
-  <h3><%= @topic.subject %></h3>
+<div id="course-banner">
+  <h1><%= link_to @course.name, user_course_path(@course) %> <small> by <%= @course.instructor_name %></small></h1>
 </div>
-<ul id="forum-posts" class="media-list">
-  <%= render @topic.posts %>
-</ul>
+<div class="container" id="full_content">
+  <ul class="breadcrumb">
+    <li><%= link_to 'Topics', forums_path(@course) %>  <span class="divider">/</span></li>
+    <li><%= link_to @forum.name, forum_topics_path(@course, @forum) %>  <span class="divider">/</span></li>
+    <li class="active"><%= @topic.subject %></li>
+  </ul>
+  <h2><%= @topic.subject %></h2>
+  <div id="forum-posts">
+    <%= render @topic.posts %>
+  </div>
 
-<div class="page-header">
-  <h4>New Post</h4>
+  <div class="grey_box">
+    <h4>New Post</h4>
+
+  <%= render 'forum_posts/form' %>
+  </div>
 </div>
-
-<%= render 'forum_posts/form' %>

@@ -1,3 +1,27 @@
 // Place all the styles related to the enrollments controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#almost_done{
+    background:#252220;
+    padding:40px 0;
+    margin:0;
+    font-weight:200;
+    letter-spacing: 1px;
+    text-align: center;
+    color:#fff;
+}
+
+#board_user{
+    width:400px;
+    margin:80px auto;
+    padding:20px;
+    border:15px solid #fff;
+
+    input[type="email"],input[type="text"], input[type="password"]{
+        width:370px;
+    }
+
+}
+
+#enrollment p{ margin: 3em 0;}

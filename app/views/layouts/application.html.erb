@@ -1,10 +1,15 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="utf-8">
     <title>Conquer</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <link href='http://fonts.googleapis.com/css?family=Merriweather:400,300,400italic,700,900,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,300,700,400italic,900' rel='stylesheet' type='text/css'>
     <%= stylesheet_link_tag    "application", :media => "all" %>
     <%= javascript_include_tag "application" %>
-    <%= yield(:head) %>    
+    <%= yield(:head) %>
     <%= csrf_meta_tags %>
   </head>
   <body>
@@ -19,12 +24,12 @@
   }(document, 'script', 'facebook-jssdk'));</script>
 
   <div id="header">
-    <div class="nav">
-      <div class="container">
-          <%= link_to image_tag('master_class.png', alt: 'Master Class'), user_signed_in? ? user_root_path : root_path, class: 'brand' %>
-          <%= render 'layouts/navigation' %>
-          <%= render 'layouts/login_items' unless devise_controller? %>
-      </div>
+    <div class="container">
+      <h1 id="logo">
+        <%= link_to image_tag('logo.png', alt: 'Master Class'), user_signed_in? ? user_root_path : root_path %>
+      </h1>
+      <nav><%= link_to 'Courses', courses_path %></nav>
+      <%= render 'layouts/navigation' %>
     </div>
   </div>
 
@@ -35,8 +40,25 @@
         <%= msg %>
       </div>
     <% end %>
+  </div>
 
-    <%= yield %>
+  <%= yield %>
+
+<footer class="clearfix">
+  <div class="top">
+    <div class="container">
+      <%=image_tag('copyright.png', :class=>"copyright")%>
+      <div id="footer_nav">
+        <a href="#">Terms of Use</a>
+        <a href="#">Private Policy</a>
+        <a href="#">About Us</a>
+        <a href="#">Contact Us</a>
+      </div>
     </div>
+    <div class="container">
+      <%=image_tag('credentials.png', :id=>"credentials")%>
+    </div>
+  </div>
+</footer>
   </body>
 </html>

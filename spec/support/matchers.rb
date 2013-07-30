@@ -1,4 +1,4 @@
-RSpec::Matchers.define :allow do |*args|
+RSpec::Matchers.define :permit do |*args|
   match do |permission|
     permission.allow?(*args).should be_true
   end

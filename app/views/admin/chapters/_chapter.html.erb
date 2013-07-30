@@ -1,0 +1,10 @@
+<tr>
+  <td><%= link_to chapter.name, admin_course_chapter_path(@course, chapter) %></td>
+  <td><%= chapter.description %></td>
+  <td>
+    <%= link_to 'edit', edit_admin_course_chapter_path(@course, chapter) %> ,
+    <%= link_to(admin_course_chapter_path(@course, chapter), confirm: 'Are you sure?', method: :delete) do %>
+      <i class="icon-trash"></i>
+    <% end %>
+  </td>
+</tr>

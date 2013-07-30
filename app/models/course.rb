@@ -1,4 +1,5 @@
 class Course < ActiveRecord::Base
+  has_many :chapters, dependent: :destroy
   has_many :enrollments, dependent: :destroy
   has_many :promotions, dependent: :destroy
   has_many :ratings, dependent: :destroy
@@ -7,7 +8,16 @@ class Course < ActiveRecord::Base
   scope :active, where(released: true)
   scope :preorder, where(released: false)
 
-  attr_accessible :description, :image, :instructor_image, :instructor_name, :instructor_description, :name, :price, :released, :start_date
+  mount_uploader :image, CourseImageUploader
+  mount_uploader :hero_image, HeroImageUploader
+  mount_uploader :video_image, VideoImageUploader
+  mount_uploader :instructor_image, InstructorImageUploader
+
+  attr_accessible :description, :image, :instructor_image, :instructor_name,
+    :instructor_description, :name, :price, :released, :start_date, :tagline,
+    :total_hours, :hero_image, :playlist_id, :instructor_title, :image_cache,
+    :hero_image_cache, :instructor_image_cache, :project_count, :document_count,
+    :video_image, :video_image_cache, :additional_description
 
   validates :name, presence: true
   validates :price, presence: true

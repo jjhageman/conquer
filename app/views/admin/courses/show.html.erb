@@ -1,42 +1,73 @@
-<div class="page-header">
-  <h4 class="pull-right">by <%= @course.instructor_name %></h4>
-  <h1><%= @course.name %></h1>
+<div class="container" id="main_content">
+  <div class="full_content">
+    <div class="page-header">
+      <h4 class="pull-right">by <%= @course.instructor_name %></h4>
+      <h1>
+        <%= @course.name %> 
+        <small>
+          <%= link_to 'edit', edit_admin_course_path(@course) %>
+
+          <%= link_to(admin_course_path(@course), confirm: 'Are you sure?', method: :delete) do %>
+            <i class="icon-trash"></i>
+          <% end %>
+        </small>
+      </h1>
+    </div>
+
+    <p><%=raw @course.description %></p>
+
+    <div class="page-header">
+      <%= link_to 'New Chapter', new_admin_course_chapter_path(@course), class: 'btn pull-right' %>
+      <h3>Chapters</h3>
+    </div>
+
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>&nbsp;</th>
+        </tr>
+      </thead>
+      <tbody>
+      <%= render @course.chapters %>
+      </tbody>
+    </table>
+
+    <div class="page-header">
+      <%= link_to 'New Promotion', new_admin_course_promotion_path(@course), class: 'btn pull-right' %>
+      <h3>Promotions</h3>
+    </div>
+
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Code</th>
+          <th>Price</th>
+          <th>Active</th>
+          <th>&nbsp;</th>
+        </tr>
+      </thead>
+      <tbody>
+      <%= render @course.promotions %>
+      </tbody>
+    </table>
+
+    <div class="page-header">
+      <%= link_to 'New Forum', new_admin_course_forum_path(@course), class: 'btn pull-right' %>
+      <h3>Forums</h3>
+    </div>
+
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Discussion</th>
+          <th>Latest Activity</th>
+        </tr>
+      </thead>
+      <tbody>
+      <%= render partial: 'forums/forum', collection: @course.forums %>
+      </tbody>
+    </table>
+  </div>
 </div>
-
-<p><%= @course.description %></p>
-
-<div class="page-header">
-  <%= link_to 'New Promotion', new_admin_course_promotion_path(@course), class: 'btn pull-right' %>
-  <h3>Promotions</h3>
-</div>
-
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th>Code</th>
-      <th>Price</th>
-      <th>Active</th>
-      <th>&nbsp;</th>
-    </tr>
-  </thead>
-  <tbody>
-  <%= render @course.promotions %>
-  </tbody>
-</table>
-
-<div class="page-header">
-  <%= link_to 'New Forum', new_admin_course_forum_path(@course), class: 'btn pull-right' %>
-  <h3>Forums</h3>
-</div>
-
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th>Discussion</th>
-      <th>Latest Activity</th>
-    </tr>
-  </thead>
-  <tbody>
-  <%= render partial: 'forums/forum', collection: @course.forums %>
-  </tbody>
-</table>

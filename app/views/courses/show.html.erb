@@ -1,36 +1,96 @@
-<div class="container-fluid">
-  <div class="row-fluid">
-    <div class="span9">
-      <h2><%= @course.instructor_name %> <small>teaches</small></h2>
-      <h3><%= @course.name %></h3>
-      <%= render partial: 'shared/video_player', locals: { video_player: '2361189644001'} %>
-      <h4>About the Class</h4>
-      <%= @course.description %>
-      <h4>About <%= @course.instructor_name %></h4>
-      <p><%= @course.instructor_description %></p>
+<div class="hero" style="background-image: url(<%= @course.hero_image_url %>)">
+  <div class="container">
+    <h2><%= @course.name %></h2>
+    <div class="instructor">
+      <%= image_tag @course.instructor_image_url, :class=>"avatar" %>
+      <h3><%= @course.instructor_name %></h3>
+      <h4><%= @course.instructor_title %></h4>
     </div>
-    <div class="span3">
+  </div>
+</div>
 
-<% if user_signed_in? && @course.has_preordered_student?(current_user) %>
+<div class="container" id="main_content">
 
-      <div class="well">
-        You have already pre-ordered this course. <%= link_to 'View your courses', user_root_path %>
+  <div class="course_content">
+    <div class="summary">
+      <h5><%= @course.tagline %></h5>
+      <div class="summary_text"><%=raw @course.description %></div>
+    </div>
+
+    <div id="video">
+      <a href="#" class="play"></a>
+      <%=image_tag(@course.video_image_url)%>
+    </div>
+
+    <div id="chapters" class="clearfix">
+      <h4>Course Chapters</h4>
+        <%= render @course.chapters.order("ID ASC").limit(4)  %>
+        <a href="#" class="view_chapters">View All Chapters</a>
+        <div class="other_chapters" style="display: none">
+        <%= render @course.chapters.order("ID ASC").offset(4)  %>
+        </div>
+    </div>
+
+    <div id="additional_description" class="clearfix">
+      <%=raw @course.additional_description %>
+    </div>
+
+    <div id="course_details" class="clearfix">
+      <h4>Details</h4>
+      <h5>Total <span class="highlight"><%= @course.total_hours %></span> hours to complete</h5>
+      <div class="hours">
+        <h6><%= @course.chapters.count %></h6>
+        <span>Hours Video</span>
       </div>
-
-    </div><!-- end span3 -->
-  </div><!-- end row-fluid -->
-</div><!-- end container-fluid -->
-
-<% else %>
-
-      <div class="well">
-        <em>Special promotional price!</em>
-        <h3><%= number_to_currency @course.price %></h3>
-        <%= link_to (@course.released? ? 'Take Course' : 'Pre-Order'), new_enrollment_path(@course), class: 'btn btn-primary' %>
+      <div class="projects">
+        <h6><%= @course.project_count %></h6>
+        <span>Projects</span>
       </div>
+      <div class="documents">
+        <h6><%= @course.document_count %></h6>
+        <span>Documents</span>
+      </div>
+    </div>
 
-    </div><!-- end span3 -->
-  </div><!-- end row-fluid -->
-</div><!-- end container-fluid -->
+  </div>
 
-<% end %>
+  <div class="course_sidebar">
+    <div class="buy_course">
+      <% if user_signed_in? && @course.has_preordered_student?(current_user) %>
+        <p>You have already pre-ordered this course.</p>
+        <%= link_to "View your courses", user_root_path, :class=>"buy_button" %>
+      <% else %>
+          <span class="price"><%= number_to_currency(@course.price, :unit => "$") %></span>
+          <p>including <%= @course.total_hours %> hours of courses</p>
+        <%= link_to (@course.released? ? 'Take Course' : 'Pre-Order'), new_enrollment_path(@course), class: 'buy_button' %>
+      <% end %>
+      <span class="inscriptions">Only <span class="highlight">150</span> inscriptions left</span>
+    </div>
+
+    <div class="features">
+      <span class="feature" id="accesible"><span class="highlight">Accessible</span> Anywhere</span> 
+      <span class="feature" id="moneyback"><span class="highlight">100%</span> Moneyback Guarentee</span> 
+      <span class="feature" id="never_expires">Access <span class="highlight">Never</span> Expires</span> 
+      <span class="feature" id="interact"><span class="highlight">Interact</span> with your instructor</span> 
+    </div>
+
+    <div id="course_students" class="clearfix">
+      <span class="count"><span class="highlight">2230</span> Students are already taking this course</span>
+      <div class="avatars clearfix">
+        <%=image_tag('student.png')%>
+        <%=image_tag('student2.png')%>
+        <%=image_tag('student3.png')%>
+        <%=image_tag('student4.png')%>
+        <%=image_tag('student5.png')%>
+      </div>
+      <div class="rating"><span>Average Rating</span> <div class="rating_stars" data-rating="4"></div></div>
+      <a href="#" class="reviews">250 reviews</a>
+    </div>
+
+   <div id="meet_your_hero">
+     <%=image_tag('logo_small.png')%>
+     <p>Be the best student & meet your hero!</p>
+   </div> 
+
+  </div>
+</div>

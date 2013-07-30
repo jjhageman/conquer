@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130713203602) do
+ActiveRecord::Schema.define(:version => 20130807041834) do
 
   create_table "alternatives", :force => true do |t|
     t.string   "which"
@@ -23,6 +23,18 @@ ActiveRecord::Schema.define(:version => 20130713203602) do
   end
 
   add_index "alternatives", ["which"], :name => "index_alternatives_on_which"
+
+  create_table "chapters", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.string   "image"
+    t.string   "video_id"
+    t.integer  "course_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "chapters", ["course_id"], :name => "index_chapters_on_course_id"
 
   create_table "courses", :force => true do |t|
     t.string   "name",                                                                   :null => false
@@ -38,6 +50,15 @@ ActiveRecord::Schema.define(:version => 20130713203602) do
     t.decimal  "rating_average",         :precision => 6, :scale => 2, :default => 0.0
     t.datetime "created_at",                                                             :null => false
     t.datetime "updated_at",                                                             :null => false
+    t.string   "tagline"
+    t.string   "hero_image"
+    t.integer  "total_hours"
+    t.string   "playlist_id"
+    t.string   "instructor_title"
+    t.integer  "project_count"
+    t.integer  "document_count"
+    t.text     "additional_description"
+    t.string   "video_image"
   end
 
   add_index "courses", ["url"], :name => "index_courses_on_url"

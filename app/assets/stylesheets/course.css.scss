@@ -1,3 +1,836 @@
 // Place all the styles related to the Course controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import 'mixins';
+
+body { background-color: #f0f0ef; }
+
+// Course Hero Image
+.hero{
+  width:100%;
+  height:365px;
+  background-size:cover;
+
+  h2{
+    color:#fff;
+    text-transform: uppercase;
+    font-size:46px;
+    width:500px;
+    font-weight:800;
+    margin-top:55px;
+    line-height:1.2;
+    letter-spacing: 2px;
+  }
+
+  .instructor{
+
+    .avatar{
+      float:left;
+      margin-right:10px;
+      font-weight:300;
+      width:53px;
+      height:53px;
+      border:3px solid #fff;
+    }
+
+    h3{
+      margin:0;
+      color:$highlight;
+      font-size:17px;
+      padding-top:4px;
+      letter-spacing: 1px;
+    }
+
+    h4{
+      margin:0;
+      color:#fff;
+      font-size:13px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      width: 600px;
+    }
+
+  }
+
+}
+// End Course Hero Image
+.full_content{ 
+  padding:15px;
+  background-color:#FFF;
+  .body_content {
+    background: #F2F2F1;
+    padding: 20px;
+  }
+}
+
+.course_content{
+  width:610px;
+  padding:15px;
+  background:white;
+  float:left;
+  font-family: 'Merriweather', serif;
+  font-size:13px;
+  line-height:1.8;
+
+  h5{
+    margin:0;
+    font-size:20px;
+    font-family: 'Lato', sans-serif;
+    letter-spacing: 2px;
+    font-weight:600;
+    margin-bottom:15px;
+  }
+
+  h4{
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size:15px;
+    font-family: 'Lato', sans-serif;
+    margin:0;
+  }
+
+  .summary{
+    padding:20px;
+    margin-bottom:15px;
+    background:#F2F2F1;
+  }
+
+  #video{
+    position: relative;
+
+    .play{
+      width:78px;
+      height:78px;
+      display:block;
+      background:url('play.png') no-repeat center;
+      position: absolute;
+      left:50%;
+      top:50%;
+      margin-left:-39px;
+      margin-top:-39px;
+      opacity: .8;
+      &:hover{opacity:1;}
+    }
+
+  }
+
+  #chapters{
+    margin-top:15px;
+      background:#F2F2F1;
+      padding:15px;
+
+    h4{
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size:15px;
+      margin: 0 0 20px;
+    }
+    
+    .other_chapters{margin-top: 30px;}
+    
+    .chapter{
+      margin-bottom:30px;
+      width:290px;
+      height: 55px;
+      float: left;
+
+      img{
+        float:left;
+        margin-right:10px;
+      }
+
+      h4{
+        margin:0;
+        line-height:1;
+        font-size:15px;
+
+        a{
+          color:$highlight;
+          text-decoration: none;
+          letter-spacing: 1px;
+        }
+
+      }
+
+      p{
+        margin:0;
+        font-family: 'Merriweather', serif;
+        font-size:12px;
+        line-height:1.3;
+        margin-top:10px;
+      }
+    }
+
+  }
+
+  #additional_description {
+    background:#F2F2F1;
+    margin-top:15px;
+    clear:both;
+    padding:20px;
+  }
+
+  #course_details{
+    background:#F2F2F1;
+    margin-top:15px;
+    clear:both;
+    padding:20px;
+    font-family: 'Lato', sans-serif;
+
+    h4{
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size:15px;
+      margin:0;
+    }
+
+    h5{
+      text-transform: uppercase;
+      font-size: 12px;
+      font-weight:400;
+      letter-spacing: 1px;
+      margin:0;
+    }
+
+    p{
+      font-family: 'Merriweather', serif;
+      font-size:13px;
+      line-height:1.8;
+    }
+
+    .hours, .projects, .documents{
+      width:189px;
+      text-align: center;
+      float:left;
+      margin-top:20px;
+
+      h6{
+        color:$highlight;
+        font-size:50px;
+        font-weight:800;
+        margin:0;
+        line-height:1;
+      }
+      span{
+        text-transform: uppercase;
+        font-size:12px;
+        letter-spacing: 1px;
+        font-weight:400;
+      }
+
+    }
+
+    .projects{
+      border-left:1px solid #D5D5D4;
+      border-right:1px solid #D5D5D4;
+    }
+
+  }
+
+  #enroll{
+    background:#F2F2F1;
+    padding:20px;
+    font-family: 'Lato', sans-serif;
+
+    h1{
+      margin:0;
+      margin-bottom:30px;
+      font-weight:400;
+    }
+
+    section{
+      margin-bottom:40px;
+      position:relative;
+
+      .section_header{
+        width:100%;
+        text-transform: uppercase;
+        font-size:15px;
+        font-weight:600;
+        margin-bottom:20px;
+        background:url('divider_line.png') repeat-x left center;
+          span{
+            background:#F2F2F1;
+            padding-right:10px;
+        }
+      }
+
+      #already_member{
+        color:#999;
+        float:right;
+        text-decoration: none;
+      }
+
+      #cards{
+        position:absolute;
+        right:0px;
+        top:162px;
+      }
+
+      #credit_card_number{
+        float:left;
+        margin-right:20px;
+        width:380px;
+        input{
+          width:350px;
+        }
+      }
+
+      #security_number{
+        float:left;
+        width:170px;
+        position: relative;
+        img{
+          position:absolute;
+          right:10px;
+          top:43px;
+        }
+        input{
+          width:140px;
+        }
+      }
+
+      .button{
+        margin-top:30px;
+      }
+
+      #user_email{
+        width:540px;
+      }
+
+    }
+
+    .note{
+      clear:both;
+      padding-top:20px;
+      display: block;
+    }
+
+  }
+
+}
+
+.course_sidebar{
+  float:right;
+  width:280px;
+  padding:15px;
+  background:white;
+
+  #course_instructor{
+    line-height:1;
+
+    .avatar{
+      float:left;
+      margin-right:10px;
+      font-weight:300;
+      width:53px;
+      height:53px;
+      border:4px solid #fff;
+    }
+
+    .name{
+      margin:0;
+      display: block;
+      color:$highlight;
+      font-size:15px;
+      padding-top:3px;
+      letter-spacing: 1px;
+      font-weight:bold;
+      padding-bottom:5px;
+    }
+
+    .title{
+      margin:0;
+      color:#888;
+      font-size:11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+  }
+
+  .buy_course{
+    background:#F2F2F1;
+    padding:20px;
+    margin-bottom:15px;
+
+    .price{
+      font-size:45px;
+      font-weight:600;
+      margin:0;
+      line-height:1.1;
+    }
+
+    p{
+      margin:0;
+      font-size:13px;
+    }
+
+    .buy_button{
+      display:block;
+      background:$highlight;
+      border:3px solid #fff;
+      color:#fff;
+      text-align: center;
+      padding:15px 0;
+      text-decoration: none;
+      margin-top:10px;
+      text-transform: uppercase;
+      font-size:14px;
+      font-weight:600;
+      letter-spacing: 1px;
+      &:hover{background:$hover;}
+    }
+
+    .inscriptions{
+      font-size:13px;
+      display:block;  
+      padding-left:25px;
+      background:url('clock.png') no-repeat left 1px;
+      line-height:1.2;
+      margin-top:10px;
+      span{
+        font-weight:800;
+        font-size:14px;
+        letter-spacing: 1px;
+      }
+    }
+
+  }
+
+  .latest_posts{
+
+    h4{
+      margin:0;
+      margin-bottom:15px;
+      text-transform: uppercase;
+      font-size:13px;
+    }
+
+    .lastest_post{
+      line-height:1;
+      margin-bottom:15px;
+      &:last-child{margin-bottom:0;}
+
+      img{
+        border:4px solid #fff;
+        float:left;
+        margin-right:10px;
+      }
+
+      .title{
+        display:block;
+        margin-top:5px;
+        font-size:15px;
+        color:#555;
+        text-decoration: none;
+        &:hover{color:$highlight;}
+      }
+
+      .name{
+        color:#999;
+        text-decoration: none;
+        text-transform: uppercase;
+        font-size:12px;
+        margin-bottom:5px;
+        margin-top:5px;
+        display: block;
+      }
+
+    }
+
+  }
+
+  .features{
+    background:#F2F2F1;
+    padding:20px;
+    margin-bottom:15px;
+  
+    .feature{
+      display:block;
+      padding-left:50px;
+      padding-bottom:30px;
+      text-transform: uppercase;
+      font-size:14px;
+      font-weight: 400;
+      line-height:1.2;
+
+      &#accesible{background:url('access_anywhere_icon.png') no-repeat left top;}
+      &#moneyback{background:url('moneyback_icon.png') no-repeat 7px 2px;}
+      &#never_expires{background:url('access_icon.png') no-repeat left 1px;}
+      &#interact{background:url('interact_icon.png') no-repeat left 1px;}
+      &:last-child{padding-bottom:0;}
+    }
+  }
+
+  #course_students{
+    background:#F2F2F1;
+    margin-bottom:15px;
+
+    .count{
+      padding:15px;
+      display: block;
+      font-size:11px;
+      .highlight{letter-spacing:1px;}
+    }
+
+    .avatars{
+      background:#E2E3E1;
+      width:100%;
+      padding:5px 0;
+
+      img{
+        float:left;
+        margin-right:5px;
+        &:last-child{margin-right:0;}
+        &:first-child{margin-left:5px;}
+      }
+
+    }
+
+    .rating{
+      font-size:11px;
+      float:left;
+      padding:15px;
+      width:165px; 
+      position: relative;
+
+      .rating_stars{
+        position:absolute;
+        right:0;
+        top:13px;
+      }
+
+    }
+
+    .reviews{
+      float:left;
+      color:$highlight;
+      font-size:12px;
+      padding:15px 0;
+    }
+
+  }
+
+  #meet_your_hero{
+    background:#F2F2F1;
+    text-align: center;
+    padding:20px 0;
+
+    img{
+      margin-bottom:15px;
+    }
+
+    p{
+      text-transform: uppercase;
+      font-size:18px;
+      line-height:1.2;
+      font-weight:800;
+      padding:0 30px;
+      margin:0;
+      letter-spacing: 1px;
+    }
+
+  }
+
+}
+
+
+[class^="icon-"],
+[class*=" icon-"] {
+  background-image: url("glyphicons-halflings.png");
+}
+
+#main_content{
+  position:relative;
+
+  #rating{
+    position:absolute;
+    right:0;
+    top:7px;
+
+    span{
+      float:left;
+      margin-right:10px;
+      font-size:12px;
+      margin-top:3px;
+      text-transform:uppercase;
+    }
+
+    .rateit{
+      float:left;
+    }
+
+  }
+
+}
+
+#video_container{
+  background:white;
+  margin-top:30px;
+
+  .BrightcoveExperience{
+    margin:15px;
+    margin-top:0;
+  }
+
+  h1{
+    margin:30px 0px 0px 15px;
+  }
+
+  .instructor{
+    display:block;
+    color:#999;
+    margin:0px 0px 30px 15px;
+    width: 600px;
+  }
+
+}
+
+#page_header{
+  background:#f0f0ef;
+  padding:50px 0;
+  padding-bottom:25px;
+
+  h1{
+    width:100%;
+    text-align:center;
+    margin:0;
+    text-transform: uppercase;
+    font-size:20px;
+    letter-spacing: 3px;
+    font-weight:800;
+  }
+
+  #favourites{
+    clear:both;
+    margin-top:30px;
+    padding-bottom:20px;
+
+    a{
+      text-transform: uppercase;
+      font-size:15px;
+      padding:0px 31px;
+      height:110px;
+      line-height: 11;
+      float:left;
+      color:#555;
+      margin-bottom:20px;
+      text-decoration: none;
+      font-weight:600;
+      letter-spacing: 1px;
+      &#all_courses{background:url('all_courses.png') no-repeat center 0;}
+      &#cinema{background:url('cinema.png') no-repeat center 0;}
+      &#sport{background:url('sport.png') no-repeat center 0;}
+      &#music{background:url('music.png') no-repeat center 0;}
+      &#photography{background:url('photography.png') no-repeat center 0;}
+      &#business{background:url('business.png') no-repeat center 0;}
+      &#engineering{background:url('engineering.png') no-repeat center 0;}
+      &.current{
+        background-color:$highlight !important;
+        background-position:center -110px !important;
+        color:#fff;
+      }
+    }
+
+  }
+
+}
+
+#course_content{
+
+  #chapters{
+    margin-top:0;
+    display:block;
+  }
+
+}
+
+#courses_index{
+
+  h2{
+    width:100%;
+    background:url('divider_line.png') repeat-x left center;
+    text-align:center;
+    text-transform: uppercase;
+    font-size:19px;
+    font-weight:800;
+    letter-spacing: 4px;
+    padding:20px 0;
+    span{
+      background:white;
+      padding:0 20px;
+    }
+  }
+
+}
+
+.course_thumb{
+  width:475px;
+  height:275px;
+  display:block;
+  float:left;
+  overflow:hidden;
+  position: relative;
+  margin-bottom:15px;
+
+  .meta{
+    width:475px;
+    height:275px;
+    display: block;
+    position:absolute;
+    top:185px;
+    background:url('dim.png');
+
+    h3{
+      margin:15px;
+      margin-bottom:0;
+      padding-right:80px;
+      line-height:1;
+
+      a{
+        color:#fff;
+        text-decoration: none;
+        font-size:18px;
+        text-transform:uppercase;
+        letter-spacing: 2px;
+        &:hover{text-decoration:underline;}
+      }
+    }
+
+    .instructor{
+      margin:0 15px;
+      color:#fff;
+      font-weight:200;
+      font-size:13px;
+      letter-spacing: 1px;
+      a{
+        color:$highlight;
+        font-weight:600;
+        text-decoration: none;
+        &:hover{text-decoration:underline;}
+      }
+    }
+
+    .instructor_title {
+      margin:0 15px;
+      color: #fff;
+      font-size: 10px;
+    }
+
+    .hours_left{
+      display:block;
+      color:#fff;
+      margin-top:60px;
+      width:100%;
+      text-align: center;
+      font-size:17px;
+      letter-spacing: 1px;
+      
+      a{
+        color:#fff;
+        text-decoration: none;
+        &:hover{text-decoration:underline;}
+      }
+
+      img{
+        margin-right:10px;
+        margin-top:-3px;
+      }
+    }
+
+    .price{
+      position:absolute;
+      right:20px;
+      bottom:15px;
+      color:#fff;
+      font-size:30px;
+    }
+
+    .rating{
+      position:absolute;
+      left:20px;
+      bottom:22px;
+      color:#fff;
+      font-size:12px;
+      letter-spacing: 1px;
+      img {margin-left: 10px;}
+    }
+
+    .vote{
+      width:100%;
+      padding-top:50px;
+      text-align: center;
+      line-height:1.5;
+      a{
+        color:#fff;
+        text-decoration: none;
+        font-size:17px;
+        letter-spacing: 1px;
+        &:hover{text-decoration:underline;}
+      }
+      .vote_hearts{
+        color:#fff;
+        font-size:26px;
+        padding-left:30px;
+        background: url('heart.png') no-repeat left center;
+        img{margin-top:-4px;}
+      }
+    }
+
+  }
+
+}
+
+#course-banner{
+  margin: 0 auto;
+  padding: 20px 15px;
+  width: 995px;
+  h1{
+    margin: 0;
+    font-size: 15px;
+    font-family: 'Lato', sans-serif;
+    letter-spacing: 1px;
+    font-weight: 600;
+    text-transform: uppercase;
+  
+    small{
+      font-size: 12px;
+      font-family: 'Merriweather', serif;
+      text-transform: none;
+      letter-spacing: normal;
+      margin-left: 3px;
+    }
+  }
+}
+
+// Tabs
+
+.tabs{
+
+    float:left;
+
+    a{
+        background:#fff;
+        color:#777;
+        float:left;
+        margin-right:2px;
+        margin-bottom:2px;
+        text-decoration: none;
+        padding:10px 15px;
+        text-transform: uppercase;
+        font-size:14px;
+        &:hover{
+            color:#000;
+        }
+        &.current{
+            color:$highlight;
+            margin-bottom:0;
+            border-bottom:2px solid #fff;
+        }
+    }
+
+}
+
+.tab_area{
+    display:none;
+}

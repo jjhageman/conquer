@@ -1,4 +1,40 @@
-<div class="page-header">
-  <h1>Courses</h1>
+<style>body{background:white;}</style>
+
+<script>
+$(document).ready(function(){
+    $('.course_thumb').hover(function(){
+        $(this).find('.meta').stop().animate({top:0},200);
+    },function(){
+        $(this).find('.meta').stop().animate({top:185},200);
+    });
+})
+</script>
+
+<div id="page_header">
+    <div class="container clearfix">
+        <h1>Choose your favourite fields</h1>
+        <div id="favourites">
+            <a href="#" id="all_courses" class="current">All</a>
+            <a href="#" id="cinema">Cinema</a>
+            <a href="#" id="sport">Sport</a>
+            <a href="#" id="music">Music</a>
+            <a href="#" id='photography'>Photography</a>
+            <a href="#" id="business">Business</a>
+            <a href="#" id="engineering">Engineering</a>
+        </div>
+    </div>
 </div>
-<%= render @courses %>
+
+<div class="container" id="courses_index">
+
+    <h2 class="section_header"><span>Open Classes</span></h2>
+
+    <%= render @courses %>
+
+    <div class="clearfix"></div>
+
+    <h2 class="section_header"><span>Comming Soon</span></h2>
+
+    <%= render partial: 'preorder', collection: @preorders %>
+
+</div>

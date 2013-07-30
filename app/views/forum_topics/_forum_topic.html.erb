@@ -1,11 +1,11 @@
   <tr>
     <td>
-      <h5>
+      <h4>
         <% if forum_topic.pinned? %>
           <span title="Pinned by instructor" class="icon-pushpin"></span>
         <% end %>
         <%= link_to forum_topic.subject, forum_topic_path(@course, @forum, forum_topic)%>
-      </h5>
+      </h4>
       <% if forum_topic.last_post_at %>
         <p>
           <% if forum_topic.instructor_replied? %> 

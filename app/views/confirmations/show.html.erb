@@ -1,8 +1,7 @@
-<div class="page-header">
-</div>
 
-<h2>You're almost done! Now create a password to securely access your account.</h2>
+<h2 id="almost_done">You're almost done! Now create a password to securely access your account.</h2>
 
+<div id="board_user">
 <%= form_for(resource, :as => resource_name, :url => confirm_path, html: {class: 'form-horizontal'}) do |f| %>
   <%= devise_error_messages! %>
 
@@ -29,5 +28,6 @@
 
   <%= f.hidden_field :confirmation_token %>
 
-  <%= f.button 'Confirm Account', class: 'btn btn-primary', data: {'loading-text' => 'Processing...'} %>
+  <%= f.button 'Confirm Account', class: 'button', data: {'loading-text' => 'Processing...'} %>
 <% end %>
+</div>

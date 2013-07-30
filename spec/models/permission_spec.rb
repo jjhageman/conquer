@@ -7,7 +7,7 @@ describe Promotion do
     let(:user) { FactoryGirl.create(:user) }
     subject { Permission.new(user) }
 
-    it { should_not allow(:forums, :new) }
+    it { should_not permit(:forums, :new) }
 
   end
 
@@ -15,6 +15,6 @@ describe Promotion do
     let(:user) { FactoryGirl.create(:admin) }
     subject { Permission.new(user) }
 
-    it { should allow(:forums, :new) }
+    it { should permit(:forums, :new) }
   end
 end
