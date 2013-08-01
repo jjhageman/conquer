@@ -1,43 +1,41 @@
 <div class="hero">
-  <h1></h1>
-  <div class="instructor">
-    <h3><%= @course.instructor_name %></h3>
+  <div class="container">
+    <h1></h1>
+    <div class="instructor">
+      <h3><%= @course.instructor_name %></h3>
+    </div>
   </div>
 </div>
 
-<div class="container-fluid">
-  <div class="row-fluid">
-    <div class="span9">
-      <h2><%= @course.instructor_name %> <small>teaches</small></h2>
-      <h3><%= @course.name %></h3>
-      <%= render partial: 'shared/video_player', locals: { video_player: '2361189644001'} %>
-      <h4>About the Class</h4>
-      <%= @course.description %>
-      <h4>About <%= @course.instructor_name %></h4>
-      <p><%= @course.instructor_description %></p>
-    </div>
-    <div class="span3">
+<div class="container">
 
-<% if user_signed_in? && @course.has_preordered_student?(current_user) %>
+  <div class="sidebar">
+
+    <% if user_signed_in? && @course.has_preordered_student?(current_user) %>
 
       <div class="well">
-        You have already pre-ordered this course. <%= link_to 'View your courses', user_root_path %>
-      </div>
+      You have already pre-ordered this course. <%= link_to 'View your courses', user_root_path %>
+  </div>
 
-    </div><!-- end span3 -->
-  </div><!-- end row-fluid -->
-</div><!-- end container-fluid -->
 
 <% else %>
 
-      <div class="well">
-        <em>Special promotional price!</em>
-        <h3><%= number_to_currency @course.price %></h3>
-        <%= link_to (@course.released? ? 'Take Course' : 'Pre-Order'), new_enrollment_path(@course), class: 'btn btn-primary' %>
-      </div>
+  <div class="well">
+  <em>Special promotional price!</em>
+  <h3><%= number_to_currency @course.price %></h3>
+  <%= link_to (@course.released? ? 'Take Course' : 'Pre-Order'), new_enrollment_path(@course), class: 'btn btn-primary' %>
+</div>
 
-    </div><!-- end span3 -->
-  </div><!-- end row-fluid -->
-</div><!-- end container-fluid -->
 
 <% end %>
+    </div><!-- end span3 -->
+  <div class="course-content">
+    <h2><%= @course.instructor_name %> <small>teaches</small></h2>
+    <h3><%= @course.name %></h3>
+    <%= render partial: 'shared/video_player', locals: { video_player: '2361189644001'} %>
+    <h4>About the Class</h4>
+    <%= @course.description %>
+    <h4>About <%= @course.instructor_name %></h4>
+    <p><%= @course.instructor_description %></p>
+  </div>
+</div><!-- end container-fluid -->

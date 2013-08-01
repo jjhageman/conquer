@@ -1,4 +1,6 @@
 class CoursesController < ApplicationController
+  layout 'course_preview'
+
   def index
     @courses = Course.all
   end
