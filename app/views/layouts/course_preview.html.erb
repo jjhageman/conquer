@@ -30,7 +30,7 @@
     </div>
   </div>
 
-  <div class="content">
+  <div class="container">
     <% flash.delete(:timedout).each do |key, msg| %>
       <div class="alert alert-<%= key == :notice ? "success" : "error" %>">
         <a class="close" data-dismiss="alert">x</a>

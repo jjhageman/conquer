@@ -1,3 +1,18 @@
+<script>
+$(document).ready(function(){
+    $('.rating_stars').each(function(){
+        $(this).raty({
+            number: 5,
+            starOff: '/assets/star_off.png',
+            starOn : '/assets/star_on.png',
+            score: $(this).data('rating'),
+            readOnly:true
+        });
+    });
+
+})
+</script>
+
 <div class="hero">
   <div class="container">
     <h2>Learn from the Chief Hostage Negotiator</h2>
@@ -14,11 +29,63 @@
   <div class="course_content">
     <div class="summary">
       <h5>What you will learn:</h5>
-      <p>Sint butcher freegan, direct trade labore fanny pack meggings Brooklyn farm to table readymade. Shabby chic fashion axe typewritter odio, sustainable esse banjo sint gentrify vinyl polaroid labore hella. Shabby chic fashion axe typewriter odio, sustainable esse banjo</p>
+      <div class="summary_text"><%= @course.description %></div>
     </div>
+
     <div id="video">
       <%=image_tag('video.jpg')%>
     </div>
+
+    <div id="chapters">
+      <div class="chapter">
+        <%= image_tag('chapter.png') %>
+        <h4><a href="#">Title of the course</a></h4>
+        <p>Maybe a little description right here.</p>
+      </div>
+      <div class="chapter">
+        <%= image_tag('chapter.png') %>
+        <h4><a href="#">Title of the course</a></h4>
+        <p>Maybe a little description right here.</p>
+      </div>
+      <div class="chapter">
+        <%= image_tag('chapter.png') %>
+        <h4><a href="#">Title of the course</a></h4>
+        <p>Maybe a little description right here.</p>
+      </div>
+      <div class="chapter">
+        <%= image_tag('chapter.png') %>
+        <h4><a href="#">Title of the course</a></h4>
+        <p>Maybe a little description right here.</p>
+      </div>
+      <div class="chapter">
+        <%= image_tag('chapter.png') %>
+        <h4><a href="#">Title of the course</a></h4>
+        <p>Maybe a little description right here.</p>
+      </div>
+      <div class="chapter">
+        <%= image_tag('chapter.png') %>
+        <h4><a href="#">Title of the course</a></h4>
+        <p>Maybe a little description right here.</p>
+      </div>
+    </div>
+
+    <div id="course_details" class="clearfix">
+      <h4>Details</h4>
+      <h5>Total <span class="highlight">12</span> hours to complete</h5>
+      <div class="hours">
+        <h6>6</h6>
+        <span>Hours Video</span>
+      </div>
+      <div class="projects">
+        <h6>2</h6>
+        <span>Projects</span>
+      </div>
+      <div class="documents">
+        <h6>4</h6>
+        <span>Documents</span>
+      </div>
+    </div>
+
   </div>
 
   <div class="course_sidebar">
@@ -31,7 +98,34 @@
         <p>including 12 hours of courses</p>
         <%= link_to (@course.released? ? 'Take Course' : 'Pre-Order'), new_enrollment_path(@course), class: 'buy_button' %>
       <% end %>
+      <span class="inscriptions">Only <span class="highlight">150</span> inscriptions left for this course</span>
     </div>
+
+    <div class="features">
+      <span class="feature" id="accesible"><span class="highlight">Accessible</span> Anywhere</span> 
+      <span class="feature" id="moneyback"><span class="highlight">100%</span> Moneyback Guarentee</span> 
+      <span class="feature" id="never_expires">Access <span class="highlight">Never</span> Expires</span> 
+      <span class="feature" id="interact"><span class="highlight">Interact</span> with your instructor</span> 
+    </div>
+
+    <div id="course_students" class="clearfix">
+      <span class="count"><span class="highlight">2230</span> Students are already taking this course</span>
+      <div class="avatars clearfix">
+        <%=image_tag('student.png')%>
+        <%=image_tag('student.png')%>
+        <%=image_tag('student.png')%>
+        <%=image_tag('student.png')%>
+        <%=image_tag('student.png')%>
+      </div>
+      <div class="rating"><span>Average Rating</span> <div class="rating_stars" data-rating="4"></div></div>
+      <a href="#" class="reviews">250 reviews</a>
+    </div>
+
+   <div id="meet_your_hero">
+     <%=image_tag('logo_small.png')%>
+     <p>Be the best student & meet your hero!</p>
+   </div> 
+
   </div>
 
 </div>
