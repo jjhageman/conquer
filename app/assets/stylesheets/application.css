@@ -24,6 +24,15 @@ body {
     margin:0 auto;
 }
 
+#main_content{
+    margin-top:30px;
+}
+
+.note{
+    font-style: italic;
+    color:#777;
+}
+
 .container:before,
 .container:after {
   display: table;

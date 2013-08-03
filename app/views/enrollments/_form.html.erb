@@ -1,38 +1,35 @@
+<div id="stripe_error">
+      <noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
+</div>
+
 <%= form_for @enrollment, url: enrollments_path, html: {id: 'enrollment', class: 'form-horizontal'} do |f| %>
   <fieldset>
 
   <% unless user_signed_in? %>
-    <legend>Account Information <small><%= link_to 'Already a member?', new_user_session_path %></small></legend>
+    <section>
+      <div class="section_header"><span>Account Information</span></div>
+      <%= render("shared/form_errors", :target => @user) if @user %>
 
-    <%= render("shared/form_errors", :target => @user) if @user %>
-
-    <%= fields_for :user do |user_fields| %>
+      <%= fields_for :user do |user_fields| %>
 
       <div class="control-group">
       <%= user_fields.label :email, class: 'control-label' %>
         <div class="controls">
-          <%= user_fields.text_field :email, autofocus: true %>
+          <%= user_fields.email_field :email, autofocus: true, id: "email_field" %>
         </div>
       </div>
 
     <% end %>
+
+      <%= link_to 'Already a member?', new_user_session_path, :id=>"already_member" %>
+    </section>
   <% end %>
 
-    <legend>Payment Information </legend>
+  <section id="payment_information" class="clearfix">
 
-    <%= render "shared/form_errors", :target => @enrollment %>
+    <div class="section_header"><span>Payment Information</span></div>
 
-    <div id="stripe_error">
-      <noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
-    </div>
-
-    <% unless @course.released? %> 
-    <div class="alert alert-info">
-      <strong>Don't worry.</strong>Your card will not be charged until the course is released.
-    </div>
-    <% end %>
-
-    <div class="control-group">
+    <div class="control-group" id="cards">
       <div class="controls">
         <%= image_tag 'visa.png' %>
         <%= image_tag 'mastercard.png' %>
@@ -41,14 +38,14 @@
       </div>
     </div>
 
-    <div class="control-group">
+    <div class="control-group" id="credit_card_number">
       <%= label_tag :card_number, "Credit Card Number ", class: 'control-label' %>
       <div class="controls">
         <%= text_field_tag :card_number, nil, name: nil, class: 'span2', data: {stripe: 'number'} %>
       </div>
     </div>
 
-    <div class="control-group">
+    <div class="control-group" id="security_number">
       <%= label_tag :card_code, "Security Code (CVV)", class: 'control-label' %>
       <div class="controls">
         <%= text_field_tag :card_code, nil, name: nil, class: 'span1', data: {stripe: 'cvc'}%>
@@ -63,13 +60,21 @@
         <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year", class: 'span2', data: {stripe: 'exp-year'}}%>
       </div>
     </div>
+    
+    <%= render "shared/form_errors", :target => @enrollment %>
+
+  </section>
+
+    <%= f.button "Complete #{(@course.released? ? 'Purchase' : 'Pre-Order')}", id: 'submitBtn', class: 'button', data: {'loading-text' => 'Processing...'} %>
+
+    <% unless @course.released? %> 
+      <span class="note"><strong>Don't worry.</strong>Your card will not be charged until the course is released.</span>
+    <% end %>
 
     <%= f.hidden_field :course_id %>
     <%= f.hidden_field :stripe_token %>
     <%= f.hidden_field :promotion_id %>
     <%= f.hidden_field :course_price %>
-
-    <%= f.button "Complete #{(@course.released? ? 'Purchase' : 'Pre-Order')}", id: 'submitBtn', class: 'btn btn-primary', data: {'loading-text' => 'Processing...'} %>
 
   </fieldset>
 <% end %>

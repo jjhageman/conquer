@@ -3,6 +3,66 @@
   <script type="text/javascript">Stripe.setPublishableKey("<%= STRIPE_PUBLIC_KEY %>");</script>
 <% end %>
 
-<h3 id="preOrderFormLabel"><%= "#{'Pre-' unless @course.released?}Register: #{@course.name}" %></h3>
+<div class="container" id="main_content">
 
-<%= render 'form' %>
+  <div class="course_content">
+    
+    <div id="enroll">
+       <h1 id="preOrderFormLabel"><%= "#{'Pre-' unless @course.released?}Register: #{@course.name}" %></h1>
+       <%= render 'form' %>
+    </div>
+
+  </div>
+
+  <div class="course_sidebar">
+    <div class="buy_course">
+        <span class="price"><%= number_to_currency(@course.price, :unit => "$") %></span>
+        <p>including 12 hours of courses</p>
+        <span class="inscriptions">Only <span class="highlight">150</span> inscriptions left for this course</span>
+    </div>
+
+    <div class="features">
+      <span class="feature" id="accesible"><span class="highlight">Accessible</span> Anywhere</span> 
+      <span class="feature" id="moneyback"><span class="highlight">100%</span> Moneyback Guarentee</span> 
+      <span class="feature" id="never_expires">Access <span class="highlight">Never</span> Expires</span> 
+      <span class="feature" id="interact"><span class="highlight">Interact</span> with your instructor</span> 
+    </div>
+
+    <div id="course_students" class="clearfix">
+      <span class="count"><span class="highlight">2230</span> Students are already taking this course</span>
+      <div class="avatars clearfix">
+        <%=image_tag('student.png')%>
+        <%=image_tag('student.png')%>
+        <%=image_tag('student.png')%>
+        <%=image_tag('student.png')%>
+        <%=image_tag('student.png')%>
+      </div>
+      <div class="rating"><span>Average Rating</span> <div class="rating_stars" data-rating="4"></div></div>
+      <a href="#" class="reviews">250 reviews</a>
+    </div>
+
+   <div id="meet_your_hero">
+     <%=image_tag('logo_small.png')%>
+     <p>Be the best student & meet your hero!</p>
+   </div> 
+
+  </div>
+
+</div>
+
+<footer class="clearfix">
+  <div class="top">
+    <div class="container">
+      <%=image_tag('copyright.png', :class=>"copyright")%>
+      <div id="footer_nav">
+        <a href="#">Terms of Use</a>
+        <a href="#">Private Policy</a>
+        <a href="#">About Us</a>
+        <a href="#">Contact Us</a>
+      </div>
+    </div>
+    <div class="container">
+      <%=image_tag('credentials.png', :id=>"credentials")%>
+    </div>
+  </div>
+</footer>
