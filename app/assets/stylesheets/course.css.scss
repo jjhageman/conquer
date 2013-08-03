@@ -221,15 +221,6 @@ body { background-color: #f0f0ef; }
         }
       }
 
-      label{
-        text-transform: uppercase;
-        font-size:14px;
-        font-weight:400;
-        display:block;
-        letter-spacing: 1px;
-        padding-bottom:10px;
-      }
-
       #already_member{
         color:#999;
         float:right;
@@ -267,14 +258,6 @@ body { background-color: #f0f0ef; }
 
       .button{
         margin-top:30px;
-      }
-
-      input[type="email"],input[type="text"]{
-        border:none;
-        box-shadow:0 1px 3px #e5e5e5;
-        padding:15px;
-        border-radius:3px;
-        margin-bottom:20px;
       }
 
       #email_field{

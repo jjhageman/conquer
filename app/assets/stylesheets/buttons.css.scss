@@ -1,5 +1,23 @@
 @import 'mixins';
 
+label{
+    text-transform: uppercase;
+    font-size:14px;
+    font-weight:400;
+    display:block;
+    letter-spacing: 1px;
+    padding-bottom:10px;
+}
+
+input[type="email"],input[type="text"], input[type="password"]{
+    border:none;
+    box-shadow:0 1px 3px #e5e5e5;
+    padding:15px;
+    border-radius:3px;
+    outline: none;
+    margin-bottom:20px;
+}
+
 .button{
     background:$highlight;
     color:#fff;
