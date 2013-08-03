@@ -21,12 +21,34 @@
     </div>
   </div>
 
+  <div class="course_sidebar">
+    <div class="buy_course">
+      <% if user_signed_in? && @course.has_preordered_student?(current_user) %>
+        <p>You have already pre-ordered this course.</p>
+        <%= link_to "View your courses", user_root_path, :class=>"buy_button" %>
+      <% else %>
+          <span class="price"><%= number_to_currency(@course.price, :unit => "$") %></span>
+        <p>including 12 hours of courses</p>
+        <%= link_to (@course.released? ? 'Take Course' : 'Pre-Order'), new_enrollment_path(@course), class: 'buy_button' %>
+      <% end %>
+    </div>
+  </div>
+
 </div>
 
-<footer>
+<footer class="clearfix">
   <div class="top">
     <div class="container">
-      
+      <%=image_tag('copyright.png', :class=>"copyright")%>
+      <div id="footer_nav">
+        <a href="#">Terms of Use</a>
+        <a href="#">Private Policy</a>
+        <a href="#">About Us</a>
+        <a href="#">Contact Us</a>
+      </div>
+    </div>
+    <div class="container">
+      <%=image_tag('credentials.png', :id=>"credentials")%>
     </div>
   </div>
 </footer>
