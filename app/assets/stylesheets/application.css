@@ -17,3 +17,15 @@
 body {
   position: relative;
 }
+
+.container{
+    width:965px;
+    margin:0 auto;
+}
+
+.container:before,
+.container:after {
+  display: table;
+  content: " ";
+  clear: both;
+}

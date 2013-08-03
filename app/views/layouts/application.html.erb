@@ -5,6 +5,7 @@
     <title>Conquer</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
+    <link href='http://fonts.googleapis.com/css?family=Merriweather:400,300,400italic,700,900,700italic' rel='stylesheet' type='text/css'>
     <%= stylesheet_link_tag    "application", :media => "all" %>
     <%= javascript_include_tag "application" %>
     <%= yield(:head) %>
@@ -24,7 +25,7 @@
   <div id="header">
     <div class="container">
       <h1 id="logo">
-        <%= link_to image_tag('master_class.png', alt: 'Master Class'), user_signed_in? ? user_root_path : root_path %>
+        <%= link_to image_tag('logo.png', alt: 'Master Class'), user_signed_in? ? user_root_path : root_path %>
       </h1>
       <%= render 'layouts/navigation' %>
     </div>

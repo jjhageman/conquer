@@ -1,31 +1,77 @@
 // Place all the styles related to the Course controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import 'mixins';
+
 body { background-color: #f0f0ef; }
 
-/** HEADER **/
-#header { padding: 25px 0; background-color: #fff;
-  h1#logo { float: left; display: inline-block; margin: 0; padding: 0; }
-  .primary-nav { float: right;
-    a { padding: 15px; color: #000; display: inline-block; text-transform: uppercase; font-weight: bold; font-size: 12px; }
-    a:link, a:visited { text-decoration: none; }
-    a:hover, a:active { text-decoration: underline; }
-    a:last-child { padding-right: 0; }
+// Course Hero Image
+.hero{
+  width:100%;
+  height:365px;
+  background:#000 url('hero.png') no-repeat center;
+  background-size:cover;
+  margin-bottom:30px;
+
+  h2{
+    color:#fff;
+    text-transform: uppercase;
+    font-size:46px;
+    width:500px;
+    margin-top:55px;
+    line-height:1.2;
+    letter-spacing: 2px;
   }
+
+  .instructor{
+
+    .avatar{
+      float:left;
+      margin-right:10px;
+      font-weight:300;
+      border:3px solid #fff;
+    }
+
+    h3{
+      margin:0;
+      color:$highlight;
+      font-size:17px;
+      padding-top:7px;
+    }
+
+    h4{
+      margin:0;
+      color:#fff;
+      font-size:13px;
+      text-transform: uppercase;
+    }
+
+  }
+
+}
+// End Course Hero Image
+
+.course_content{
+  width:610px;
+  padding:15px;
+  background:white;
+  float:left;
+
+  .summary{
+    padding:20px;
+    margin-bottom:15px;
+    background:#F2F2F1;
+    font-family: 'Merriweather', serif;
+
+    h5{
+      margin:0;
+      font-size:20px;
+    }
+
+  }
+
 }
 
-.container { width: 978px; margin: auto; }
-.container:before,
-.container:after {
-  display: table;
-  content: " ";
-  clear: both;
-}
-
-/*COURSE*/
-.hero { background-color: #000; color: #FFF; }
-.course-content { margin-left: 175px; max-width: 600px; background-color: #fff; }
-.sidebar { width: 145px; float: right;  background-color: #fff; }
 
 [class^="icon-"],
 [class*=" icon-"] {

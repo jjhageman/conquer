@@ -1,41 +1,32 @@
 <div class="hero">
   <div class="container">
-    <h1></h1>
+    <h2>Learn from the Chief Hostage Negotiator</h2>
     <div class="instructor">
+      <%=image_tag('avatar.png', :class=>"avatar")%>
       <h3><%= @course.instructor_name %></h3>
+      <h4>Former Chief FBI Hostage Negotiator</h4>
     </div>
   </div>
 </div>
 
 <div class="container">
 
-  <div class="sidebar">
-
-    <% if user_signed_in? && @course.has_preordered_student?(current_user) %>
-
-      <div class="well">
-      You have already pre-ordered this course. <%= link_to 'View your courses', user_root_path %>
+  <div class="course_content">
+    <div class="summary">
+      <h5>What you will learn:</h5>
+      <p>Sint butcher freegan, direct trade labore fanny pack meggings Brooklyn farm to table readymade. Shabby chic fashion axe typewritter odio, sustainable esse banjo sint gentrify vinyl polaroid labore hella. Shabby chic fashion axe typewriter odio, sustainable esse banjo</p>
+    </div>
+    <div id="video">
+      <%=image_tag('video.jpg')%>
+    </div>
   </div>
 
-
-<% else %>
-
-  <div class="well">
-  <em>Special promotional price!</em>
-  <h3><%= number_to_currency @course.price %></h3>
-  <%= link_to (@course.released? ? 'Take Course' : 'Pre-Order'), new_enrollment_path(@course), class: 'btn btn-primary' %>
 </div>
 
-
-<% end %>
-    </div><!-- end span3 -->
-  <div class="course-content">
-    <h2><%= @course.instructor_name %> <small>teaches</small></h2>
-    <h3><%= @course.name %></h3>
-    <%= render partial: 'shared/video_player', locals: { video_player: '2361189644001'} %>
-    <h4>About the Class</h4>
-    <%= @course.description %>
-    <h4>About <%= @course.instructor_name %></h4>
-    <p><%= @course.instructor_description %></p>
+<footer>
+  <div class="top">
+    <div class="container">
+      
+    </div>
   </div>
-</div><!-- end container-fluid -->
+</footer>

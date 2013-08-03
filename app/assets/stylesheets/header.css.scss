@@ -1,0 +1,54 @@
+#header{
+
+    background:white;
+    height:95px;
+
+    #logo{
+        float:left;
+        margin:0;
+        margin-top:26px;
+        img{float:left;}
+    }
+
+    #primary-nav{
+        float:right;
+        margin-top:35px;
+
+        #toggle_search{
+            width:15px;
+            height:15px;
+            display: block;
+            float:left;
+            margin-top:4px;
+            background:url('search.png') no-repeat center;
+        }
+
+        a{
+            font-family: 'Nunito', sans-serif !important;
+            margin-left:35px;
+            color:#000;
+            font-size:12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-decoration: none;
+            font-weight:bold;
+        }
+
+        nav{
+            float:left;
+        }
+
+        #primary_nav_menu{
+            float:left;
+
+            .toggle{
+                padding:0;
+                padding-right:25px;
+                background:url('menu_icon.png') no-repeat right 0px;
+            }
+
+        }
+
+    }
+
+}
