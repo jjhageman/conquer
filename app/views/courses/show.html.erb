@@ -15,11 +15,11 @@ $(document).ready(function(){
 
 <div class="hero">
   <div class="container">
-    <h2>Learn from the Chief Hostage Negotiator</h2>
+    <h2><%= @course.tagline %></h2>
     <div class="instructor">
       <%=image_tag('avatar.png', :class=>"avatar")%>
       <h3><%= @course.instructor_name %></h3>
-      <h4>Former Chief FBI Hostage Negotiator</h4>
+      <h4><%= @course.instructor_title %></h4>
     </div>
   </div>
 </div>
@@ -38,43 +38,14 @@ $(document).ready(function(){
     </div>
 
     <div id="chapters">
-      <div class="chapter">
-        <%= image_tag('chapter.png') %>
-        <h4><a href="#">Title of the course</a></h4>
-        <p>Maybe a little description right here.</p>
-      </div>
-      <div class="chapter">
-        <%= image_tag('chapter.png') %>
-        <h4><a href="#">Title of the course</a></h4>
-        <p>Maybe a little description right here.</p>
-      </div>
-      <div class="chapter">
-        <%= image_tag('chapter.png') %>
-        <h4><a href="#">Title of the course</a></h4>
-        <p>Maybe a little description right here.</p>
-      </div>
-      <div class="chapter">
-        <%= image_tag('chapter.png') %>
-        <h4><a href="#">Title of the course</a></h4>
-        <p>Maybe a little description right here.</p>
-      </div>
-      <div class="chapter">
-        <%= image_tag('chapter.png') %>
-        <h4><a href="#">Title of the course</a></h4>
-        <p>Maybe a little description right here.</p>
-      </div>
-      <div class="chapter">
-        <%= image_tag('chapter.png') %>
-        <h4><a href="#">Title of the course</a></h4>
-        <p>Maybe a little description right here.</p>
-      </div>
+      <%= render @course.chapters %>
     </div>
 
     <div id="course_details" class="clearfix">
       <h4>Details</h4>
-      <h5>Total <span class="highlight">12</span> hours to complete</h5>
+      <h5>Total <span class="highlight"><%= @course.total_hours %></span> hours to complete</h5>
       <div class="hours">
-        <h6>6</h6>
+        <h6><%= @course.chapters.count %></h6>
         <span>Hours Video</span>
       </div>
       <div class="projects">
@@ -96,7 +67,7 @@ $(document).ready(function(){
         <%= link_to "View your courses", user_root_path, :class=>"buy_button" %>
       <% else %>
           <span class="price"><%= number_to_currency(@course.price, :unit => "$") %></span>
-        <p>including 12 hours of courses</p>
+          <p>including <%= @course.total_hours %> hours of courses</p>
         <%= link_to (@course.released? ? 'Take Course' : 'Pre-Order'), new_enrollment_path(@course), class: 'buy_button' %>
       <% end %>
       <span class="inscriptions">Only <span class="highlight">150</span> inscriptions left for this course</span>
