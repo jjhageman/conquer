@@ -1,18 +1,3 @@
-<script>
-$(document).ready(function(){
-    $('.rating_stars').each(function(){
-        $(this).raty({
-            number: 5,
-            starOff: '/assets/star_off.png',
-            starOn : '/assets/star_on.png',
-            score: $(this).data('rating'),
-            readOnly:true
-        });
-    });
-
-})
-</script>
-
 <div class="hero">
   <div class="container">
     <h2><%= @course.tagline %></h2>
@@ -38,7 +23,7 @@ $(document).ready(function(){
     </div>
 
     <div id="chapters">
-      <%= render @course.chapters %>
+      <%= render @course.chapters.order("ID ASC")  %>
     </div>
 
     <div id="course_details" class="clearfix">

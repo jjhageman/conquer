@@ -1,12 +1,104 @@
-<div class="page-header">
-  <h4 class="pull-right">by <%= @course.instructor_name %></h4>
-  <h1><%= @course.name %></h1>
+<div id="video_container" class="container">
+    <h1><%= @course.name %></h1>
+    <span class="instructor">by <%= @course.instructor_name %></span>
+    <%= render partial: 'shared/playlist_player', locals: { video_list: '2360128659001'} %>
 </div>
 
-<%= render partial: 'shared/playlist_player', locals: { video_list: '2360128659001'} %>
+<div class="container" id="main_content">
 
-<div id="rating" class="well well-small">
-  <span><%= @course.rated_by?(current_user) ? 'Your rating' : 'Rate this course' %>:</span> <div data-courseid="<%= @course.id %>" data-rateit-resetable="false" data-rateit-value="<%= @rating %>" class="rateit"></div>
+    <div id="rating" class="well well-small">
+        <span><%= @course.rated_by?(current_user) ? 'Your rating' : 'Rate this course' %></span> <div data-courseid="<%= @course.id %>" data-rateit-resetable="false" data-rateit-value="<%= @rating %>" class="rateit"></div>
+    </div>
+
+    <div class="tabs" id="course_tabs">
+        <a href="#chapters" class="current">Chapters</a>
+        <a href="#materials">Materials</a>
+        <a href="#forum_tab">Forums</a>
+        <a href="#description">Description</a>
+    </div>
+
+    <div class="clearfix"></div>
+
+  <div class="course_content" id="course_content">
+    
+    <div id="chapters" class="tab_area">
+      <%= render @course.chapters.order("ID ASC") %>
+    </div>
+
+    <div id="materials" class="tab_area">
+        Materials Tab
+    </div>
+
+    <div id="forum_tab" class="tab_area">
+        Forums Tab
+    </div>
+
+    <div id="description" class="tab_area">
+        <%= @course.description %>
+    </div>
+
+  </div>
+
+  <div class="course_sidebar">
+    
+    <div id="course_instructor" class="grey_box clearfix">
+        <%=image_tag('avatar.png', :class=>"avatar")%>
+        <span class="name"><%= @course.instructor_name %></span>
+        <span class="title"><%= @course.instructor_title %></span>
+    </div>
+
+    <div class="latest_posts grey_box">
+        <h4>Latest Posts</h4>
+        <div class="lastest_post clearfix">
+            <%=image_tag('student.png')%>
+            <a href="#" class="name">Thomas Cullen</a>
+            <a href="#" class="title">This is the title of the post</a>
+        </div>
+        <div class="lastest_post clearfix">
+            <%=image_tag('student.png')%>
+            <a href="#" class="name">Thomas Cullen</a>
+            <a href="#" class="title">This is the title of the post</a>
+        </div>
+        <div class="lastest_post clearfix">
+            <%=image_tag('student.png')%>
+            <a href="#" class="name">Thomas Cullen</a>
+            <a href="#" class="title">This is the title of the post</a>
+        </div>
+    </div>
+
+    <div id="course_students" class="clearfix">
+      <span class="count"><span class="highlight">2230</span> Students are already taking this course</span>
+      <div class="avatars clearfix">
+        <%=image_tag('student.png')%>
+        <%=image_tag('student.png')%>
+        <%=image_tag('student.png')%>
+        <%=image_tag('student.png')%>
+        <%=image_tag('student.png')%>
+      </div>
+    </div>
+
+   <div id="meet_your_hero">
+     <%=image_tag('logo_small.png')%>
+     <p>Be the best student & meet your hero!</p>
+   </div> 
+
+  </div>
+
 </div>
 
-<%= link_to 'Class Forum', forums_path(@course), class: 'btn btn-info' %>
+<footer class="clearfix">
+  <div class="top">
+    <div class="container">
+      <%=image_tag('copyright.png', :class=>"copyright")%>
+      <div id="footer_nav">
+        <a href="#">Terms of Use</a>
+        <a href="#">Private Policy</a>
+        <a href="#">About Us</a>
+        <a href="#">Contact Us</a>
+      </div>
+    </div>
+    <div class="container">
+      <%=image_tag('credentials.png', :id=>"credentials")%>
+    </div>
+  </div>
+</footer>
