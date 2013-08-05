@@ -33,25 +33,25 @@ eos
 )
 
 Chapter.create(
-  name: 'Chgapter 1',
+  name: 'Chapter 1',
   description: 'Material for chapter 1',
   course_id: course1.id
 )
 
 Chapter.create(
-  name: 'Chgapter 2',
+  name: 'Chapter 2',
   description: 'Material for chapter 2',
   course_id: course1.id
 )
 
 Chapter.create(
-  name: 'Chgapter 3',
+  name: 'Chapter 3',
   description: 'Material for chapter 3',
   course_id: course1.id
 )
 
 Chapter.create(
-  name: 'Chgapter 4',
+  name: 'Chapter 4',
   description: 'Material for chapter 4',
   course_id: course1.id
 )
@@ -99,25 +99,25 @@ eos
   start_date: Time.now + 2.months)
 
 Chapter.create(
-  name: 'Chgapter 1',
+  name: 'Chapter 1',
   description: 'Material for chapter 1',
   course_id: course2.id
 )
 
 Chapter.create(
-  name: 'Chgapter 2',
+  name: 'Chapter 2',
   description: 'Material for chapter 2',
   course_id: course2.id
 )
 
 Chapter.create(
-  name: 'Chgapter 3',
+  name: 'Chapter 3',
   description: 'Material for chapter 3',
   course_id: course2.id
 )
 
 Chapter.create(
-  name: 'Chgapter 4',
+  name: 'Chapter 4',
   description: 'Material for chapter 4',
   course_id: course2.id
 )

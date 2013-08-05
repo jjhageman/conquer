@@ -80,3 +80,33 @@ button.close {
   border: 0;
   -webkit-appearance: none;
 }
+h1 small,
+.h1 small {
+  font-size: 24px;
+}
+h2 small,
+.h2 small {
+  font-size: 18px;
+}
+h3 small,
+.h3 small,
+h4 small,
+.h4 small {
+  font-size: 14px;
+}
+h1 small,
+h2 small,
+h3 small,
+h4 small,
+h5 small,
+h6 small,
+.h1 small,
+.h2 small,
+.h3 small,
+.h4 small,
+.h5 small,
+.h6 small {
+  font-weight: normal;
+  line-height: 1;
+  color: #999999;
+}
