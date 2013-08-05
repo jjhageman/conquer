@@ -2,7 +2,7 @@
   <div class="container">
     <h2><%= @course.tagline %></h2>
     <div class="instructor">
-      <%=image_tag('avatar.png', :class=>"avatar")%>
+      <%= image_tag @course.instructor_image_url, :class=>"avatar" %>
       <h3><%= @course.instructor_name %></h3>
       <h4><%= @course.instructor_title %></h4>
     </div>
@@ -34,11 +34,11 @@
         <span>Hours Video</span>
       </div>
       <div class="projects">
-        <h6>2</h6>
+        <h6><%= @course.project_count %></h6>
         <span>Projects</span>
       </div>
       <div class="documents">
-        <h6>4</h6>
+        <h6><%= @course.document_count %></h6>
         <span>Documents</span>
       </div>
     </div>
@@ -69,10 +69,10 @@
       <span class="count"><span class="highlight">2230</span> Students are already taking this course</span>
       <div class="avatars clearfix">
         <%=image_tag('student.png')%>
-        <%=image_tag('student.png')%>
-        <%=image_tag('student.png')%>
-        <%=image_tag('student.png')%>
-        <%=image_tag('student.png')%>
+        <%=image_tag('student2.png')%>
+        <%=image_tag('student3.png')%>
+        <%=image_tag('student4.png')%>
+        <%=image_tag('student5.png')%>
       </div>
       <div class="rating"><span>Average Rating</span> <div class="rating_stars" data-rating="4"></div></div>
       <a href="#" class="reviews">250 reviews</a>
@@ -84,22 +84,4 @@
    </div> 
 
   </div>
-
 </div>
-
-<footer class="clearfix">
-  <div class="top">
-    <div class="container">
-      <%=image_tag('copyright.png', :class=>"copyright")%>
-      <div id="footer_nav">
-        <a href="#">Terms of Use</a>
-        <a href="#">Private Policy</a>
-        <a href="#">About Us</a>
-        <a href="#">Contact Us</a>
-      </div>
-    </div>
-    <div class="container">
-      <%=image_tag('credentials.png', :id=>"credentials")%>
-    </div>
-  </div>
-</footer>

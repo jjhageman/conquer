@@ -54,6 +54,14 @@ body { background-color: #f0f0ef; }
 
 }
 // End Course Hero Image
+.full_content{ 
+  padding:15px;
+  background-color:#FFF;
+  .body_content {
+    background: #F2F2F1;
+    padding: 20px;
+  }
+}
 
 .course_content{
   width:610px;
@@ -735,3 +743,4 @@ body { background-color: #f0f0ef; }
   }
 
 }
+

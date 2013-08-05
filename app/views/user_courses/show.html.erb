@@ -42,7 +42,7 @@
   <div class="course_sidebar">
     
     <div id="course_instructor" class="grey_box clearfix">
-        <%=image_tag('avatar.png', :class=>"avatar")%>
+        <%= image_tag @course.instructor_image_url, :class=>"avatar" %>
         <span class="name"><%= @course.instructor_name %></span>
         <span class="title"><%= @course.instructor_title %></span>
     </div>
@@ -55,12 +55,12 @@
             <a href="#" class="title">This is the title of the post</a>
         </div>
         <div class="lastest_post clearfix">
-            <%=image_tag('student.png')%>
+            <%=image_tag('student2.png')%>
             <a href="#" class="name">Thomas Cullen</a>
             <a href="#" class="title">This is the title of the post</a>
         </div>
         <div class="lastest_post clearfix">
-            <%=image_tag('student.png')%>
+            <%=image_tag('student3.png')%>
             <a href="#" class="name">Thomas Cullen</a>
             <a href="#" class="title">This is the title of the post</a>
         </div>
@@ -70,10 +70,10 @@
       <span class="count"><span class="highlight">2230</span> Students are already taking this course</span>
       <div class="avatars clearfix">
         <%=image_tag('student.png')%>
-        <%=image_tag('student.png')%>
-        <%=image_tag('student.png')%>
-        <%=image_tag('student.png')%>
-        <%=image_tag('student.png')%>
+        <%=image_tag('student2.png')%>
+        <%=image_tag('student3.png')%>
+        <%=image_tag('student4.png')%>
+        <%=image_tag('student5.png')%>
       </div>
     </div>
 
@@ -85,5 +85,3 @@
   </div>
 
 </div>
-
-<%= render "/footer" %>

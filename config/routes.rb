@@ -31,6 +31,7 @@ Conquer::Application.routes.draw do
   namespace :admin do
     get '/' => 'courses#index', as: :root
     resources :courses do
+      resources :chapters
       resources :promotions
       resources :forums
     end
