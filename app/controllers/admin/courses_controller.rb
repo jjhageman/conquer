@@ -26,7 +26,7 @@ module Admin
     end
 
     def update
-      @course = Course.find(params[:id])
+      @course = Course.find_by_url(params[:id])
     
       if @course.update_attributes(params[:course])
         redirect_to admin_course_path(@course), notice: 'Chapter was successfully updated.'
