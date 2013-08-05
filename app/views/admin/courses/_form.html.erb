@@ -39,7 +39,7 @@
   <div class="control-group">
     <%= f.label :image, class: 'control-label' %>
     <div class="controls">
-      <%= image_tag(@chapter.image_url) if @chapter.image? %>
+      <%= image_tag(@course.image_url) if @course.image? %>
       <%= f.file_field :image %>
       <%= f.hidden_field :image_cache %>
     </div>
@@ -48,7 +48,7 @@
   <div class="control-group">
     <%= f.label :hero_image, class: 'control-label' %>
     <div class="controls">
-      <%= image_tag(@chapter.hero_image_url) if @chapter.hero_image? %>
+      <%= image_tag(@course.hero_image_url) if @course.hero_image? %>
       <%= f.file_field :hero_image %>
       <%= f.hidden_field :hero_image_cache %>
     </div>
@@ -78,7 +78,7 @@
   <div class="control-group">
     <%= f.label :instructor_image, class: 'control-label' %>
     <div class="controls">
-      <%= image_tag(@chapter.instructor_image_url) if @chapter.instructor_image? %>
+      <%= image_tag(@course.instructor_image_url) if @course.instructor_image? %>
       <%= f.file_field :instructor_image %>
       <%= f.hidden_field :instructor_image_cache %>
     </div>
