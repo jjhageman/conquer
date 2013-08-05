@@ -9,6 +9,13 @@
   </div>
 
   <div class="control-group">
+    <%= f.label :tagline, class: 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :tagline %>
+    </div>
+  </div>
+
+  <div class="control-group">
     <%= f.label :description, class: 'control-label' %>
     <div class="controls">
       <%= f.text_area :description %>
@@ -23,6 +30,13 @@
   </div>
 
   <div class="control-group">
+    <%= f.label :total_hours, class: 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :total_hours %>
+    </div>
+  </div>
+
+  <div class="control-group">
     <%= f.label :instructor_name, class: 'control-label' %>
     <div class="controls">
       <%= f.text_field :instructor_name %>
@@ -30,16 +44,24 @@
   </div>
 
   <div class="control-group">
-    <%= f.label :instructor_name, class: 'control-label' %>
+    <%= f.label :instructor_title, class: 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :instructor_title %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :instructor_description, class: 'control-label' %>
     <div class="controls">
       <%= f.text_area :instructor_description %>
     </div>
   </div>
 
   <div class="control-group">
-    <%= f.label :released, class: 'control-label' %>
     <div class="controls">
-      <%= f.check_box :released %>
+      <%= f.label :released, class: 'checkbox' do %>
+        <%= f.check_box :released %> Released
+      <% end %>
     </div>
   </div>
 

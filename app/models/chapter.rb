@@ -3,7 +3,7 @@ class Chapter < ActiveRecord::Base
 
   mount_uploader :image, ChapterImageUploader
 
-  attr_accessible :description, :image, :name, :video_id, :course_id
+  attr_accessible :description, :image, :image_cache, :name, :video_id, :course_id
 
   validates :name, presence: true
 end

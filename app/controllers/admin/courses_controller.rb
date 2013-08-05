@@ -20,5 +20,9 @@ module Admin
         render 'new'
       end
     end
+
+    def edit
+      @course = Course.find_by_url(params[:id])
+    end
   end
 end
