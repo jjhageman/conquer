@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130804003055) do
+ActiveRecord::Schema.define(:version => 20130805033829) do
 
   create_table "alternatives", :force => true do |t|
     t.string   "which"
@@ -55,6 +55,8 @@ ActiveRecord::Schema.define(:version => 20130804003055) do
     t.integer  "total_hours"
     t.string   "playlist_id"
     t.string   "instructor_title"
+    t.integer  "project_count"
+    t.integer  "document_count"
   end
 
   add_index "courses", ["url"], :name => "index_courses_on_url"

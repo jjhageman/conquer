@@ -27,10 +27,17 @@ module Admin
       @chapter = Chapter.find(params[:id])
     
       if @chapter.update_attributes(params[:chapter])
-        redirect_to(admin_course_path(@course), notice: 'Chapter was successfully updated.')
+        redirect_to admin_course_path(@course), notice: 'Chapter was successfully updated.'
       else
         render 'edit'
       end
+    end
+
+    def destroy
+      @chapter = Chapter.find(params[:id])
+      @chapter.destroy
+
+      redirect_to admin_course_path(@course), notice: 'Chapter was successfully deleted.'
     end
 
     private

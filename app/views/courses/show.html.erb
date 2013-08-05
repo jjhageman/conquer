@@ -2,7 +2,7 @@
   <div class="container">
     <h2><%= @course.tagline %></h2>
     <div class="instructor">
-      <%=image_tag('avatar.png', :class=>"avatar")%>
+      <%= image_tag @course.instructor_image_url, :class=>"avatar" %>
       <h3><%= @course.instructor_name %></h3>
       <h4><%= @course.instructor_title %></h4>
     </div>
@@ -34,11 +34,11 @@
         <span>Hours Video</span>
       </div>
       <div class="projects">
-        <h6>2</h6>
+        <h6><%= @course.project_count %></h6>
         <span>Projects</span>
       </div>
       <div class="documents">
-        <h6>4</h6>
+        <h6><%= @course.document_count %></h6>
         <span>Documents</span>
       </div>
     </div>

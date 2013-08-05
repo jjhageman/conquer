@@ -2,5 +2,10 @@
   <td><%= link_to promotion.code, admin_course_promotion_path(@course, promotion) %></td>
   <td><%= promotion.price %></td>
   <td><%= promotion.active %></td>
-  <td><%= link_to 'edit', edit_admin_course_promotion_path(@course, promotion) %></td>
+  <td>
+    <%= link_to 'edit', edit_admin_course_promotion_path(@course, promotion) %>, 
+    <%= link_to(admin_course_promotion_path(@course, promotion), confirm: 'Are you sure?', method: :delete) do %>
+      <i class="icon-trash"></i>
+    <% end %>
+  </td>
 </tr>

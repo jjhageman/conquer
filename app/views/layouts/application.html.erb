@@ -32,14 +32,16 @@
     </div>
   </div>
 
+  <div class="container">
     <% flash.delete(:timedout).each do |key, msg| %>
       <div class="alert alert-<%= key == :notice ? "success" : "error" %>">
         <a class="close" data-dismiss="alert">x</a>
         <%= msg %>
       </div>
     <% end %>
+  </div>
 
-    <%= yield %>
+  <%= yield %>
 
 <footer class="clearfix">
   <div class="top">

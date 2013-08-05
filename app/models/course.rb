@@ -8,6 +8,10 @@ class Course < ActiveRecord::Base
   scope :active, where(released: true)
   scope :preorder, where(released: false)
 
+  mount_uploader :image, CourseImageUploader
+  mount_uploader :hero_image, HeroImageUploader
+  mount_uploader :instructor_image, InstructorImageUploader
+
   attr_accessible :description, :image, :instructor_image, :instructor_name,
     :instructor_description, :name, :price, :released, :start_date, :tagline,
     :total_hours, :hero_image, :playlist_id, :instructor_title
