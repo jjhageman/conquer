@@ -1,6 +1,6 @@
-<div class="hero">
+<div class="hero" style="background-image: url(<%= @course.hero_image_url %>)">
   <div class="container">
-    <h2><%= @course.tagline %></h2>
+    <h2><%= @course.name %></h2>
     <div class="instructor">
       <%= image_tag @course.instructor_image_url, :class=>"avatar" %>
       <h3><%= @course.instructor_name %></h3>
@@ -13,7 +13,7 @@
 
   <div class="course_content">
     <div class="summary">
-      <h5>What you will learn:</h5>
+      <h5><%= @course.tagline %></h5>
       <div class="summary_text"><%= @course.description %></div>
     </div>
 
