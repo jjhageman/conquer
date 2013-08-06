@@ -37,6 +37,20 @@
   </div>
 
   <div class="control-group">
+    <%= f.label :project_count, class: 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :project_count %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :document_count, class: 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :document_count %>
+    </div>
+  </div>
+
+  <div class="control-group">
     <%= f.label :image, class: 'control-label' %>
     <div class="controls">
       <%= image_tag(@course.image_url) if @course.image? %>
