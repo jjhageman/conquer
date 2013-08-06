@@ -10,20 +10,11 @@
         img{float:left;}
     }
 
-    #primary-nav{
-        float:right;
-        margin-top:35px;
+    nav{
+      float:left;
+      margin-top:35px;
 
-        #toggle_search{
-            width:15px;
-            height:15px;
-            display: block;
-            float:left;
-            margin-top:4px;
-            background:url('search.png') no-repeat center;
-        }
-
-        a{
+      a{
             font-family: 'Nunito', sans-serif !important;
             margin-left:35px;
             color:#000;
@@ -32,10 +23,19 @@
             letter-spacing: 1px;
             text-decoration: none;
             font-weight:bold;
-        }
+      }
+    }
 
-        nav{
+    #primary-nav{
+        float:right;
+
+        #toggle_search{
+            width:15px;
+            height:15px;
+            display: block;
             float:left;
+            margin-top:39px;
+            background:url('search.png') no-repeat center;
         }
 
         #primary_nav_menu{

@@ -1,7 +1,8 @@
 class CoursesController < ApplicationController
 
   def index
-    @open_courses = Course.all
+    @courses = Course.active
+    @preorders = Course.preorder
   end
 
   def show

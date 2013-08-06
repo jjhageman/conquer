@@ -29,78 +29,12 @@ $(document).ready(function(){
 
     <h2 class="section_header"><span>Open Classes</span></h2>
 
-    <div class="course_thumb">
-        <div class="meta">
-            <h3><a href="#">Learn from the chief hostage negotiator</a></h3>
-            <span class="instructor">by <a href="#">Gary Nosener</a></span>
-            <span class="hours_left"><%=image_tag('clock_white.png')%>Only <span class="highlight">10</span> hours left for this course</span>
-            <div class="rating"><span>Average Rating</span> <div class="rating_stars" data-rating="4"></div></div>
-            <span class="price">$19.99</span>
-        </div>
-        <%=image_tag('course_thumbnail.png')%>
-    </div>
-
-    <div class="course_thumb">
-        <div class="meta">
-            <h3><a href="#">Learn from the chief hostage negotiator</a></h3>
-            <span class="instructor">by <a href="#">Gary Nosener</a></span>
-            <span class="hours_left"><%=image_tag('clock_white.png')%>Only <span class="highlight">10</span> hours left for this course</span>
-            <div class="rating"><span>Average Rating</span> <div class="rating_stars" data-rating="4"></div></div>
-            <span class="price">$19.99</span>
-        </div>
-        <%=image_tag('course_thumbnail.png')%>
-    </div>
-
-    <div class="course_thumb">
-        <div class="meta">
-            <h3><a href="#">Learn from the chief hostage negotiator</a></h3>
-            <span class="instructor">by <a href="#">Gary Nosener</a></span>
-            <span class="hours_left"><%=image_tag('clock_white.png')%>Only <span class="highlight">10</span> hours left for this course</span>
-            <div class="rating"><span>Average Rating</span> <div class="rating_stars" data-rating="4"></div></div>
-            <span class="price">$19.99</span>
-        </div>
-        <%=image_tag('course_thumbnail.png')%>
-    </div>
-
-    <div class="course_thumb">
-        <div class="meta">
-            <h3><a href="#">Learn from the chief hostage negotiator</a></h3>
-            <span class="instructor">by <a href="#">Gary Nosener</a></span>
-            <span class="hours_left"><%=image_tag('clock_white.png')%>Only <span class="highlight">10</span> hours left for this course</span>
-            <div class="rating"><span>Average Rating</span> <div class="rating_stars" data-rating="4"></div></div>
-            <span class="price">$19.99</span>
-        </div>
-        <%=image_tag('course_thumbnail.png')%>
-    </div>
+    <%= render @courses %>
 
     <div class="clearfix"></div>
 
     <h2 class="section_header"><span>Comming Soon</span></h2>
 
-    <div class="course_thumb">
-        <div class="meta">
-            <h3><a href="#">Learn from the chief hostage negotiator</a></h3>
-            <span class="instructor">by <a href="#">Gary Nosener</a></span>
-            <div class="vote">
-                <a href="#">Vote for this course</a> <br>
-                <span class="vote_hearts">132</span>
-            </div>
-        </div>
-        <%=image_tag('course_thumbnail.png')%>
-    </div>
+    <%= render partial: 'preorder', collection: @preorders %>
 
-    <div class="course_thumb">
-        <div class="meta">
-            <h3><a href="#">Learn from the chief hostage negotiator</a></h3>
-            <span class="instructor">by <a href="#">Gary Nosener</a></span>
-            <div class="vote">
-                <a href="#">Vote for this course</a> <br>
-                <span class="vote_hearts">132</span>
-            </div>
-        </div>
-        <%=image_tag('course_thumbnail.png')%>
-    </div>
-
-
-</div>    
-
+</div>
