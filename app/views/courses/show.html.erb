@@ -22,7 +22,7 @@
       <%=image_tag('video.jpg')%>
     </div>
 
-    <div id="chapters">
+    <div id="chapters" class="clearfix">
       <h4>Course Chapters</h4>
       <%= render @course.chapters.order("ID ASC")  %>
     </div>
