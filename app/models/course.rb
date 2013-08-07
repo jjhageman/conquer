@@ -15,7 +15,7 @@ class Course < ActiveRecord::Base
   attr_accessible :description, :image, :instructor_image, :instructor_name,
     :instructor_description, :name, :price, :released, :start_date, :tagline,
     :total_hours, :hero_image, :playlist_id, :instructor_title, :image_cache,
-    :hero_image_cache, :instructor_image_cache
+    :hero_image_cache, :instructor_image_cache, :project_count, :document_count
 
   validates :name, presence: true
   validates :price, presence: true

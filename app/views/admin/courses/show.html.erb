@@ -14,7 +14,7 @@
       </h1>
     </div>
 
-    <p><%= @course.description %></p>
+    <p><%=raw @course.description %></p>
 
     <div class="page-header">
       <%= link_to 'New Chapter', new_admin_course_chapter_path(@course), class: 'btn pull-right' %>
