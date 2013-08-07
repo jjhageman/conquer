@@ -51,6 +51,8 @@ table {
   text-align: left;
   vertical-align: top;
   border-top: 1px solid #dddddd;
+  h1, h2, h3, h4, h5, h6 { margin: 10px 0; }
+  p { margin: 0 0 10px; }
 }
 .table th {
   font-weight: bold;
