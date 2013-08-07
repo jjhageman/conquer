@@ -18,6 +18,13 @@ body {
   position: relative;
 }
 
+a {
+  color: #279BA7;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
 .container{
     width:965px;
     margin:0 auto;

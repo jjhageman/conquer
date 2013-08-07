@@ -1,13 +1,7 @@
-<div class="media">
-  <a class="pull-left" href="#">
-    <img class="media-object" data-src="holder.js/64x64">
-  </a>
-  <div class="media-body">
-    <div class="pull-right"><small>Starting <%= preorder.start_date.to_s(:month_and_year) %></small> <span class="label label-info">Pre-Ordered</span></div>
-    <h4 class="media-heading">
-      <%= link_to preorder.name, course_path(preorder) %>
-      <small>by <%= preorder.instructor_name %></small>
-    </h4>
-    <%= preorder.description %>
+<div class="course_thumb">
+  <div class="meta">
+        <h3><%= link_to preorder.name, (user_signed_in? && preorder.has_student?(current_user)) ? user_course_path(preorder) : preorder %></h3>
+        <span class="instructor">by <a href="#"><%= preorder.instructor_name %></a></span>
   </div>
+  <%=image_tag preorder.image_url %>
 </div>
