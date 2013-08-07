@@ -23,6 +23,13 @@
   </div>
 
   <div class="control-group">
+    <%= f.label :additional_description, class: 'control-label' %>
+    <div class="controls">
+      <%= f.text_area :additional_description %>
+    </div>
+  </div>
+
+  <div class="control-group">
     <%= f.label :price, class: 'control-label' %>
     <div class="controls">
       <%= f.text_field :price %>
@@ -65,6 +72,15 @@
       <%= image_tag(@course.hero_image_url) if @course.hero_image? %>
       <%= f.file_field :hero_image %>
       <%= f.hidden_field :hero_image_cache %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :video_image, class: 'control-label' %>
+    <div class="controls">
+      <%= image_tag(@course.video_image_url) if @course.video_image? %>
+      <%= f.file_field :video_image %>
+      <%= f.hidden_field :video_image_cache %>
     </div>
   </div>
 

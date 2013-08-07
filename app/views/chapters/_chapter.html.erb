@@ -1,5 +1,1 @@
-<div class="chapter">
-  <%= image_tag('chapter.png') %>
-  <h4><%= link_to chapter.name, new_enrollment_path(chapter.course) %></h4>
-  <p><%= truncate(chapter.description, length: 50) %></p>
-</div>
+  <li><%= truncate(chapter.description, length: 50) %></li>

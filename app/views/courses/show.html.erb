@@ -19,22 +19,18 @@
 
     <div id="video">
       <a href="#" class="play"></a>
-      <%=image_tag('video.jpg')%>
+      <%=image_tag(@course.video_image_url)%>
     </div>
 
     <div id="chapters" class="clearfix">
       <h4>Course Chapters</h4>
-      <%= render @course.chapters.order("ID ASC")  %>
+      <ul>
+        <%= render @course.chapters.order("ID ASC")  %>
+      </ul>
     </div>
 
     <div id="course_details" class="clearfix">
-      <h4>Learn from the Best</h4>
-      <p>Who do you want to learn from? Unlike other courses, we partnered with the former Chief FBI Hostage negotiator to create this once in a lifetime exclusive online class. Your instructor was the first ever Chief Negotiator and ran the department for nearly 3 decades. He's negotiated with kidnappers, terrorists, and religious zealots. Now, he's here to help you. You get to hear his secrets.</p>
-    </div>
-
-    <div id="course_details" class="clearfix">
-      <h4>Chance to Actually Train With the FBI</h4>
-      <p>Like all our classes, you get to ask the instructor questions and get their feedback. Plus, we choose 2 students to win an all expense paid full day training session with your instructor. To be eligible you must be 18 or over, completed the course, living the United States and have signed up for the course before Dec 31, 2013.</p>
+      <%=raw @course.additional_description %>
     </div>
 
     <div id="course_details" class="clearfix">
