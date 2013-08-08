@@ -64,7 +64,7 @@
           <p>including <%= @course.total_hours %> hours of courses</p>
         <%= link_to (@course.released? ? 'Take Course' : 'Pre-Order'), new_enrollment_path(@course), class: 'buy_button' %>
       <% end %>
-      <span class="inscriptions">Only <span class="highlight">150</span> inscriptions left for this course</span>
+      <span class="inscriptions">Only <span class="highlight">150</span> inscriptions left</span>
     </div>
 
     <div class="features">
