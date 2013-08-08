@@ -13,7 +13,7 @@
     <div class="tabs" id="course_tabs">
         <a href="#chapters" class="current">Chapters</a>
         <a href="#materials">Materials</a>
-        <%= link_to 'Forums', forums_path(@course) %>
+        <a href="#forum_tab">Forums</a>
         <a href="#description">Description</a>
     </div>
 
@@ -30,7 +30,7 @@
     </div>
 
     <div id="forum_tab" class="tab_area">
-        Forums Tab
+      <%= link_to 'Visit Forum', forums_path(@course) %>
     </div>
 
     <div id="description" class="tab_area">

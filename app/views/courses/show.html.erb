@@ -25,7 +25,10 @@
     <div id="chapters" class="clearfix">
       <h4>Course Chapters</h4>
         <%= render @course.chapters.order("ID ASC").limit(4)  %>
-        <a href="#">See More</a>
+        <a href="#" class="view_chapters">View All Chapters</a>
+        <div class="other_chapters" style="display: none">
+        <%= render @course.chapters.order("ID ASC").offset(4)  %>
+        </div>
     </div>
 
     <div id="additional_description" class="clearfix">

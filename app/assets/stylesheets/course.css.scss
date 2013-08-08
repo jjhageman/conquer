@@ -125,6 +125,8 @@ body { background-color: #f0f0ef; }
       font-size:15px;
     }
     
+    .other_chapters{margin-top: 30px;}
+    
     .chapter{
       margin-bottom:30px;
       padding-right:10px;
@@ -676,10 +678,6 @@ body { background-color: #f0f0ef; }
   position: relative;
   margin-bottom:15px;
 
-  &:nth-child(odd){
-    margin-left:15px;
-  }
-
   .meta{
     width:475px;
     height:275px;
@@ -760,6 +758,7 @@ body { background-color: #f0f0ef; }
       color:#fff;
       font-size:12px;
       letter-spacing: 1px;
+      img {margin-left: 10px;}
     }
 
     .vote{

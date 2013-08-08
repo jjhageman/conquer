@@ -4,7 +4,7 @@
       <span class="instructor">by <a href="#"><%= course.instructor_name %></a></span>
       <div class="instructor_title"><%= course.instructor_title %></div>
       <span class="hours_left"><%=image_tag('clock_white.png')%><%= link_to 'Only 10 hours left for this course', (user_signed_in? && course.has_student?(current_user)) ? user_course_path(course) : course %></span>
-      <div class="rating"> <span class="glyphicon glyphicon-star-empty"></span> <div data-courseid="<%= course.id %>" data-rateit-readonly="true" data-rateit-value="<%= @rating %>" class="rateit"></div></div>
+      <div class="rating"><span>Average Rating</span> <%=image_tag('stars.png') %></div>
 
       <span class="price"><%= course.price %></span>
   </div>
