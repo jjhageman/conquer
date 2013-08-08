@@ -2,8 +2,10 @@
   <div class="meta">
       <h3><%= link_to course.name, (user_signed_in? && course.has_student?(current_user)) ? user_course_path(course) : course %></h3>
       <span class="instructor">by <a href="#"><%= course.instructor_name %></a></span>
-      <span class="hours_left"><%=image_tag('clock_white.png')%>Only <span class="highlight">10</span> hours left for this course</span>
-      <div class="rating"><span>Average Rating</span> <div class="rating_stars" data-rating="4"></div></div>
+      <div class="instructor_title"><%= course.instructor_title %></div>
+      <span class="hours_left"><%=image_tag('clock_white.png')%><%= link_to 'Only 10 hours left for this course', (user_signed_in? && course.has_student?(current_user)) ? user_course_path(course) : course %></span>
+      <div class="rating"> <span class="glyphicon glyphicon-star-empty"></span> <div data-courseid="<%= course.id %>" data-rateit-readonly="true" data-rateit-value="<%= @rating %>" class="rateit"></div></div>
+
       <span class="price"><%= course.price %></span>
   </div>
   <%=image_tag course.image_url %>

@@ -2,6 +2,7 @@
     <div class="meta">
         <h3><%= link_to preorder.name, (user_signed_in? && preorder.has_student?(current_user)) ? user_course_path(preorder) : preorder %></h3>
         <span class="instructor">by <a href="#"><%= preorder.instructor_name %></a></span>
+        <div class="instructor_title"><%= preorder.instructor_title %></div>
         <div class="vote">
             <a href="#">Vote for this course</a> <br>
             <span class="vote_hearts">132</span>

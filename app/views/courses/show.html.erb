@@ -24,12 +24,11 @@
 
     <div id="chapters" class="clearfix">
       <h4>Course Chapters</h4>
-      <ul>
-        <%= render @course.chapters.order("ID ASC")  %>
-      </ul>
+        <%= render @course.chapters.order("ID ASC").limit(4)  %>
+        <a href="#">See More</a>
     </div>
 
-    <div id="course_details" class="clearfix">
+    <div id="additional_description" class="clearfix">
       <%=raw @course.additional_description %>
     </div>
 
