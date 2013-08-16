@@ -1,16 +1,12 @@
-<div class="grey_box">
-  <div class="media-body">
-    <div class="well well-small">
-      <h4 class="media-heading">
-        <%= forum_post.user.full_name if forum_post.user %> 
-        <% if forum_post.user && forum_post.user.admin? %> 
-          <span class="label">Instructor</span>
-        <% end %>
-        · <%= time_ago_in_words forum_post.created_at %> ago
-      </h4>
-    </div>
-    <div class="media">
-      <%= simple_format forum_post.text %>
-   </div>
+<div class="forum-post">
+  <h4 class="media-heading">
+    <%= forum_post.user.full_name if forum_post.user %> 
+    <% if forum_post.user && forum_post.user.admin? %> 
+      <span class="label">Instructor</span>
+  <% end %>
+    · <%= time_ago_in_words forum_post.created_at %> ago
+  </h4>
+  <div>
+    <%= simple_format forum_post.text %>
   </div>
 </div>
