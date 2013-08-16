@@ -1,12 +1,12 @@
 <div class="forum-post">
-  <h4 class="media-heading">
+  <h4>
     <%= forum_post.user.full_name if forum_post.user %> 
     <% if forum_post.user && forum_post.user.admin? %> 
       <span class="label">Instructor</span>
   <% end %>
-    · <%= time_ago_in_words forum_post.created_at %> ago
+  · <%= time_tag forum_post.created_at, "#{time_ago_in_words(forum_post.created_at)} ago" %>
   </h4>
-  <div>
+  <div class="post-text">
     <%= simple_format forum_post.text %>
   </div>
 </div>

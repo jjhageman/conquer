@@ -1,1 +1,9 @@
-.btn-new-topic { margin-left: 10px; font-weight: normal;}
+.btn-new-topic{margin-left: 10px; font-weight: normal;}
+.forum-post{
+  margin: 0 0 35px;
+  h4{
+    background:#f2f2f1; padding:10px; margin:0;
+    time{font-weight:normal;}
+  }
+  .post-text{padding: 0 10px;}
+}
