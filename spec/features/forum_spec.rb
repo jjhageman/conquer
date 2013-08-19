@@ -16,7 +16,8 @@ feature 'Course forum', js: true do
   scenario 'user creates post in course forum' do
     visit user_root_path
     click_link @course.name
-    click_link 'Class Forum'
+    click_link 'Forums'
+    click_link 'Visit Forum'
     click_link @forum.name
     click_link @topic.subject
     fill_in_wysihtml5 'This is a test post.'
@@ -27,7 +28,8 @@ feature 'Course forum', js: true do
   scenario 'user creates topic in course forum' do
     visit user_root_path
     click_link @course.name
-    click_link 'Class Forum'
+    click_link 'Forums'
+    click_link 'Visit Forum'
     click_link @forum.name
     click_link 'Start new topic'
     fill_in 'Subject', with: 'New Topic 99'
