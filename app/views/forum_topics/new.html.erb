@@ -1,6 +1,14 @@
-<div class="container" id="main_content">
-  <div class="page-header">
-    <h1>New Topic</h1>
+<div id="course-banner">
+  <h1><%= link_to @course.name, user_course_path(@course) %> <small> by <%= @course.instructor_name %></small></h1>
+</div>
+<div class="container" id="full_content">
+  <ul class="breadcrumb">
+    <li><%= link_to 'Topics', forums_path(@course) %>  <span class="divider">/</span></li>
+    <li><%= link_to @forum.name, forum_topics_path(@course, @forum) %>  <span class="divider">/</span></li>
+    <li class="active">New Topic</li>
+  </ul>
+  <div class="grey_box">
+    <h2>New Topic</h2>
+    <%= render 'form' %>
   </div>
-  <%= render 'form' %>
 </div>

@@ -35,7 +35,6 @@ a:hover {
 }
 
 #full_content{
-  margin-top:30px;
   padding:15px;
   background:white;
 }
@@ -50,7 +49,9 @@ a:hover {
     font-style: italic;
     color:#777;
 }
-
+.page-header h4{
+  background:#f2f2f1; padding:10px; margin:0;
+}
 .container:before,
 .container:after {
   display: table;

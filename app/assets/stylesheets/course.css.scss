@@ -781,6 +781,28 @@ body { background-color: #f0f0ef; }
 
 }
 
+#course-banner{
+  margin: 0 auto;
+  padding: 20px 15px;
+  width: 995px;
+  h1{
+    margin: 0;
+    font-size: 15px;
+    font-family: 'Lato', sans-serif;
+    letter-spacing: 1px;
+    font-weight: 600;
+    text-transform: uppercase;
+  
+    small{
+      font-size: 12px;
+      font-family: 'Merriweather', serif;
+      text-transform: none;
+      letter-spacing: normal;
+      margin-left: 3px;
+    }
+  }
+}
+
 // Tabs
 
 .tabs{

@@ -14,14 +14,14 @@
     <div class="form-actions">
       <%= p.hidden_field :forum_topic_id %>
       <%= hidden_field_tag 'image_ids' %>
-      <%= p.submit 'Add post', id: 'submitBtn', class: 'btn', data: {'loading-text' => 'Posting...'} %>
+      <%#= p.submit 'Add post', id: 'submitBtn', class: 'btn', data: {'loading-text' => 'Posting...'} %>
     </div>
   <% end %>
 
   <div class="control-group">
     <div class="controls">
       <%= f.hidden_field :forum_id %>
-      <%= f.submit class: 'button' %>
+      <%= f.submit class: 'btn' %>
     </div>
   </div>
 
@@ -34,3 +34,5 @@
     parserRules:  wysihtml5ParserRules // defined in parser rules set 
   });
   </script>
+
+<%= render 'forum_posts/insert_image' %>
