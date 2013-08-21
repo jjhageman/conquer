@@ -1,7 +1,10 @@
 <div id="video_container" class="container">
     <h1><%= @course.name %></h1>
     <span class="instructor">by <%= @course.instructor_name %></span>
-    <%= render partial: 'shared/playlist_player', locals: { video_list: '2360128659001'} %>
+    <div class="video-player">
+      <%= image_tag 'user_course_video.gif' %>
+      <%#= render partial: 'shared/playlist_player', locals: { video_list: '2360128659001'} %>
+    </div>
 </div>
 
 <div class="container" id="main_content">
