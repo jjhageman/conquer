@@ -1,8 +1,18 @@
-<div id="video_container" class="container">
+<div class="container">
+  <div id="course-heading">
     <h1><%= @course.name %></h1>
     <span class="instructor">by <%= @course.instructor_name %></span>
+  </div>
+  <div class="tabs" id="course_tabs">
+        <a href="#chapters" class="current">Chapters</a>
+        <a href="#materials">Materials</a>
+        <a href="#forum_tab">Forums</a>
+  </div>
+
+  </div>
+  <div id="video_container" class="container">
     <div class="video-player">
-      <%= image_tag 'user_course_video.gif' %>
+      <%= image_tag 'user_course_video.jpg' %>
       <%#= render partial: 'shared/playlist_player', locals: { video_list: '2360128659001'} %>
     </div>
 </div>
@@ -13,14 +23,6 @@
         <span><%= @course.rated_by?(current_user) ? 'Your rating' : 'Rate this course' %></span> <div data-courseid="<%= @course.id %>" data-rateit-resetable="false" data-rateit-value="<%= @rating %>" class="rateit"></div>
     </div>
 
-    <div class="tabs" id="course_tabs">
-        <a href="#chapters" class="current">Chapters</a>
-        <a href="#materials">Materials</a>
-        <a href="#forum_tab">Forums</a>
-        <a href="#description">Description</a>
-    </div>
-
-    <div class="clearfix"></div>
 
   <div class="course_content" id="course_content">
     
