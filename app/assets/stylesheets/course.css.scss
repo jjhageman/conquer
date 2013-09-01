@@ -62,7 +62,12 @@ body { background-color: #f0f0ef; }
     padding: 20px;
   }
 }
-
+.forum-content{
+  width:610px;
+  padding:15px;
+  background:white;
+  float:left;
+}
 .course_content{
   width:610px;
   padding:15px;
@@ -540,38 +545,37 @@ body { background-color: #f0f0ef; }
   background-image: url("glyphicons-halflings.png");
 }
 
-#main_content{
+#course-heading{
   position:relative;
+}
+#rating{
+  padding:10px 15px;
+  background:white;
+  float:right;
 
-  #rating{
-    position:absolute;
-    right:0;
-    top:7px;
+  span{
+    float:left;
+    margin-right:10px;
+    font-size:12px;
+    margin-top:3px;
+    text-transform:uppercase;
+  }
 
-    span{
-      float:left;
-      margin-right:10px;
-      font-size:12px;
-      margin-top:3px;
-      text-transform:uppercase;
-    }
-
-    .rateit{
-      float:left;
-    }
-
+  .rateit{
+    float:left;
   }
 
 }
+
 #course-heading{
   margin: 0 0 25px;
   h1{margin:0;}
 }
 
-#video_container{
+#course_content{
   background:white;
 
-  .video-player{
+  .tab_area{
     margin:15px;
   }
 
@@ -829,8 +833,4 @@ body { background-color: #f0f0ef; }
         }
     }
 
-}
-
-.tab_area{
-    display:none;
 }

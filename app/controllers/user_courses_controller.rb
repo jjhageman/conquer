@@ -7,7 +7,8 @@ class UserCoursesController < ApplicationController
   end
 
   def show
-    @course = current_user.courses.find_by_url(params[:id])
+    @course = current_user.courses.includes(:forums).find_by_url(params[:id])
+    @forums = @course.forums
     @rating = CourseRating.new(course: @course, user: current_user).stars_by_user_or_average
   end
 end

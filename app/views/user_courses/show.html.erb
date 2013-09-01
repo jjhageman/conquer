@@ -2,73 +2,77 @@
   <div id="course-heading">
     <h1><%= @course.name %></h1>
     <span class="instructor">by <%= @course.instructor_name %></span>
-  </div>
-  <div class="tabs" id="course_tabs">
-        <a href="#chapters" class="current">Chapters</a>
-        <a href="#materials">Materials</a>
-        <a href="#forum_tab">Forums</a>
-  </div>
 
   </div>
-  <div id="video_container" class="container">
-    <div class="video-player">
-      <%= image_tag 'user_course_video.jpg' %>
-      <%#= render partial: 'shared/playlist_player', locals: { video_list: '2360128659001'} %>
-    </div>
+  <div class="tabs" id="course_tabs">
+    <a href="#video-lessons" class="current">Video Lessons</a>
+    <a href="#materials">Materials</a>
+  </div>
+
+  <div id="rating">
+    <span><%= @course.rated_by?(current_user) ? 'Your rating' : 'Rate this course' %></span> <div data-courseid="<%= @course.id %>" data-rateit-resetable="false" data-rateit-value="<%= @rating %>" class="rateit"></div>
+  </div>
+</div>
+<div id="course_content" class="container">
+  <div id="video-lessons" class="video-player tab_area">
+    <%= image_tag 'user_course_video.jpg' %>
+    <%#= render partial: 'shared/playlist_player', locals: { video_list: '2360128659001'} %>
+  </div>
+
+  <div id="materials" class="tab_area" style="display:none;">
+    Materials Tab
+  </div>
+
+  <div id="forum_tab" class="tab_area" style="display:none;">
+    <%= link_to 'Visit Forum', forums_path(@course) %>
+  </div>
 </div>
 
 <div class="container" id="main_content">
 
-    <div id="rating" class="well well-small">
-        <span><%= @course.rated_by?(current_user) ? 'Your rating' : 'Rate this course' %></span> <div data-courseid="<%= @course.id %>" data-rateit-resetable="false" data-rateit-value="<%= @rating %>" class="rateit"></div>
-    </div>
 
 
-  <div class="course_content" id="course_content">
-    
-    <div id="chapters" class="tab_area">
-      <%= render @course.chapters.order("ID ASC") %>
-    </div>
-
-    <div id="materials" class="tab_area">
-        Materials Tab
-    </div>
-
-    <div id="forum_tab" class="tab_area">
-      <%= link_to 'Visit Forum', forums_path(@course) %>
-    </div>
-
-    <div id="description" class="tab_area">
-        <%= @course.description %>
-    </div>
-
+  <div class="forum-content">
+    <h2>Forums</h2>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Discussion</th>
+          <th>Latest Activity</th>
+        </tr>
+      </thead>
+      <tbody>
+      <%= render @forums %>
+      </tbody>
+    </table>
   </div>
 
   <div class="course_sidebar">
-    
+
     <div id="course_instructor" class="grey_box clearfix">
-        <%= image_tag @course.instructor_image_url, :class=>"avatar" %>
-        <span class="name"><%= @course.instructor_name %></span>
-        <span class="title"><%= @course.instructor_title %></span>
+      <%= image_tag @course.instructor_image_url, :class=>"avatar" %>
+      <span class="name"><%= @course.instructor_name %></span>
+      <span class="title"><%= @course.instructor_title %></span>
     </div>
 
+
     <div class="latest_posts grey_box">
-        <h4>Latest Posts</h4>
-        <div class="lastest_post clearfix">
-            <%=image_tag('student.png')%>
-            <a href="#" class="name">Thomas Cullen</a>
-            <a href="#" class="title">This is the title of the post</a>
-        </div>
-        <div class="lastest_post clearfix">
-            <%=image_tag('student2.png')%>
-            <a href="#" class="name">Thomas Cullen</a>
-            <a href="#" class="title">This is the title of the post</a>
-        </div>
-        <div class="lastest_post clearfix">
-            <%=image_tag('student3.png')%>
-            <a href="#" class="name">Thomas Cullen</a>
-            <a href="#" class="title">This is the title of the post</a>
-        </div>
+      <h4>Latest Posts</h4>
+      <div class="lastest_post clearfix">
+        <%=image_tag('student.png')%>
+        <a href="#" class="name">Thomas Cullen</a>
+        <a href="#" class="title">This is the title of the post</a>
+      </div>
+      <div class="lastest_post clearfix">
+        <%=image_tag('student2.png')%>
+        <a href="#" class="name">Thomas Cullen</a>
+        <a href="#" class="title">This is the title of the post</a>
+      </div>
+      <div class="lastest_post clearfix">
+        <%=image_tag('student3.png')%>
+        <a href="#" class="name">Thomas Cullen</a>
+        <a href="#" class="title">This is the title of the post</a>
+      </div>
     </div>
 
     <div id="course_students" class="clearfix">
@@ -82,10 +86,10 @@
       </div>
     </div>
 
-   <div id="meet_your_hero">
-     <%=image_tag('logo_small.png')%>
-     <p>Be the best student & meet your hero!</p>
-   </div> 
+    <div id="meet_your_hero">
+      <%=image_tag('logo_small.png')%>
+      <p>Be the best student & meet your hero!</p>
+    </div> 
 
   </div>
 
