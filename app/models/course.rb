@@ -14,10 +14,10 @@ class Course < ActiveRecord::Base
   mount_uploader :instructor_image, InstructorImageUploader
 
   attr_accessible :description, :image, :instructor_image, :instructor_name,
-    :instructor_description, :name, :price, :released, :start_date, :tagline,
-    :total_hours, :hero_image, :playlist_id, :instructor_title, :image_cache,
-    :hero_image_cache, :instructor_image_cache, :project_count, :document_count,
-    :video_image, :video_image_cache, :additional_description
+                  :instructor_description, :name, :price, :released, :start_date, :tagline,
+                  :total_hours, :hero_image, :playlist_id, :instructor_title, :image_cache,
+                  :hero_image_cache, :instructor_image_cache, :project_count, :document_count,
+                  :video_image, :video_image_cache, :additional_description
 
   validates :name, presence: true
   validates :price, presence: true
@@ -34,7 +34,7 @@ class Course < ActiveRecord::Base
   end
 
   def price_in_cents
-    Integer price*100
+    Integer price * 100
   end
 
   def instructor_plus_course_name
@@ -57,7 +57,7 @@ class Course < ActiveRecord::Base
     if cached
       read_attribute :rating_average
     else
-      avg = self.ratings_sum.to_f / self.total_ratings.to_f
+      avg = ratings_sum.to_f / total_ratings.to_f
       avg.nan? ? 0.0 : avg
     end
   end

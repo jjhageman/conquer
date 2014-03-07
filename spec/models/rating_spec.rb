@@ -7,9 +7,9 @@ describe Rating do
 
     context 'user has not rated course' do
       it 'should create a new rating' do
-        expect {
+        expect do
           Rating.update_or_create_rating(course_id: course.id.to_s, stars: '3.5', user_id: user.id.to_s)
-        }.to change {user.ratings.count}.from(0).to(1)
+        end.to change { user.ratings.count }.from(0).to(1)
       end
     end
 
@@ -23,9 +23,9 @@ describe Rating do
       end
 
       it 'should not create a new rating' do
-        expect {
+        expect do
           Rating.update_or_create_rating(course_id: course.id.to_s, stars: '4.5', user_id: user.id.to_s)
-        }.to change {user.ratings.count}.by(0)
+        end.to change { user.ratings.count }.by(0)
       end
 
       it 'should not update the record if the star count has not changed' do

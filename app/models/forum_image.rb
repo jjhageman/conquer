@@ -4,6 +4,6 @@ class ForumImage < ActiveRecord::Base
   mount_uploader :image, ImageUploader
 
   validates :image, presence: true
-  
+
   attr_accessible :image, :image_cache
 end

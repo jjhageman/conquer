@@ -10,10 +10,9 @@ class CreateEnrollments < ActiveRecord::Migration
 
       t.timestamps
     end
-    
+
     add_index :enrollments, :user_id
     add_index :enrollments, :course_id
     add_index :enrollments, :promotion_id
   end
 end
-

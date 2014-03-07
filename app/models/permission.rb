@@ -1,5 +1,4 @@
 class Permission
-
   def initialize(user)
     restrict :forums, [:new, :create]
     restrict_none if user && user.admin?
@@ -21,5 +20,4 @@ class Permission
       end
     end
   end
-
 end

@@ -3,7 +3,7 @@ module Admin
     def index
       @users = User.all
     end
-    
+
     def show
       @user = User.includes(enrollments: [:course, :promotion]).find(params[:id])
     end

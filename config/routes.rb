@@ -1,9 +1,9 @@
 Conquer::Application.routes.draw do
 
-  devise_for :users, path: '', path_names: {sign_in: 'login', sign_out: 'logout'}, controllers: {confirmations: 'confirmations'}
+  devise_for :users, path: '', path_names: { sign_in: 'login', sign_out: 'logout' }, controllers: { confirmations: 'confirmations' }
 
   devise_scope :user do
-    put "/confirm" => "confirmations#confirm"
+    put '/confirm' => 'confirmations#confirm'
   end
 
   resources :ratings, only: [:show, :create]

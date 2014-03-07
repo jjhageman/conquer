@@ -11,7 +11,7 @@ class CreateForums < ActiveRecord::Migration
 
     add_index :forums, :url
     add_index :forums, :course_id
-    
+
     create_table :forum_topics do |t|
       t.string :subject
       t.boolean :locked, default: false

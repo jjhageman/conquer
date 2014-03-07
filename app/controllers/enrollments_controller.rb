@@ -12,7 +12,7 @@ class EnrollmentsController < ApplicationController
     @enrollment = @course.enrollments.new
     @enrollment.promotion = @promo if @promo
   end
-  
+
   def create
     @user = if user_signed_in?
       current_user
@@ -42,7 +42,7 @@ class EnrollmentsController < ApplicationController
     @enrollment = @user.enrollments.new(params[:enrollment])
     if @enrollment.save_and_do_financials
       @enrollment.send_confirmation_email
-      redirect_to @enrollment, notice: "Thank you for enrolling!"
+      redirect_to @enrollment, notice: 'Thank you for enrolling!'
     else
       render :new
     end
@@ -60,7 +60,7 @@ class EnrollmentsController < ApplicationController
       redirect_to user_course_path(@course) if user_signed_in? && @course.has_student?(current_user)
       redirect_to course_path(@course) if user_signed_in? && @course.has_preordered_student?(current_user)
     else
-      redirect_to courses_path, :alert => "Please select a valid course"
+      redirect_to courses_path, alert: 'Please select a valid course'
     end
   end
 end

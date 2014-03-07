@@ -3,7 +3,7 @@ module Admin
     before_filter :load_course
 
     def show
-      @chapter = @course.chapters.find(params[:id]) 
+      @chapter = @course.chapters.find(params[:id])
     end
 
     def new
@@ -20,12 +20,12 @@ module Admin
     end
 
     def edit
-      @chapter = @course.chapters.find(params[:id]) 
+      @chapter = @course.chapters.find(params[:id])
     end
 
     def update
       @chapter = Chapter.find(params[:id])
-    
+
       if @chapter.update_attributes(params[:chapter])
         redirect_to admin_course_path(@course), notice: 'Chapter was successfully updated.'
       else

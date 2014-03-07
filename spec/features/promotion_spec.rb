@@ -18,13 +18,13 @@ feature 'Released course promotional code', :vcr do
 
     fill_in 'Credit Card Number', with: '4242424242424242'
     fill_in 'Security Code', with: '123'
-    select 'January', :from => 'card_month'
-    select '2015', :from => 'card_year'
+    select 'January', from: 'card_month'
+    select '2015', from: 'card_year'
     click_button 'Complete Purchase'
 
     page.should have_content("You're enrolled in #{@course.instructor_name}'s class on #{@course.name}")
     unread_emails_for('new@user.com').size.should == 1
-    open_email('new@user.com', :with_text => @course.name)
+    open_email('new@user.com', with_text: @course.name)
     current_email.default_part_body.to_s.should include(promotion.price.to_s)
     visit_in_email('Confirm my account and view course')
 
@@ -54,13 +54,13 @@ feature 'Presale course promotional code', :vcr do
 
     fill_in 'Credit Card Number', with: '4242424242424242'
     fill_in 'Security Code', with: '123'
-    select 'January', :from => 'card_month'
-    select '2015', :from => 'card_year'
+    select 'January', from: 'card_month'
+    select '2015', from: 'card_year'
     click_button 'Complete Pre-Order'
 
     page.should have_content("You're confirmed for #{@course.instructor_name}'s class on #{@course.name}")
     unread_emails_for('new@user.com').size.should == 1
-    open_email('new@user.com', :with_text => @course.name)
+    open_email('new@user.com', with_text: @course.name)
     current_email.default_part_body.to_s.should include(promotion.price.to_s)
     visit_in_email('Confirm my account and view course')
 

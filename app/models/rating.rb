@@ -7,7 +7,7 @@ class Rating < ActiveRecord::Base
   attr_accessible :stars, :course_id, :user_id
 
   validates :user_id, uniqueness: { scope: :course_id,
-    message: "you have already rated this course" }
+                                    message: 'you have already rated this course' }
 
   def self.update_or_create_rating(*args)
     options = args.extract_options!
@@ -18,6 +18,6 @@ class Rating < ActiveRecord::Base
   end
 
   def update_course_average_rating
-    self.course.update_cached_average
+    course.update_cached_average
   end
 end

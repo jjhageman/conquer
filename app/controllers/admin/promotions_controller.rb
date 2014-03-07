@@ -3,7 +3,7 @@ module Admin
     before_filter :load_course
 
     def show
-      @promotion = @course.promotions.find_by_code(params[:id]) 
+      @promotion = @course.promotions.find_by_code(params[:id])
     end
 
     private

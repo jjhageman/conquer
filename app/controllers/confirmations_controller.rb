@@ -1,7 +1,7 @@
 class ConfirmationsController < Devise::ConfirmationsController
   def show
     self.resource = resource_class.find_by_confirmation_token(params[:confirmation_token]) if params[:confirmation_token].present?
-    super if resource.nil? or resource.confirmed?
+    super if resource.nil? || resource.confirmed?
   end
 
   def confirm
@@ -11,7 +11,7 @@ class ConfirmationsController < Devise::ConfirmationsController
       set_flash_message :notice, :confirmed
       sign_in_and_redirect(resource_name, resource)
     else
-      render :action => "show"
+      render action: 'show'
     end
   end
 end

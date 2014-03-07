@@ -27,7 +27,7 @@ module Admin
 
     def update
       @course = Course.find_by_url(params[:id])
-    
+
       if @course.update_attributes(params[:course])
         redirect_to admin_course_path(@course), notice: 'Course was successfully updated.'
       else

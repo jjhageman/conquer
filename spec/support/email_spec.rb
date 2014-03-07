@@ -1,20 +1,19 @@
-require "email_spec"
+require 'email_spec'
 
-#if defined?(ActionMailer)
-  #unless [:test, :activerecord, :cache, :file].include?(ActionMailer::Base.delivery_method)
-    #ActionMailer::Base.register_observer(EmailSpec::TestObserver)
-  #end
-  #ActionMailer::Base.perform_deliveries = true
+# if defined?(ActionMailer)
+  # unless [:test, :activerecord, :cache, :file].include?(ActionMailer::Base.delivery_method)
+    # ActionMailer::Base.register_observer(EmailSpec::TestObserver)
+  # end
+  # ActionMailer::Base.perform_deliveries = true
 
-  #Before do
+  # Before do
     ## Scenario setup
-    #case ActionMailer::Base.delivery_method
-      #when :test then ActionMailer::Base.deliveries.clear
-      #when :cache then ActionMailer::Base.clear_cache
-    #end
-  #end
-#end
-
+    # case ActionMailer::Base.delivery_method
+      # when :test then ActionMailer::Base.deliveries.clear
+      # when :cache then ActionMailer::Base.clear_cache
+    # end
+  # end
+# end
 
 RSpec.configure do |config|
   config.include(EmailSpec::Helpers)

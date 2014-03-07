@@ -1,8 +1,8 @@
 require 'spec_helper'
 
 describe Course do
-  let(:course){FactoryGirl.create(:course)}
-  let(:user){FactoryGirl.create(:user)}
+  let(:course) { FactoryGirl.create(:course) }
+  let(:user) { FactoryGirl.create(:user) }
 
   describe '.rated_by?(user)' do
     it 'should return false if user has not rated course' do

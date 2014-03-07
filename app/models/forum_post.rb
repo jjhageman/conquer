@@ -4,12 +4,12 @@ class ForumPost < ActiveRecord::Base
   belongs_to :reply_to, class_name: 'ForumPost'
 
   has_many :replies, class_name:   'ForumPost',
-    foreign_key:  'reply_to_id',
-    dependent:    :nullify
-  has_many :images, :class_name => 'ForumImage', :dependent => :destroy
-  accepts_nested_attributes_for :images, :reject_if => lambda { |a| a[:image].blank? }
+                     foreign_key:  'reply_to_id',
+                     dependent:    :nullify
+  has_many :images, class_name: 'ForumImage', dependent: :destroy
+  accepts_nested_attributes_for :images, reject_if: lambda { |a| a[:image].blank? }
 
-  validates :text, :presence => true
+  validates :text, presence: true
 
   after_create :set_topic_last_post_at, :set_topic_instructor_replied
   after_destroy :set_topic_instructor_replied

@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  default from: "noreply@conquer.com"
+  default from: 'noreply@conquer.com'
 
   def sign_up_email(user)
     mail to: user.email, subject: 'Welcome to Conquer'

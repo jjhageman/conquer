@@ -4,7 +4,7 @@ module StripeMacro
   end
 
   def stub_invalid_stripe_customer
-    error = Stripe::CardError.new("Your card was declined","card_error","card_declined")
+    error = Stripe::CardError.new('Your card was declined', 'card_error', 'card_declined')
     Stripe::Customer.stub(:create).and_raise(error)
   end
 
@@ -13,7 +13,7 @@ module StripeMacro
     @customer = double 'customer'
     @customer.stub(:id).and_return('cus_1qyHNtGP3pYjQQ')
     @customer.stub(:object).and_return('customer')
-    @customer.stub(:created).and_return(1368906576)
+    @customer.stub(:created).and_return(1_368_906_576)
     @customer.stub(:livemode).and_return(false)
     @customer.stub(:description).and_return('jjhageman@gmail.com')
     @customer.stub(:active_card).and_return(active_card)
@@ -35,7 +35,7 @@ module StripeMacro
     @active_card
   end
 end
-# #<Stripe::Customer:0x3feb4264aa38> JSON: 
+# #<Stripe::Customer:0x3feb4264aa38> JSON:
 # {
 #   "id":"cus_1qyHNtGP3pYjQQ",
 #   "object":"customer",

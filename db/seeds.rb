@@ -80,9 +80,9 @@ course2 = Course.create(
   description: <<eos,
 The ability to create humor is a skill many people don't have, yet wish they did. If you're interested in learning how to come up with jokes or witticisms on the fly, punch up dull material for an audience, or make a living as a comedy writer, this course will get you going.
 
-Your instructor, an experienced comedy writer and working actress, will guide you through a wide range of comedic sources. You'll learn how to write a one-liner, use physical humor, target your audience, find the humor in everyday events and much, much more. 
+Your instructor, an experienced comedy writer and working actress, will guide you through a wide range of comedic sources. You'll learn how to write a one-liner, use physical humor, target your audience, find the humor in everyday events and much, much more.
 
-Once you've learned some of the methods of creating humor, you'll be ready to apply it to all aspects of your life. Punch up speeches and presentations so that the audience is instantly on your side. Mix laughter with learning in the classroom, and watch your students' attention spans grow. Add some humor to your web page and watch the hits explode as word gets out. Use your newfound sense of humor to entertain your friends, meet interesting people, and even make new friends! 
+Once you've learned some of the methods of creating humor, you'll be ready to apply it to all aspects of your life. Punch up speeches and presentations so that the audience is instantly on your side. Mix laughter with learning in the classroom, and watch your students' attention spans grow. Add some humor to your web page and watch the hits explode as word gets out. Use your newfound sense of humor to entertain your friends, meet interesting people, and even make new friends!
 eos
   price: 9.99,
   total_hours: 8,
@@ -130,9 +130,9 @@ Promotion.create(
 <h4>About the Class</h4>
       The ability to create humor is a skill many people don&#x27;t have, yet wish they did. If you&#x27;re interested in learning how to come up with jokes or witticisms on the fly, punch up dull material for an audience, or make a living as a comedy writer, this course will get you going.
 
-Your instructor, an experienced comedy writer and working actress, will guide you through a wide range of comedic sources. You&#x27;ll learn how to write a one-liner, use physical humor, target your audience, find the humor in everyday events and much, much more. 
+Your instructor, an experienced comedy writer and working actress, will guide you through a wide range of comedic sources. You&#x27;ll learn how to write a one-liner, use physical humor, target your audience, find the humor in everyday events and much, much more.
 
-Once you&#x27;ve learned some of the methods of creating humor, you&#x27;ll be ready to apply it to all aspects of your life. Punch up speeches and presentations so that the audience is instantly on your side. Mix laughter with learning in the classroom, and watch your students&#x27; attention spans grow. Add some humor to your web page and watch the hits explode as word gets out. Use your newfound sense of humor to entertain your friends, meet interesting people, and even make new friends! 
+Once you&#x27;ve learned some of the methods of creating humor, you&#x27;ll be ready to apply it to all aspects of your life. Punch up speeches and presentations so that the audience is instantly on your side. Mix laughter with learning in the classroom, and watch your students&#x27; attention spans grow. Add some humor to your web page and watch the hits explode as word gets out. Use your newfound sense of humor to entertain your friends, meet interesting people, and even make new friends!
 
       <h4>About Drew Carey</h4>
       <p>Carey has appeared in several films, television series, music videos, a made-for-television film, and a computer game. He has hosted the television game show The Price Is Right since 2007. He is interested in a variety of sports, has worked as a photographer at U.S. National Team soccer games, is a minority owner of the Major League Soccer team Seattle Sounders FC and a member of the WWE Hall of Fame. Carey has written an autobiography, Dirty Jokes And Beer: Stories Of The Unrefined, detailing his early life and television career.</p>
@@ -184,13 +184,13 @@ topic1 = ForumTopic.new(
 )
 
 topic1.posts << ForumPost.new(
-  text:<<eos,
+  text: <<eos,
 A friend told me about this course on Monday evening (he's taking it at the moment). I signed up but realise its way too late to work through the materials and assignments at this stage.
 
 I would love to take this course when it comes round again, and have some questions:
 
 When will this course run again?
-Do I have to be enrolled to access the course materials? 
+Do I have to be enrolled to access the course materials?
 Will I be penalised for remaining enrolled on a course which I didn't submit anything towards (particularly in terms of taking it when it starts).
 
 I did see elsewhere in the forum that the materials do remain available after the course ends.

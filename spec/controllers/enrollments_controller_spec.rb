@@ -6,41 +6,40 @@ describe EnrollmentsController do
 
   describe 'POST create', :vcr do
 
-
     context 'New user' do
-      let(:params) {{
-        'user' => {'full_name' => 'Marie-Élise L’Antisémite', 'email' => 'new@user.com'},
-        'enrollment' => {'course_id' => course.id, 'stripe_token' => 'tok_20ViXjlKQQQ21j'},
+      let(:params) do{
+        'user' => { 'full_name' => 'Marie-Élise L’Antisémite', 'email' => 'new@user.com' },
+        'enrollment' => { 'course_id' => course.id, 'stripe_token' => 'tok_20ViXjlKQQQ21j' },
         'course_id' => course.url
-      }}
+      }end
 
       before :each do
         stub_stripe_customer
       end
 
       it 'should create a new user account' do
-        expect {
+        expect do
           post :create, params
-        }.to change{User.count}.from(0).to(1)
+        end.to change { User.count }.from(0).to(1)
       end
 
       context 'invalid email' do
-        let(:params) {{
-          'user' => {'full_name' => 'Marie-Élise L’Antisémite', 'email' => 'invalid'},
-          'enrollment' => {'course_id' => course.id, 'stripe_token' => 'tok_20ViXjlKQQQ21j'},
+        let(:params) do{
+          'user' => { 'full_name' => 'Marie-Élise L’Antisémite', 'email' => 'invalid' },
+          'enrollment' => { 'course_id' => course.id, 'stripe_token' => 'tok_20ViXjlKQQQ21j' },
           'course_id' => course.url
-        }}
+        }end
 
         it 'should not create a user' do
-          expect {
+          expect do
             post :create, params
-          }.to change{User.count}.by(0)
+          end.to change { User.count }.by(0)
         end
 
         it 'should not create an enrollment' do
-          expect {
+          expect do
             post :create, params
-          }.to change{Enrollment.count}.by(0)
+          end.to change { Enrollment.count }.by(0)
         end
       end
     end
@@ -48,10 +47,10 @@ describe EnrollmentsController do
     context 'Existing user' do
       let(:user) { FactoryGirl.create(:user) }
 
-      let(:params){{
-        "enrollment"=>{"course_id"=>course.id, "stripe_token"=>"tok_20ViXjlKQQQ21j", "promotion_id"=>"", "course_price"=>""},
+      let(:params)do{
+        'enrollment' => { 'course_id' => course.id, 'stripe_token' => 'tok_20ViXjlKQQQ21j', 'promotion_id' => '', 'course_price' => '' },
         'course_id' => course.url
-      }}
+      }end
 
       before :each do
         sign_in user
@@ -64,9 +63,9 @@ describe EnrollmentsController do
       end
 
       it 'should create an enrollment' do
-        expect{
+        expect do
           post :create, params
-        }.to change{user.enrollments.count}.from(0).to(1)
+        end.to change { user.enrollments.count }.from(0).to(1)
       end
 
       it 'should send a confirmation email' do
@@ -80,7 +79,6 @@ describe EnrollmentsController do
       it 'should redirect if the user is already enrolled'
       it 'should redirect if the user has already pre-ordered'
     end
-
 
     it 'should redirect for invalid course ids' do
       post :create, 'course_id' => 'invalid'
